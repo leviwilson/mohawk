@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = Fado::VERSION
   gem.authors       = ["Levi Wilson"]
   gem.email         = ["levi@leviwilson.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{High level wrapper around windows applications}
+  gem.summary       = %q{High level wrapper around windows applications}
+  gem.homepage      = "http://github.com/leviwilson/fado"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
