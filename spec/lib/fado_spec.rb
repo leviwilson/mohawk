@@ -3,6 +3,8 @@ require 'spec_helper'
 class TestScreen
   include Fado
   window(:title => "Some Window Title")
+  
+  text(:text_id, :id => "textId")
 end
 
 describe Fado do
@@ -23,5 +25,23 @@ describe Fado do
       window.should_receive(:exist?)
       screen.exist?
     end
+
+    it "can set text by id" do
+      text_field = double("Text mock")
+      window.should_receive(:text_field).with(:id => "textId").and_return(text_field)
+      text_field.should_receive(:set).with("the text value")
+      
+      screen.text_id = "the text value"
+    end
+
+    it "can get the text by id" do
+      text_field = double("Text mock")
+      window.should_receive(:text_field).with(:id => "textId").and_return(text_field)
+      text_field.should_receive(:value).and_return("the text")
+      
+      screen.text_id.should eq("the text")
+    end
+
+    
   end
 end
