@@ -1,11 +1,11 @@
-When /^I set the text field identified by id to "(.*?)"$/ do |the_text|
-  @screen.text_field_by_id = the_text
+When /^I set the "(.*)" to the value "(.*)"$/ do |name, value|
+  on(MainScreen).send "#{name.to_field}=", value
 end
 
-When /^I clear the text field$/ do
-  @screen.clear_text_field_by_id
+When /^I clear the "(.*)"$/ do |name|
+  on(MainScreen).send "clear_#{name.to_field}"
 end
 
-Then /^I should see "(.*?)" in the field identified by id$/ do |the_text|
-  @screen.text_field_by_id.should eq(the_text)
+Then /^the "(.*)" should be "(.*)"$/ do |name, value|
+  on(MainScreen).send("#{name.to_field}").should eq(value)
 end
