@@ -9,6 +9,7 @@ World(Fado::Navigation)
 Before do
   @process = ChildProcess.build('features\\support\\WindowsForms.exe')
   @process.start
+  RAutomation::WaitHelper.wait_until {RAutomation::Window.new(:pid => @process.pid).present?}
 end
 
 After do
