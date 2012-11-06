@@ -41,7 +41,14 @@ describe Fado do
       
       screen.text_id.should eq("the text")
     end
-
+    
+    it "can clear text" do
+      text_field = double("Text mock")
+      window.should_receive(:text_field).with(:id => "textId").and_return(text_field)
+      text_field.should_receive(:clear)
+      
+      screen.clear_text_id
+    end
     
   end
 end

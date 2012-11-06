@@ -13,6 +13,9 @@ module Fado
       define_method("#{name}=") do |text|
         adapter.window.text_field(locator).set text
       end
+      define_method("clear_#{name}") do
+        adapter.window.text_field(locator).clear
+      end
     end
   end
 end
