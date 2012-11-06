@@ -1,10 +1,8 @@
-require 'rautomation'
-
 module Fado
   module Accessors
     def window(locator)
-      define_method("the_window") do
-        @window ||= RAutomation::Window.new(locator)
+      define_method("which_window") do
+        locator
       end
     end
   end
