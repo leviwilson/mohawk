@@ -8,13 +8,13 @@ module Fado
     
     def text(name, locator)
       define_method("#{name}") do 
-        adapter.get_text(locator)
+        adapter.text(locator).value
       end
       define_method("#{name}=") do |text|
-        adapter.set_text(text, locator)
+        adapter.text(locator).set text
       end
       define_method("clear_#{name}") do
-        adapter.clear_text(locator)
+        adapter.text(locator).clear
       end
     end
 

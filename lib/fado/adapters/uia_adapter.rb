@@ -15,16 +15,8 @@ module Fado
         Fado::Accessors::CheckBox.new(self, locator)
       end
 
-      def set_text(text, locator)
-        window.text_field(locator).set text
-      end
-
-      def get_text(locator)
-        window.text_field(locator).value
-      end
-
-      def clear_text(locator)
-        window.text_field(locator).clear
+      def text(locator)
+        Fado::Accessors::Text.new(self, locator)
       end
 
       def click_button(locator, &block)

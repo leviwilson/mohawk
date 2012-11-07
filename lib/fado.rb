@@ -3,6 +3,7 @@ require "fado/version"
 require "fado/accessors"
 require "fado/accessors/combo"
 require "fado/accessors/checkbox"
+require "fado/accessors/text"
 require "fado/navigation"
 require "fado/adapters/uia_adapter"
 
