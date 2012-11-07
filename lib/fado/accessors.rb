@@ -29,13 +29,13 @@ module Fado
 
     def combo_box(name, locator)
       define_method("#{name}") do
-        adapter.get_combo_box_value(locator)
+        adapter.combo(locator).value
       end
       define_method("#{name}=") do |item|
-        adapter.set_combo_box_value(item, locator)
+        adapter.combo(locator).set item
       end
       define_method("#{name}_options") do
-        adapter.get_combo_box_options(locator)
+        adapter.combo(locator).options
       end
     end
 

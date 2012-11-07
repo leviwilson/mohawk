@@ -7,6 +7,10 @@ module Fado
         @window = RAutomation::Window.new(locator.merge(:adapter => :ms_uia))
       end
 
+      def combo(locator)
+        Fado::Accessors::Combo.new(self, locator)
+      end
+
       def set_text(text, locator)
         window.text_field(locator).set text
       end
@@ -26,19 +30,6 @@ module Fado
 
       def get_button_value(locator)
         window.button(locator).value
-      end
-
-      def get_combo_box_value(locator)
-        window.select_list(locator).value
-      end
-
-      def get_combo_box_options(locator)
-        window.select_list(locator).options.map &:text
-      end
-
-      def set_combo_box_value(value, locator)
-        window.select_list(locator).select value if value.instance_of? Fixnum
-        window.select_list(locator).set value if value.instance_of? String
       end
 
       def is_checked(locator)
