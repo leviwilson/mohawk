@@ -27,6 +27,14 @@ module Fado
       def get_button_value(locator)
         window.button(locator).value
       end
+
+      def get_combo_box_value(locator)
+        window.select_list(locator).value
+      end
+
+      def set_combo_box_index(index, locator)
+        window.select_list(locator).select index
+      end
     end
   end
 end

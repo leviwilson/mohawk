@@ -26,5 +26,14 @@ module Fado
         adapter.get_button_value(locator)
       end
     end
+
+    def combo_box(name, locator)
+      define_method("#{name}") do
+        adapter.get_combo_box_value(locator)
+      end
+      define_method("#{name}=") do |value|
+        adapter.set_combo_box_index(value, locator)
+      end
+    end
   end
 end
