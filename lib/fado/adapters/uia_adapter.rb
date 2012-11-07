@@ -11,6 +11,10 @@ module Fado
         Fado::Accessors::Combo.new(self, locator)
       end
 
+      def checkbox(locator)
+        Fado::Accessors::CheckBox.new(self, locator)
+      end
+
       def set_text(text, locator)
         window.text_field(locator).set text
       end
@@ -30,19 +34,6 @@ module Fado
 
       def get_button_value(locator)
         window.button(locator).value
-      end
-
-      def is_checked(locator)
-        window.checkbox(locator).set?
-      end
-      
-      def check(should_check, locator)
-        window.checkbox(locator).set if should_check
-        window.checkbox(locator).clear unless should_check
-      end
-
-      def get_check_value(locator)
-        window.checkbox(locator).value
       end
 
       def set_radio(locator)

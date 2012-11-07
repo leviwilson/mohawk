@@ -41,13 +41,13 @@ module Fado
 
     def checkbox(name, locator)
       define_method("#{name}") do
-        adapter.is_checked(locator)
+        adapter.checkbox(locator).checked?
       end
       define_method("#{name}=") do |should_check|
-        adapter.check(should_check, locator)
+        adapter.checkbox(locator).set_check should_check
       end
       define_method("#{name}_value") do
-        adapter.get_check_value(locator)
+        adapter.checkbox(locator).value
       end
     end
 
