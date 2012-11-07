@@ -17,17 +17,20 @@ describe Fado::Accessors do
     window.should_receive(:button).with(:id => "easyButton").and_return(button_field)
   end
 
-  it "clicks buttons" do
-    button_field.should_receive(:click).and_yield
-    screen.easy
-  end
+  context "accessing buttons" do
 
-  it "clicks buttons and yields to a block" do
-    button_field.should_receive(:click).and_yield
-    result = false
-    screen.easy do
-      result = true
+    it "clicks buttons" do
+      button_field.should_receive(:click).and_yield
+      screen.easy
     end
-    result.should be_true
+
+    it "clicks buttons and yields to a block" do
+      button_field.should_receive(:click).and_yield
+      result = false
+      screen.easy do
+        result = true
+      end
+      result.should be_true
+    end
   end
 end
