@@ -1,6 +1,6 @@
 # Fado
 
-[![Build Status](http://travis-ci.org/leviwilson/fado.png)](http://travis-ci.org/leviwilson/fado)
+[![Build Status](https://travis-ci.org/leviwilson/fado.png)](https://travis-ci.org/leviwilson/fado)
 
 A gem to assist in building page-object like structures for testing Windows applications.
 
