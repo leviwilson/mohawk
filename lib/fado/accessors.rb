@@ -53,10 +53,10 @@ module Fado
 
     def radio(name, locator)
       define_method("#{name}") do
-        adapter.set_radio(locator)
+        adapter.radio(locator).set
       end
       define_method("#{name}?") do
-        adapter.radio_is_set? locator
+        adapter.radio(locator).set?
       end
     end
   end

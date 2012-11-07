@@ -23,12 +23,8 @@ module Fado
         Fado::Accessors::Button.new(self, locator)
       end
 
-      def set_radio(locator)
-        window.radio(locator).set
-      end
-
-      def radio_is_set?(locator)
-        window.radio(locator).set?
+      def radio(locator)
+        Fado::Accessors::Radio.new(self, locator)
       end
     end
   end
