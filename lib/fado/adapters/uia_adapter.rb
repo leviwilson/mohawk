@@ -40,6 +40,19 @@ module Fado
         window.select_list(locator).select value if value.instance_of? Fixnum
         window.select_list(locator).set value if value.instance_of? String
       end
+
+      def is_checked(locator)
+        window.checkbox(locator).set?
+      end
+      
+      def check(should_check, locator)
+        window.checkbox(locator).set if should_check
+        window.checkbox(locator).clear unless should_check
+      end
+
+      def get_check_value(locator)
+        window.checkbox(locator).value
+      end
     end
   end
 end

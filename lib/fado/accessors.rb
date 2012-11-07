@@ -38,5 +38,17 @@ module Fado
         adapter.get_combo_box_options(locator)
       end
     end
+
+    def checkbox(name, locator)
+      define_method("#{name}") do
+        adapter.is_checked(locator)
+      end
+      define_method("#{name}=") do |should_check|
+        adapter.check(should_check, locator)
+      end
+      define_method("#{name}_value") do
+        adapter.get_check_value(locator)
+      end
+    end
   end
 end
