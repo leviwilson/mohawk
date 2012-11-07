@@ -6,4 +6,5 @@ class MainScreen
   button(:data_entry_form_button, :value => "Data Entry Form")
   combo_box(:fruits, :id => "FruitsComboBox")
   checkbox(:first_checkbox, :id =>  "checkBox")
+  radio(:first_radio, :id => "radioButton1")
 end

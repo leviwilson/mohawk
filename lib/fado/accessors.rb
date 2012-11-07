@@ -50,5 +50,14 @@ module Fado
         adapter.get_check_value(locator)
       end
     end
+
+    def radio(name, locator)
+      define_method("#{name}") do
+        adapter.set_radio(locator)
+      end
+      define_method("#{name}?") do
+        adapter.radio_is_set? locator
+      end
+    end
   end
 end

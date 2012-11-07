@@ -53,6 +53,14 @@ module Fado
       def get_check_value(locator)
         window.checkbox(locator).value
       end
+
+      def set_radio(locator)
+        window.radio(locator).set
+      end
+
+      def radio_is_set?(locator)
+        window.radio(locator).set?
+      end
     end
   end
 end
