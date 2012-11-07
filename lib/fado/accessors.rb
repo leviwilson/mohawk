@@ -20,10 +20,10 @@ module Fado
 
     def button(name, locator)
       define_method("#{name}") do |&block|
-        adapter.click_button(locator, &block)
+        adapter.button(locator).click &block
       end
       define_method("#{name}_value") do
-        adapter.get_button_value(locator)
+        adapter.button(locator).value
       end
     end
 

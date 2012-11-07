@@ -19,13 +19,8 @@ module Fado
         Fado::Accessors::Text.new(self, locator)
       end
 
-      def click_button(locator, &block)
-        window.button(locator).click &block if block
-        window.button(locator).click {true } unless block
-      end
-
-      def get_button_value(locator)
-        window.button(locator).value
+      def button(locator)
+        Fado::Accessors::Button.new(self, locator)
       end
 
       def set_radio(locator)
