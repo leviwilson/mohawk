@@ -32,5 +32,10 @@ describe Fado::Accessors do
       end
       result.should be_true
     end
+
+    it "knows the value of the button" do
+      button_field.should_receive(:value).and_return "Button Value"
+      screen.easy_value.should eq("Button Value")
+    end
   end
 end

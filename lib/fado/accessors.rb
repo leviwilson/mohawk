@@ -23,6 +23,9 @@ module Fado
         adapter.window.button(locator).click &block if block
         adapter.window.button(locator).click {true } unless block
       end
+      define_method("#{name}_value") do
+        adapter.window.button(locator).value
+      end
     end
   end
 end
