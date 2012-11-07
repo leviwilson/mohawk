@@ -3,7 +3,7 @@ When /^I click the "(.*?)" button$/ do |name|
 end
 
 Then /^I should see the "(.*?)" window$/ do |window_title|
-  RAutomation::Window.new(:title => window_title).should exist
+  RAutomation::Window.new(:title => window_title).wait_until_exists
 end
 
 When /^I look at the value of the "(.*?)" control$/ do |name|
