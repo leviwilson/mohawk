@@ -15,4 +15,4 @@ Cucumber::Rake::Task.new(:features) do |t|
   t.profile = 'default'
 end
 
-task :default => :features
+task :default => :spec
