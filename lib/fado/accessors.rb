@@ -8,23 +8,22 @@ module Fado
     
     def text(name, locator)
       define_method("#{name}") do 
-        adapter.window.text_field(locator).value
+        adapter.get_text(locator)
       end
       define_method("#{name}=") do |text|
-        adapter.window.text_field(locator).set text
+        adapter.set_text(text, locator)
       end
       define_method("clear_#{name}") do
-        adapter.window.text_field(locator).clear
+        adapter.clear_text(locator)
       end
     end
 
     def button(name, locator)
       define_method("#{name}") do |&block|
-        adapter.window.button(locator).click &block if block
-        adapter.window.button(locator).click {true } unless block
+        adapter.click_button(locator, &block)
       end
       define_method("#{name}_value") do
-        adapter.window.button(locator).value
+        adapter.get_button_value(locator)
       end
     end
   end
