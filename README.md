@@ -18,10 +18,6 @@ Or install it yourself as:
 
     $ gem install fado
 
-## Usage
-
-TODO: Write usage instructions here
-
 ## Contributing
 
 1. Fork it
