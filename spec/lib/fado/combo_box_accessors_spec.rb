@@ -7,6 +7,16 @@ class ComboBoxScreen
   combo_box(:nacho_combos, :id => "comboBoxId")
 end
 
+class Option
+  def initialize(text)
+    @text = text
+  end
+
+  def text
+    @text
+  end
+end
+
 describe Fado::Accessors do
   let(:screen) { ComboBoxScreen.new }
   let(:window) { double("RAutomation Window") }
@@ -29,9 +39,15 @@ describe Fado::Accessors do
       screen.nacho_combos = 3
     end
 
-    it "Selects items by value" do
+    it "selects items by value" do
       combo_box_field.should_receive(:set).with("Desired Value")
       screen.nacho_combos = "Desired Value"
+    end
+
+    it "is aware of the available options" do
+      options = [Option.new("first"), Option.new("second"), Option.new("third")]
+      combo_box_field.should_receive(:options).and_return(options)
+      screen.nacho_combos_options.should eq(["first", "second", "third"])
     end
 
   end

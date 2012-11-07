@@ -32,6 +32,10 @@ module Fado
         window.select_list(locator).value
       end
 
+      def get_combo_box_options(locator)
+        window.select_list(locator).options.map &:text
+      end
+
       def set_combo_box_value(value, locator)
         window.select_list(locator).select value if value.instance_of? Fixnum
         window.select_list(locator).set value if value.instance_of? String
