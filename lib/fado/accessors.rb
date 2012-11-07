@@ -17,5 +17,12 @@ module Fado
         adapter.window.text_field(locator).clear
       end
     end
+
+    def button(name, locator)
+      define_method("#{name}") do |&block|
+        adapter.window.button(locator).click &block if block
+        adapter.window.button(locator).click {true } unless block
+      end
+    end
   end
 end

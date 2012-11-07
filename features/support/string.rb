@@ -1,5 +1,5 @@
 class String
   def to_field
-    self.gsub(/ /, "_")
+    self.gsub(/ /, "_").downcase
   end
 end
