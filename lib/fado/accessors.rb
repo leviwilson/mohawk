@@ -31,8 +31,8 @@ module Fado
       define_method("#{name}") do
         adapter.get_combo_box_value(locator)
       end
-      define_method("#{name}=") do |value|
-        adapter.set_combo_box_index(value, locator)
+      define_method("#{name}=") do |item|
+        adapter.set_combo_box_value(item, locator)
       end
     end
   end

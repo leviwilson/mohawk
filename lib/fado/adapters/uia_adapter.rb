@@ -32,8 +32,9 @@ module Fado
         window.select_list(locator).value
       end
 
-      def set_combo_box_index(index, locator)
-        window.select_list(locator).select index
+      def set_combo_box_value(value, locator)
+        window.select_list(locator).select value if value.instance_of? Fixnum
+        window.select_list(locator).set value if value.instance_of? String
       end
     end
   end

@@ -29,6 +29,11 @@ describe Fado::Accessors do
       screen.nacho_combos = 3
     end
 
+    it "Selects items by value" do
+      combo_box_field.should_receive(:set).with("Desired Value")
+      screen.nacho_combos = "Desired Value"
+    end
+
   end
 end
 
