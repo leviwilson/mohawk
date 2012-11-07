@@ -7,7 +7,7 @@ class ButtonScreen
   button(:easy, :id => "easyButton")
 end
 
-describe Fado::Accessors do
+describe Fado::Accessors::Button do
   let(:screen) { ButtonScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:button_field) { double("Button Field") }

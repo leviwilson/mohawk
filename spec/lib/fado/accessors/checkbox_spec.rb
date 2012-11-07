@@ -7,7 +7,7 @@ class CheckboxScreen
   checkbox(:check_yourself, :id => "checkboxId")
 end
 
-describe Fado::Accessors do
+describe Fado::Accessors::CheckBox do
   let(:screen) { CheckboxScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:checkbox_field) { double("CheckBox Field") }

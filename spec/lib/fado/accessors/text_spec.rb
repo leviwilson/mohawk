@@ -7,7 +7,7 @@ class TextScreen
   text(:text_id, :id => "textId")
 end
 
-describe Fado::Accessors do
+describe Fado::Accessors::Text do
   let(:screen) { TextScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:text_field) { double("Text Field") }

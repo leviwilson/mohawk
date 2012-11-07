@@ -7,7 +7,7 @@ class RadioScreen
   radio(:radio_radio, :id => "radioId")
 end
 
-describe Fado::Accessors do
+describe Fado::Accessors::Radio do
   let(:screen) { RadioScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:radio_control) { double("Elvis Costello's Radio Radio") }

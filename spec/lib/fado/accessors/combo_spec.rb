@@ -17,7 +17,7 @@ class Option
   end
 end
 
-describe Fado::Accessors do
+describe Fado::Accessors::Combo do
   let(:screen) { ComboBoxScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:combo_box_field) { double("ComboBox Field") }
