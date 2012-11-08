@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 class ComboBoxScreen
-  include Fado
+  include Mohawk
   window(:id => nil)
   
   combo_box(:nacho_combos, :id => "comboBoxId")
@@ -17,7 +17,7 @@ class Option
   end
 end
 
-describe Fado::Accessors::Combo do
+describe Mohawk::Accessors::Combo do
   let(:screen) { ComboBoxScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:combo_box_field) { double("ComboBox Field") }

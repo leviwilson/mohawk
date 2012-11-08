@@ -1,4 +1,4 @@
-module Fado
+module Mohawk
   module Accessors
     class CheckBox
       def initialize(adapter, locator)

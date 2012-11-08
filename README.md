@@ -1,6 +1,6 @@
-# Fado
+# Mohawk
 
-[![Build Status](https://travis-ci.org/leviwilson/fado.png)](https://travis-ci.org/leviwilson/fado)
+[![Build Status](https://travis-ci.org/leviwilson/mohawk.png)](https://travis-ci.org/leviwilson/mohawk)
 
 A gem to assist in building page-object like structures for testing Windows applications.
 
@@ -8,7 +8,7 @@ A gem to assist in building page-object like structures for testing Windows appl
 
 Add this line to your application's Gemfile:
 
-    gem 'fado'
+    gem 'mohawk'
 
 And then execute:
 
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install fado
+    $ gem install mohawk
 
 ## Contributing
 

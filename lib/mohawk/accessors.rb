@@ -1,4 +1,4 @@
-module Fado
+module Mohawk
   module Accessors
     def window(locator)
       define_method("which_window") do

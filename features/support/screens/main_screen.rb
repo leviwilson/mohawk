@@ -1,5 +1,5 @@
 class MainScreen
-  include Fado
+  include Mohawk
   window(:title => /MainFormWindow/)
 
   text(:text_field, :id => "textField")

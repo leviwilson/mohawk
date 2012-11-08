@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 class CheckboxScreen
-  include Fado
+  include Mohawk
   window(:id => nil)
 
   checkbox(:check_yourself, :id => "checkboxId")
 end
 
-describe Fado::Accessors::CheckBox do
+describe Mohawk::Accessors::CheckBox do
   let(:screen) { CheckboxScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:checkbox_field) { double("CheckBox Field") }

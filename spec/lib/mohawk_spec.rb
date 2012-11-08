@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 class TestScreen
-  include Fado
+  include Mohawk
   window(:title => "Some Window Title")
   
   text(:text_id, :id => "textId")
 end
 
-describe Fado do
+describe Mohawk do
   let(:screen) { TestScreen.new }
   let(:window) { double('RAutomation Window') }
 

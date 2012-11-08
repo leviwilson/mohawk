@@ -1,4 +1,4 @@
-module Fado
+module Mohawk
   module Accessors
     class Combo
       def initialize(adapter, locator)

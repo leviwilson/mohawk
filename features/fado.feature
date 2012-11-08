@@ -1,4 +1,4 @@
-Feature:  Using Fado
+Feature:  Using Mohawk
 
 Scenario: Determining if a window exists
   When we are using the "MainScreen"

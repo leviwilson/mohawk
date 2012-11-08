@@ -2,9 +2,9 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../../', 'lib'))
 
 require 'rspec-expectations'
 require 'childprocess'
-require 'fado'
+require 'mohawk'
 
-World(Fado::Navigation)
+World(Mohawk::Navigation)
 
 Before do
   @process = ChildProcess.build('features\\support\\WindowsForms.exe')

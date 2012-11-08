@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 class RadioScreen
-  include Fado
+  include Mohawk
   window(:id => nil)
 
   radio(:radio_radio, :id => "radioId")
 end
 
-describe Fado::Accessors::Radio do
+describe Mohawk::Accessors::Radio do
   let(:screen) { RadioScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:radio_control) { double("Elvis Costello's Radio Radio") }

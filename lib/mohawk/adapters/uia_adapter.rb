@@ -1,4 +1,4 @@
-module Fado
+module Mohawk
   module Adapters
     class UiaAdapter
       attr_reader :window
@@ -8,23 +8,23 @@ module Fado
       end
 
       def combo(locator)
-        Fado::Accessors::Combo.new(self, locator)
+        Mohawk::Accessors::Combo.new(self, locator)
       end
 
       def checkbox(locator)
-        Fado::Accessors::CheckBox.new(self, locator)
+        Mohawk::Accessors::CheckBox.new(self, locator)
       end
 
       def text(locator)
-        Fado::Accessors::Text.new(self, locator)
+        Mohawk::Accessors::Text.new(self, locator)
       end
 
       def button(locator)
-        Fado::Accessors::Button.new(self, locator)
+        Mohawk::Accessors::Button.new(self, locator)
       end
 
       def radio(locator)
-        Fado::Accessors::Radio.new(self, locator)
+        Mohawk::Accessors::Radio.new(self, locator)
       end
     end
   end

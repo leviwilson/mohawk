@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 class ButtonScreen
-  include Fado
+  include Mohawk
   window(:id => nil)
 
   button(:easy, :id => "easyButton")
 end
 
-describe Fado::Accessors::Button do
+describe Mohawk::Accessors::Button do
   let(:screen) { ButtonScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:button_field) { double("Button Field") }

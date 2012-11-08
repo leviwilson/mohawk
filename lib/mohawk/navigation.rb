@@ -1,4 +1,4 @@
-module Fado
+module Mohawk
   module Navigation
     def on(cls, &block)
       @screen = cls.new
