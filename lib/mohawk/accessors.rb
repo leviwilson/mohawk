@@ -59,5 +59,11 @@ module Mohawk
         adapter.radio(locator).set?
       end
     end
+	
+	def label(name, locator)
+		define_method("#{name}") do
+			adapter.label(locator).value
+		end
+	end
   end
 end

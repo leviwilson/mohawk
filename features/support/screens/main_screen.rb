@@ -7,4 +7,5 @@ class MainScreen
   combo_box(:fruits, :id => "FruitsComboBox")
   checkbox(:first_checkbox, :id =>  "checkBox")
   radio(:first_radio, :id => "radioButton1")
+  label(:label_control, :id => "label1")
 end
