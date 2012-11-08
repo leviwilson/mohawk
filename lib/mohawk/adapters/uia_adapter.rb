@@ -27,9 +27,9 @@ module Mohawk
         Mohawk::Accessors::Radio.new(self, locator)
       end
 	  
-	  def label(locator)
-		Mohawk::Accessors::Label.new(self, locator)
-	  end
+      def label(locator)
+        Mohawk::Accessors::Label.new(self, locator)
+      end
     end
   end
 end

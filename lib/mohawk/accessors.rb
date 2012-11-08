@@ -60,10 +60,10 @@ module Mohawk
       end
     end
 	
-	def label(name, locator)
-		define_method("#{name}") do
-			adapter.label(locator).value
-		end
-	end
+    def label(name, locator)
+      define_method("#{name}") do
+        adapter.label(locator).value
+      end
+    end
   end
 end
