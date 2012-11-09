@@ -18,6 +18,35 @@ Or install it yourself as:
 
     $ gem install mohawk
 
+## Example
+
+### Defining a screen
+
+```ruby
+require 'mohawk'
+
+class LoginScreen
+  include Mohawk
+  window(:title => /Login/)
+
+  text(:username, :id => "UserNameField")
+  text(:password, :id => "PasswordField")
+  
+  button(:login, :value => "Login")
+end
+```
+
+### Using the Page-Object
+```ruby
+World(Mohawk::Navigation)
+
+on(LoginScreen) do |screen|
+  screen.username = "levi"
+  screen.password = "secret"
+  screen.login
+end
+```
+
 ## Contributing
 
 1. Fork it
