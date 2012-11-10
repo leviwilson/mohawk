@@ -22,6 +22,9 @@ module Mohawk
     @adapter = Mohawk::Adapters::UiaAdapter.new(which_window)
   end 
 
+  #
+  # Returns whether or not the window exists
+  #
   def exist?
     adapter.window.exist?
   end
