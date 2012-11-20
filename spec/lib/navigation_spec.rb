@@ -24,8 +24,8 @@ describe Mohawk::Navigation do
     end
   end
 
-  it "waits for the screen to be active before proceeding" do
-    screen.should_receive(:active?).twice.and_return(false, true)
+  it "waits for the screen to be present before proceeding" do
+    screen.should_receive(:present?).twice.and_return(false, true)
     screen.should_receive(:was_used)
     on(NavigationTestScreen) do |screen|
       screen.was_used
