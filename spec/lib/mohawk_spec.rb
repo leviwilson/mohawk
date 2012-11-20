@@ -25,6 +25,11 @@ describe Mohawk do
       window.should_receive(:exist?)
       screen.exist?
     end
+
+    it "knows if a window is active or not" do
+      window.should_receive(:active?)
+      screen.active?
+    end
     
   end
 end

@@ -29,4 +29,11 @@ module Mohawk
     adapter.window.exist?
   end
 
+  #
+  # Returns whether or not the window is active
+  #
+  def active?
+    adapter.window.active?
+  end
+
 end
