@@ -35,6 +35,11 @@ describe Mohawk do
       window.should_receive(:present?)
       screen.present?
     end
+
+    it "can hold off until the window is present" do
+      window.should_receive(:wait_until_present)
+      screen.wait_until_present
+    end
     
   end
 end

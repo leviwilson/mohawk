@@ -43,4 +43,11 @@ module Mohawk
     adapter.window.present?
   end
 
+  #
+  # Waits until the window is present
+  #
+  def wait_until_present
+    adapter.window.wait_until_present
+  end
+
 end
