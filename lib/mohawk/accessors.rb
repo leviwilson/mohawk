@@ -129,7 +129,7 @@ module Mohawk
     # Generates methods to get the value of a label control
     #
     # @example
-    #   radio(:login_info, :id => 'loginInfoLabel')
+    #   label(:login_info, :id => 'loginInfoLabel')
     #   # will generate a 'login_info' method
     #
     # @param  [String]  the name used for the generated methods
@@ -146,6 +146,7 @@ module Mohawk
     # @example
     #   menu_item(:some_menu_item, :path => ["Path", "To", "A", "Menu Item"])
     #   # will generate a 'some_menu_item' method to select a menu item
+    #
     # @param  [String]  the name used for the generated methods
     # @param  [Hash]  locator for how the label is found
     #
