@@ -7,12 +7,14 @@ module Mohawk
       end
 
       def select
-        menu_items = Array.new @locator[:path]
-        menu = @adapter.window.menu(:text => menu_items.shift)
-        menu_items.each do |menu_item|
-          menu.menu :text => menu_item
+        menu_item.open
+      end
+
+      private
+      def menu_item
+        @locator[:path].reduce(@adapter.window) do |the_menu, menu_item|
+          the_menu.menu :text => menu_item
         end
-        menu.open
       end
     end
   end
