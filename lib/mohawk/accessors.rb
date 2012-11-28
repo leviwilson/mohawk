@@ -140,5 +140,19 @@ module Mohawk
         adapter.label(locator).value
       end
     end
+
+    # Generates methods to work with menu items
+    #
+    # @example
+    #   menu_item(:some_menu_item, :path => ["Path", "To", "A", "Menu Item"])
+    #   # will generate a 'some_menu_item' method to select a menu item
+    # @param  [String]  the name used for the generated methods
+    # @param  [Hash]  locator for how the label is found
+    #
+    def menu_item(name, locator)
+      define_method("#{name}") do
+        adapter.menu_item(locator).select
+      end
+    end
   end
 end

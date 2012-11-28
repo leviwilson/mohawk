@@ -8,4 +8,5 @@ class MainScreen
   checkbox(:first_checkbox, :id =>  "checkBox")
   radio(:first_radio, :id => "radioButton1")
   label(:label_control, :id => "label1")
+  menu_item(:file_roundabout_way_to_about, :path => ["File", "Roundabout Way", "To", "About"])
 end
