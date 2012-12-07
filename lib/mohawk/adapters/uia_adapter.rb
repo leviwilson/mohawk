@@ -34,6 +34,10 @@ module Mohawk
       def menu_item(locator)
         Mohawk::Accessors::MenuItem.new(self, locator)
       end
+
+      def table(locator)
+        Mohawk::Accessors::Table.new(self, locator)
+      end
     end
   end
 end

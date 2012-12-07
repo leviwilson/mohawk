@@ -158,5 +158,24 @@ module Mohawk
         adapter.menu_item(locator).select
       end
     end
+
+    # Generates methods for working with table or list view controls
+    #
+    # @example
+    #   table(:some_table, :id => "tableId")
+    #   # will generate a 'some_table_rows' method to list each of the row items in a table
+    #
+    # @param  [String]  the name used for the generated methods
+    # @param  [Hash]  locator for how the label is found
+    #
+    def table(name, locator)
+      define_method("#{name}=") do |which_item|
+        adapter.table(locator).select which_item
+      end
+      define_method("#{name}_rows") do
+        adapter.table(locator).rows
+      end
+    end
+
   end
 end
