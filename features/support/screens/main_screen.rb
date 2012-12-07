@@ -3,6 +3,7 @@ class MainScreen
   window(:title => /MainFormWindow/)
 
   text(:text_field, :id => "textField")
+  text(:masked_text_field, :id => "maskedTextBox")
   button(:data_entry_form_button, :value => "Data Entry Form")
   combo_box(:fruits, :id => "FruitsComboBox")
   checkbox(:first_checkbox, :id =>  "checkBox")

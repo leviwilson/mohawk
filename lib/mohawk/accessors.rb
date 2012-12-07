@@ -37,6 +37,9 @@ module Mohawk
       define_method("clear_#{name}") do
         adapter.text(locator).clear
       end
+      define_method("enter_#{name}") do |text|
+        adapter.text(locator).enter text
+      end
     end
     
     #
