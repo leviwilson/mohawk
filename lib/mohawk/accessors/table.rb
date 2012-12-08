@@ -1,19 +1,38 @@
 module Mohawk
   module Accessors
     class Table
+      class Row
+        attr_reader :table, :row
+
+        def initialize(table, row)
+          @row = row
+          @table = table
+        end
+        
+        def selected?
+          table.selected? row.row
+        end
+      end
+
+      attr_reader :table
+
       def initialize(adapter, locator)
         @table = adapter.window.table(locator)
       end
 
       def select(which_item)
-        @table.select which_item if which_item.is_a? Integer
-        @table.set which_item if which_item.is_a? String
+        table.select which_item if which_item.is_a? Integer
+        table.set which_item if which_item.is_a? String
       end
 
       def rows
-        @table.rows.map do |row|
+        table.rows.map do |row|
           {:text => row.text, :row => row.row }
         end
+      end
+
+      def row(which_row)
+        Row.new table, table.row(:index => which_row)
       end
     end
   end

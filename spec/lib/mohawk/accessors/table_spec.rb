@@ -40,4 +40,22 @@ describe Mohawk::Accessors::Table do
     table.should_receive(:rows).and_return(fake_rows)
     expected_rows.should eq(screen.top_rows)
   end
+
+  describe Mohawk::Accessors::Table::Row do
+    let(:table_row) { double("RAutomation Table::Row") }
+
+    before(:each) do
+      table.should_receive(:row).with(:index => 0).and_return(table_row)
+      table_row.stub(:row).and_return 0
+    end
+
+    it "can get an individual row" do
+      screen.top_row(0).should_not be_nil
+    end
+
+    it "knows if it is selected" do
+      table.should_receive(:selected?).with(0).and_return(true)
+      screen.top_row(0).should be_selected
+    end
+  end
 end

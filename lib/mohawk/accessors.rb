@@ -175,6 +175,10 @@ module Mohawk
       define_method("#{name}_rows") do
         adapter.table(locator).rows
       end
+      define_method("#{name}_row") do |which_row|
+        adapter.table(locator).row which_row
+      end
+
     end
 
   end
