@@ -2,7 +2,7 @@ module Mohawk
   module Accessors
     class Table
       class Row
-        attr_reader :table, :row
+        attr_reader :row
 
         def initialize(table, row)
           @row = row
@@ -10,7 +10,11 @@ module Mohawk
         end
         
         def selected?
-          table.selected? row.row
+          @table.selected? row.row
+        end
+
+        def to_hash
+          {:text => row.text, :row => row.row }
         end
       end
 
@@ -27,7 +31,7 @@ module Mohawk
 
       def rows
         table.rows.map do |row|
-          {:text => row.text, :row => row.row }
+          Row.new(table, row).to_hash
         end
       end
 
