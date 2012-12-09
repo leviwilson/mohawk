@@ -21,3 +21,11 @@ end
 When /^I expand the tree item "(.*?)"$/ do |which_item|
   on(MainScreen).expand_tree_view_item which_item
 end
+
+When /^I collapse the tree item with index "(.*?)"$/ do |which_index|      
+  on(MainScreen).collapse_tree_view_item which_index.to_i
+end                                                                 
+
+When /^I collapse the tree item "(.*?)"$/ do |which_item|      
+  on(MainScreen).collapse_tree_view_item which_item
+end                                                                 

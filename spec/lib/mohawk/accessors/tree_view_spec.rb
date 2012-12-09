@@ -45,8 +45,13 @@ describe Mohawk::Accessors::TreeView do
     screen.oak_items.should eq ["Item One", "Item Two"]
   end
 
-  it "can expand items by index" do
+  it "can expand items" do
     tree_field.should_receive(:expand).with(7)
     screen.expand_oak_item 7
+  end
+
+  it "can collapse items" do
+    tree_field.should_receive(:collapse).with("some item")
+    screen.collapse_oak_item "some item"
   end
 end

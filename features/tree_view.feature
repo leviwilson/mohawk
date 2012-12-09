@@ -31,3 +31,19 @@ Scenario: Expanding items by value
   | Child 1     |
   | Child 2     |
   | Parent Two  |
+
+Scenario: Collapsing items by index
+  When I expand the tree item "Parent One"
+  And I collapse the tree item with index "0"
+  Then the available tree items should be:
+  | Tree Items  |
+  | Parent One  |
+  | Parent Two  |
+
+Scenario: Collapsing items by value
+  When I expand the tree item "Parent One"
+  And I collapse the tree item "Parent One"
+  Then the available tree items should be:
+  | Tree Items  |
+  | Parent One  |
+  | Parent Two  |
