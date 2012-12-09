@@ -190,6 +190,9 @@ module Mohawk
       define_method("#{name}_items") do
         adapter.tree_view(locator).items
       end
+      define_method("expand_#{name}_item") do |which_item|
+        adapter.tree_view(locator).expand which_item
+      end
     end
   end
 end

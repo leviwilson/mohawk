@@ -44,4 +44,9 @@ describe Mohawk::Accessors::TreeView do
     tree_field.should_receive(:options).and_return([FakeTreeItem.new("Item One"), FakeTreeItem.new("Item Two")])
     screen.oak_items.should eq ["Item One", "Item Two"]
   end
+
+  it "can expand items by index" do
+    tree_field.should_receive(:expand).with(7)
+    screen.expand_oak_item 7
+  end
 end

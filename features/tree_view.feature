@@ -13,3 +13,21 @@ Scenario: Can reveal the available items
   | Tree Items  |
   | Parent One  |
   | Parent Two  |
+
+Scenario: Expanding items by index
+  When I expand the tree item with index "0"
+  Then the available tree items should be:
+  | Tree Items  |
+  | Parent One  |
+  | Child 1     |
+  | Child 2     |
+  | Parent Two  |
+
+Scenario: Expanding items by value
+  When I expand the tree item "Parent One"
+  Then the available tree items should be:
+  | Tree Items  |
+  | Parent One  |
+  | Child 1     |
+  | Child 2     |
+  | Parent Two  |
