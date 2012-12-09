@@ -178,8 +178,6 @@ module Mohawk
       define_method("#{name}_row") do |which_row|
         adapter.table(locator).row which_row
       end
-
     end
-
   end
 end
