@@ -9,6 +9,7 @@ require "mohawk/accessors/menu_item"
 require "mohawk/accessors/radio"
 require "mohawk/accessors/table"
 require "mohawk/accessors/text"
+require "mohawk/accessors/tree_view"
 require "mohawk/navigation"
 require "mohawk/adapters/uia_adapter"
 

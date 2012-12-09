@@ -38,6 +38,10 @@ module Mohawk
       def table(locator)
         Mohawk::Accessors::Table.new(self, locator)
       end
+
+      def tree_view(locator)
+        Mohawk::Accessors::TreeView.new(self, locator)
+      end
     end
   end
 end

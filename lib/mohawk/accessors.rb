@@ -179,5 +179,14 @@ module Mohawk
         adapter.table(locator).row which_row
       end
     end
+
+    def tree_view(name, locator)
+      define_method("#{name}") do
+        adapter.tree_view(locator).value
+      end
+      define_method("#{name}=") do |which_item|
+        adapter.tree_view(locator).select which_item
+      end
+    end
   end
 end
