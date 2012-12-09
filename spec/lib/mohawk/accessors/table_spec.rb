@@ -30,10 +30,6 @@ describe Mohawk::Accessors::Table do
     screen.top = 1
   end
 
-  it "can set a value by text" do
-    table.should_receive(:set).with("Some item")
-    screen.top = "Some item" end
-
   it "has rows" do
     fake_rows = [FakeTableRow.new("First Row", 0), FakeTableRow.new("Second Row", 1)]
     expected_rows = fake_rows.map {|r| {:text => r.text, :row => r.row} }

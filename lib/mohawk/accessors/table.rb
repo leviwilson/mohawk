@@ -30,7 +30,6 @@ module Mohawk
 
       def select(which_item)
         table.select which_item if which_item.is_a? Integer
-        table.set which_item if which_item.is_a? String
       end
 
       def rows
