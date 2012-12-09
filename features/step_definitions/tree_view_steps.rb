@@ -9,3 +9,7 @@ end
 Then /^the selected TreeView value should be "(.*?)"$/ do |expected_value|
   on(MainScreen).tree_view.should eq expected_value
 end
+
+Then /^the available tree items should be:$/ do |tree_items|
+  on(MainScreen).tree_view_items.should eq tree_items.rows.flatten
+end

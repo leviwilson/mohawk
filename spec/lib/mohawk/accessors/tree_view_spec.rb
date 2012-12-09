@@ -7,6 +7,14 @@ class TreeViewScreen
   tree_view(:oak, :id => "treeViewId")
 end
 
+class FakeTreeItem
+  attr_reader :text
+
+  def initialize(item_text)
+    @text = item_text
+  end
+end
+
 describe Mohawk::Accessors::TreeView do
   let(:screen) { TreeViewScreen.new }
   let(:window) { double("RAutomation Window") }
@@ -30,5 +38,10 @@ describe Mohawk::Accessors::TreeView do
   it "can select items by their value" do
     tree_field.should_receive(:set).with("item value")
     screen.oak = "item value"
+  end
+
+  it "can return the tree items" do
+    tree_field.should_receive(:options).and_return([FakeTreeItem.new("Item One"), FakeTreeItem.new("Item Two")])
+    screen.oak_items.should eq ["Item One", "Item Two"]
   end
 end
