@@ -163,7 +163,8 @@ module Mohawk
     #
     # @example
     #   table(:some_table, :id => "tableId")
-    #   # will generate a 'some_table_rows' method to list each of the row items in a table
+    #   # will generate 'some_table=', 'some_table_rows' and 'some_table_row(item)' methods to
+    #   # select a table item, return all of the rows as well as return an individual row
     #
     # @param  [String]  the name used for the generated methods
     # @param  [Hash]  locator for how the label is found
@@ -180,6 +181,17 @@ module Mohawk
       end
     end
 
+    # Generates methods for working with tree view controls
+    #
+    # @example
+    #   tree_view(:tree, :id => "treeId")
+    #   # will generate 'tree', 'tree=', 'tree_items', 'expand_tree_item' and 'collapse_tree_item'
+    #   # methods to get the tree value, set the tree value (index or string), get all of the 
+    #   # items, expand an item (index or string) and collapse an item (index or string)
+    #
+    # @param  [String]  the name used for the generated methods
+    # @param  [Hash]  locator for how the label is found
+    #
     def tree_view(name, locator)
       define_method("#{name}") do
         adapter.tree_view(locator).value
