@@ -13,6 +13,10 @@ module Mohawk
           @table.selected? row.row
         end
 
+        def cells
+          row.cells.map &:text
+        end
+
         def to_hash
           {:text => row.text, :row => row.row }
         end

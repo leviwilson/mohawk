@@ -57,5 +57,11 @@ describe Mohawk::Accessors::Table do
       table.should_receive(:selected?).with(0).and_return(true)
       screen.top_row(0).should be_selected
     end
+
+    it "has cells" do
+      expected_cells = [FakeTableRow.new("Item 1", 0), FakeTableRow.new("Item 2", 1)]
+      table_row.should_receive(:cells).and_return(expected_cells)
+      screen.top_row(0).cells.should eq expected_cells.map &:text
+    end
   end
 end

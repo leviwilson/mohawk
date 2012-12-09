@@ -16,3 +16,8 @@ end
 Then /^the row with index "(.*?)" should be selected$/ do |which_row|
   on(DataEntryForm).people_row(which_row.to_i).should be_selected
 end
+
+Then /^the row with index "(.*?)" should look like the following:$/ do |which_row, table|
+  actual_cells = on(DataEntryForm).people_row(which_row.to_i).cells
+  actual_cells.should eq table.rows.first
+end
