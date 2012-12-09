@@ -10,7 +10,8 @@ module Mohawk
       end
 
       def select(which_item)
-        @tree.select which_item
+        @tree.select which_item if which_item.is_a? Integer
+        @tree.set which_item if which_item.is_a? String
       end
     end
   end

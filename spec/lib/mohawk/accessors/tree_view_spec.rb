@@ -26,4 +26,9 @@ describe Mohawk::Accessors::TreeView do
     tree_field.should_receive(:select).with(7)
     screen.oak = 7
   end
+
+  it "can select items by their value" do
+    tree_field.should_receive(:set).with("item value")
+    screen.oak = "item value"
+  end
 end
