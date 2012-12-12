@@ -179,6 +179,9 @@ module Mohawk
       define_method("#{name}_row") do |which_row|
         adapter.table(locator).row which_row
       end
+      define_method("#{name}_view") do
+        adapter.table(locator).view
+      end
     end
 
     # Generates methods for working with tree view controls

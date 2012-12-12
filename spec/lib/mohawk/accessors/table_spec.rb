@@ -37,6 +37,10 @@ describe Mohawk::Accessors::Table do
     expected_rows.should eq(screen.top_rows)
   end
 
+  it "can return the raw view" do
+    screen.top_view.should_not be_nil
+  end
+
   describe Mohawk::Accessors::Table::Row do
     let(:table_row) { double("RAutomation Table::Row") }
 

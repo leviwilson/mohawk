@@ -41,6 +41,10 @@ module Mohawk
       def row(which_row)
         Row.new table, table.row(:index => which_row)
       end
+
+      def view
+        table
+      end
     end
   end
 end
