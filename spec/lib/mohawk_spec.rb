@@ -19,6 +19,7 @@ describe Mohawk do
   context "using the UI Automation adapter" do
     before(:each) do
       RAutomation::Window.stub(:new).and_return(window)
+      RAutomation::WaitHelper.stub(:sleep)
     end
 
     it "knows if a window exists" do
@@ -39,6 +40,11 @@ describe Mohawk do
     it "can hold off until the window is present" do
       window.should_receive(:wait_until_present)
       screen.wait_until_present
+    end
+
+    it "can hold off until I say so" do
+      window.should_receive(:present?).twice.and_return(false, true)
+      screen.wait_until {screen.present?}
     end
     
   end

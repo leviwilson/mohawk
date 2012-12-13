@@ -53,4 +53,11 @@ module Mohawk
     adapter.window.wait_until_present
   end
 
+  #
+  # Waits until the block returns true
+  #
+  def wait_until(timeout=RAutomation::Window.wait_timeout, &block)
+    RAutomation::WaitHelper.wait_until timeout, &block
+  end
+
 end
