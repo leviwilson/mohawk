@@ -60,4 +60,10 @@ module Mohawk
     RAutomation::WaitHelper.wait_until timeout, &block
   end
 
+  #
+  # Indicates if the window has text or not
+  #
+  def has_text?(text_to_find)
+    adapter.window.text.include? text_to_find
+  end
 end
