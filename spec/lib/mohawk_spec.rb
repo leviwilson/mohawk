@@ -46,6 +46,11 @@ describe Mohawk do
       window.should_receive(:present?).twice.and_return(false, true)
       screen.wait_until {screen.present?}
     end
+
+    it "knows if a window has text" do
+      window.should_receive(:text).and_return("lots of text but I wanted to find blardy blar blar")
+      screen.should have_text "blardy blar"
+    end
     
   end
 end
