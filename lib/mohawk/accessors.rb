@@ -204,6 +204,10 @@ module Mohawk
     # @param  [String]  the name used for the generated methods
     # @param  [Hash]  locator for how the label is found
     #
+    # === Aliases
+    # * treeview
+    # * tree
+    #
     def tree_view(name, locator)
       define_method("#{name}") do
         adapter.tree_view(locator).value
@@ -231,5 +235,10 @@ module Mohawk
     # table aliases
     alias_method :listview, :table
     alias_method :list_view, :table
+
+    # tree_view aliases
+    alias_method :treeview, :tree_view
+    alias_method :tree, :tree_view
+
   end
 end
