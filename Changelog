@@ -13,6 +13,8 @@
     * tree_view
   * Added method to text accessor to simulate typing into a field (helpful for masked edit controls)
   * Enhanced navigation to wait until the Window is present before working with it
+  * Added aliases for table, combo_box and tree_view accessors
+
 === Version 0.1 / 2012-11-07
 Initial release with support for text, button, combo, radio and checkbox
 controls
