@@ -5,6 +5,11 @@ class ComboBoxScreen
   window(:id => nil)
   
   combo_box(:nacho_combos, :id => "comboBoxId")
+  dropdown(:my_default, :id => "defaultAliasId")
+  dropdown(:my_combobox, :id => "comboboxAliasId")
+  dropdown(:my_dropdown, :id => "dropdownAliasId")
+  dropdown(:my_drop_down, :id => "drop_downAliasId")
+  dropdown(:my_select_list, :id => "select_listAliasId")
 end
 
 class Option
@@ -24,10 +29,13 @@ describe Mohawk::Accessors::Combo do
 
   before(:each) do
     RAutomation::Window.stub(:new).and_return(window)
-    window.should_receive(:select_list).with(:id => "comboBoxId").and_return(combo_box_field)
   end
 
   context "accessing combo box controls" do
+
+    before(:each) do
+      window.should_receive(:select_list).with(:id => "comboBoxId").and_return(combo_box_field)
+    end
 
     it "knows the current selected item" do
       combo_box_field.should_receive(:value).and_return("Selected Item")
@@ -50,6 +58,25 @@ describe Mohawk::Accessors::Combo do
       screen.nacho_combos_options.should eq(["first", "second", "third"])
     end
 
+  end
+
+  context "aliases for combo_box" do
+    let(:null_combo) { double("Null ComboBox Field").as_null_object }
+    let(:combo_aliases) { ["default", "combobox", "dropdown", "drop_down", "select_list"] }
+
+    def expected_alias(id)
+      window.should_receive(:select_list).with(:id => "#{id}AliasId").ordered.and_return(null_combo)
+    end
+
+    it "has many aliases" do
+      combo_aliases.each do |which_alias|
+        expected_alias which_alias
+      end
+
+      combo_aliases.each do |which_alias|
+        screen.send "my_#{which_alias}"
+      end
+    end
   end
 end
 

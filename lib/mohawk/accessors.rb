@@ -73,6 +73,11 @@ module Mohawk
     # @param  [String]  the name used for the generated methods
     # @param  [Hash]  locator for how the combo box is found
     #
+    # === Aliases
+    # * combobox
+    # * dropdown / drop_down
+    # * select_list
+    #
     def combo_box(name, locator)
       define_method("#{name}") do
         adapter.combo(locator).value
@@ -212,5 +217,11 @@ module Mohawk
         adapter.tree_view(locator).collapse which_item
       end
     end
+
+    # combo_box aliases
+    alias_method :combobox, :combo_box
+    alias_method :dropdown, :combo_box
+    alias_method :drop_down, :combo_box
+    alias_method :select_list, :combo_box
   end
 end
