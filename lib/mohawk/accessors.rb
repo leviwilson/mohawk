@@ -174,6 +174,10 @@ module Mohawk
     # @param  [String]  the name used for the generated methods
     # @param  [Hash]  locator for how the label is found
     #
+    # === Aliases
+    # * listview
+    # * list_view
+    #
     def table(name, locator)
       define_method("#{name}=") do |which_item|
         adapter.table(locator).select which_item
@@ -223,5 +227,9 @@ module Mohawk
     alias_method :dropdown, :combo_box
     alias_method :drop_down, :combo_box
     alias_method :select_list, :combo_box
+
+    # table aliases
+    alias_method :listview, :table
+    alias_method :list_view, :table
   end
 end
