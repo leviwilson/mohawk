@@ -151,7 +151,10 @@ module Mohawk
 
     def link(name, locator)
       define_method("#{name}_text") do
-        adapter.label(locator).value
+        adapter.link(locator).value
+      end
+      define_method("click_#{name}") do
+        adapter.link(locator).click
       end
     end
 

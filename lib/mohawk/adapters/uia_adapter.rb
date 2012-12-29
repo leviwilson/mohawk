@@ -31,6 +31,10 @@ module Mohawk
         Mohawk::Accessors::Label.new(self, locator)
       end
 
+      def link(locator)
+        Mohawk::Accessors::Link.new(self, locator)
+      end
+
       def menu_item(locator)
         Mohawk::Accessors::MenuItem.new(self, locator)
       end
