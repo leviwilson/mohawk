@@ -1,18 +1,11 @@
 require "rautomation"
 require "mohawk/version"
+require "require_all"
 require "mohawk/accessors"
-require "mohawk/accessors/button"
-require "mohawk/accessors/checkbox"
-require "mohawk/accessors/combo"
-require "mohawk/accessors/label"
-require "mohawk/accessors/link"
-require "mohawk/accessors/menu_item"
-require "mohawk/accessors/radio"
-require "mohawk/accessors/table"
-require "mohawk/accessors/text"
-require "mohawk/accessors/tree_view"
 require "mohawk/navigation"
 require "mohawk/adapters/uia_adapter"
+
+require_rel "mohawk/accessors"
 
 module Mohawk
 
