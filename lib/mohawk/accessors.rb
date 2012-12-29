@@ -149,6 +149,12 @@ module Mohawk
       end
     end
 
+    def link(name, locator)
+      define_method("#{name}_text") do
+        adapter.label(locator).value
+      end
+    end
+
     # Generates methods to work with menu items
     #
     # @example

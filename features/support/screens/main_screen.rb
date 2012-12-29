@@ -9,6 +9,7 @@ class MainScreen
   checkbox(:first_checkbox, :id =>  "checkBox")
   radio(:first_radio, :id => "radioButton1")
   label(:label_control, :id => "label1")
+  link(:link_control, :id => "linkLabel1")
   menu_item(:file_roundabout_way_to_about, :path => ["File", "Roundabout Way", "To", "About"])
   tree_view(:tree_view, :id => "treeView")
 end
