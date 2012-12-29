@@ -149,6 +149,16 @@ module Mohawk
       end
     end
 
+    #
+    # Generates methods to work with link controls
+    #
+    # @example
+    #   link(:send_info_link, :id => 'sendInfoId')
+    #   # will generate 'send_info_link_text' and 'click_send_info_link' methods
+    #
+    # @param  [String]  the name used for the generated methods
+    # @param  [Hash]  locator for how the label is found
+    #
     def link(name, locator)
       define_method("#{name}_text") do
         adapter.link(locator).value
