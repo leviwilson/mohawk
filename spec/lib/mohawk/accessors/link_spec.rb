@@ -7,7 +7,7 @@ class LinkScreen
   link(:link_control, :id => "linkID")
 end
 
-describe Mohawk::Accessors::Label do
+describe Mohawk::Accessors::Link do
   let(:screen) { LinkScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:link_control) { double("Link Control") }
