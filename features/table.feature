@@ -7,6 +7,10 @@ Scenario: Selecting a row by index
   When we select the table row with index "1"
   Then the row with index "1" should be selected
 
+Scenario: Selecting a row by value
+  When we select the table row with the value "Anna Doe"
+  Then the row with index "1" should be selected
+
 Scenario: Rows have cells
   Then the row with index "0" should look like the following:
     | Name      | Date of Birth | State |

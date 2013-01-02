@@ -13,6 +13,10 @@ When /^we select the table row with index "(.*?)"$/ do |row_index|
   on(DataEntryForm).people = row_index.to_i
 end
 
+When /^we select the table row with the value "([^"]*)"$/ do |row_value|
+  on(DataEntryForm).people = row_value
+end
+
 Then /^the row with index "(.*?)" should be selected$/ do |which_row|
   on(DataEntryForm).people_row(which_row.to_i).should be_selected
 end

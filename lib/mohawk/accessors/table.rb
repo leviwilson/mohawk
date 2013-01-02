@@ -29,7 +29,7 @@ module Mohawk
       end
 
       def select(which_item)
-        table.select which_item if which_item.is_a? Integer
+        table.select which_item
       end
 
       def rows

@@ -34,9 +34,14 @@ describe Mohawk::Accessors::Table do
       window.should_receive(:table).with(:id => "tableId").and_return(table)
     end
 
-    it "can set a value by index" do
+    it "can select a row by index" do
       table.should_receive(:select).with(1)
       screen.top = 1
+    end
+
+    it "can select a row by value" do
+      table.should_receive(:select).with "John Elway"
+      screen.top = "John Elway"
     end
 
     it "has rows" do
