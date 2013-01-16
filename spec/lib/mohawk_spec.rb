@@ -54,6 +54,13 @@ describe Mohawk do
       screen.wait_for_control(:id => "whatever", :index => 0)
     end
 
+    it "tells you what you were waiting for if it fails" do
+      RAutomation::WaitHelper.should_receive(:wait_until).and_raise("you should have caught me")
+      locator = {:id => "whatever", :index => 0}
+      window.should_receive(:control).with(locator)
+      lambda { screen.wait_for_control(:id => "whatever", :index => 0) }.should raise_error(Exception, "A control with #{locator} was not found")
+    end
+
     it "knows if a window has text" do
       window.should_receive(:text).and_return("lots of text but I wanted to find blardy blar blar")
       screen.should have_text "blardy blar"

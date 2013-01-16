@@ -52,7 +52,11 @@ module Mohawk
   #
   def wait_for_control(locator)
     control = adapter.window.control(locator)
-    RAutomation::WaitHelper.wait_until { control.exist? }
+    begin
+      RAutomation::WaitHelper.wait_until { control.exist? }
+    rescue
+      raise "A control with #{locator} was not found"
+    end
   end
 
   #
