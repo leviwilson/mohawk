@@ -38,6 +38,9 @@ describe Mohawk::Accessors::CheckBox do
       checkbox_field.should_receive(:clear)
       screen.check_yourself = false
     end
-     
+
+    it "can dish out the raw control" do
+      screen.check_yourself_control.should be(checkbox_field)
+    end
   end
 end

@@ -120,6 +120,9 @@ module Mohawk
       define_method("#{name}_value") do
         adapter.checkbox(locator).value
       end
+      define_method("#{name}_control") do
+        adapter.checkbox(locator).control
+      end
     end
 
     #
