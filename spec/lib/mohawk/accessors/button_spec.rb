@@ -37,5 +37,9 @@ describe Mohawk::Accessors::Button do
       button_field.should_receive(:value).and_return "Button Value"
       screen.easy_value.should eq("Button Value")
     end
+
+    it "can dish out the control" do
+      screen.easy_control.should be(button_field)
+    end
   end
 end

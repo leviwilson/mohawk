@@ -1,17 +1,19 @@
 module Mohawk
   module Accessors
     class Button
+      attr_reader :control
+
       def initialize(adapter, locator)
-        @button = adapter.window.button(locator)
+        @control = adapter.window.button(locator)
       end
 
       def click(&block)
-        @button.click &block if block
-        @button.click {true} unless block
+        @control.click &block if block
+        @control.click {true} unless block
       end
 
       def value
-        @button.value
+        @control.value
       end
     end
   end

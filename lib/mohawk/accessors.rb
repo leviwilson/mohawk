@@ -63,6 +63,9 @@ module Mohawk
       define_method("#{name}_value") do
         adapter.button(locator).value
       end
+      define_method("#{name}_control") do
+        adapter.button(locator).control
+      end
     end
 
     #
