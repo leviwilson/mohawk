@@ -47,6 +47,13 @@ describe Mohawk do
       screen.wait_until {screen.present?}
     end
 
+    it "can wait for a control" do
+      found_control = double("control to wait for")
+      found_control.should_receive(:exist?).and_return(true)
+      window.should_receive(:control).with(:id => "whatever", :index => 0).and_return(found_control)
+      screen.wait_for_control(:id => "whatever", :index => 0)
+    end
+
     it "knows if a window has text" do
       window.should_receive(:text).and_return("lots of text but I wanted to find blardy blar blar")
       screen.should have_text "blardy blar"

@@ -48,6 +48,14 @@ module Mohawk
   end
 
   #
+  # Waits until a control exists
+  #
+  def wait_for_control(locator)
+    control = adapter.window.control(locator)
+    RAutomation::WaitHelper.wait_until { control.exist? }
+  end
+
+  #
   # Waits until the block returns true
   #
   def wait_until(timeout=RAutomation::Window.wait_timeout, &block)
