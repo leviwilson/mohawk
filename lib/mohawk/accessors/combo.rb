@@ -1,21 +1,23 @@
 module Mohawk
   module Accessors
     class Combo
+      attr_reader :control
+
       def initialize(adapter, locator)
-        @combo = adapter.window.select_list(locator)
+        @control = adapter.window.select_list(locator)
       end
 
       def value
-        @combo.value
+        @control.value
       end
 
       def set(value)
-        @combo.select value if value.instance_of? Fixnum
-        @combo.set value if value.instance_of? String
+        @control.select value if value.instance_of? Fixnum
+        @control.set value if value.instance_of? String
       end
 
       def options
-        @combo.options.map &:text
+        @control.options.map &:text
       end
     end
   end

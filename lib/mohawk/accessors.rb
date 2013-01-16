@@ -94,6 +94,9 @@ module Mohawk
       define_method("#{name}_options") do
         adapter.combo(locator).options
       end
+      define_method("#{name}_control") do
+        adapter.combo(locator).control
+      end
     end
 
     #

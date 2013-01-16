@@ -58,6 +58,9 @@ describe Mohawk::Accessors::Combo do
       screen.nacho_combos_options.should eq(["first", "second", "third"])
     end
 
+    it "can dish out the combo control" do
+      screen.nacho_combos_control.should be(combo_box_field)
+    end
   end
 
   context "aliases for combo_box" do
