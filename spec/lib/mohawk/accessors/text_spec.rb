@@ -43,5 +43,9 @@ describe Mohawk::Accessors::Text do
       screen.enter_text_id "entered text"
     end
 
+    it "can dish out a view" do
+      screen.text_id_view.should be(text_field)
+    end
+
   end
 end

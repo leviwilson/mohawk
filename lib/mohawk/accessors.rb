@@ -40,6 +40,9 @@ module Mohawk
       define_method("enter_#{name}") do |text|
         adapter.text(locator).enter text
       end
+      define_method("#{name}_view") do
+        adapter.text(locator).view
+      end
     end
     
     #

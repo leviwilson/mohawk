@@ -1,9 +1,11 @@
 module Mohawk
   module Accessors
     class Text
+      attr_reader :view 
+
       def initialize(adapter, locator)
         @adapter = adapter
-        @text = adapter.window.text_field(locator)
+        @text = @view = adapter.window.text_field(locator)
       end
 
       def value
