@@ -40,7 +40,7 @@ describe Mohawk::Accessors::CheckBox do
     end
 
     it "can dish out the raw control" do
-      screen.check_yourself_control.should be(checkbox_field)
+      screen.check_yourself_view.should be(checkbox_field)
     end
   end
 end

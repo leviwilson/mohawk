@@ -2,7 +2,7 @@ module Mohawk
   module Accessors
     class Link < Label
       def click
-        @control.click
+        @view.click
       end
     end
   end

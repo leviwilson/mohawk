@@ -1,27 +1,27 @@
 module Mohawk
   module Accessors
     class Text
-      attr_reader :control 
+      attr_reader :view 
 
       def initialize(adapter, locator)
         @adapter = adapter
-        @control = adapter.window.text_field(locator)
+        @view = adapter.window.text_field(locator)
       end
 
       def value
-        @control.value
+        @view.value
       end
 
       def set(text)
-        @control.set text
+        @view.set text
       end
 
       def clear
-        @control.clear
+        @view.clear
       end
 
       def enter(text)
-        text_window = @adapter.window.child(:hwnd => @control.hwnd)
+        text_window = @adapter.window.child(:hwnd => @view.hwnd)
         text_window.send_keys text.split(//)
       end
     end

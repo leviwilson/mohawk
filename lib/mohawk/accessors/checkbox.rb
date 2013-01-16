@@ -1,23 +1,23 @@
 module Mohawk
   module Accessors
     class CheckBox
-      attr_reader :control
+      attr_reader :view
 
       def initialize(adapter, locator)
-        @control = adapter.window.checkbox(locator)
+        @view = adapter.window.checkbox(locator)
       end
 
       def checked?
-        @control.set?
+        @view.set?
       end
 
       def set_check(should_check)
-        @control.set if should_check
-        @control.clear unless should_check
+        @view.set if should_check
+        @view.clear unless should_check
       end
 
       def value
-        @control.value
+        @view.value
       end
     end
   end

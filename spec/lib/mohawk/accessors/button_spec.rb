@@ -38,8 +38,8 @@ describe Mohawk::Accessors::Button do
       screen.easy_value.should eq("Button Value")
     end
 
-    it "can dish out the control" do
-      screen.easy_control.should be(button_field)
+    it "can dish out the view" do
+      screen.easy_view.should be(button_field)
     end
   end
 end

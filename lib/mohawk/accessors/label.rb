@@ -1,14 +1,14 @@
 module Mohawk
   module Accessors
     class Label
-      attr_reader :control
+      attr_reader :view
 
       def initialize(adapter, locator)
-        @control = adapter.window.label(locator)
+        @view = adapter.window.label(locator)
       end
 
       def value
-        @control.value
+        @view.value
       end
     end
   end

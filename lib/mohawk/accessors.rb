@@ -40,8 +40,8 @@ module Mohawk
       define_method("enter_#{name}") do |text|
         adapter.text(locator).enter text
       end
-      define_method("#{name}_control") do
-        adapter.text(locator).control
+      define_method("#{name}_view") do
+        adapter.text(locator).view
       end
     end
     
@@ -63,8 +63,8 @@ module Mohawk
       define_method("#{name}_value") do
         adapter.button(locator).value
       end
-      define_method("#{name}_control") do
-        adapter.button(locator).control
+      define_method("#{name}_view") do
+        adapter.button(locator).view
       end
     end
 
@@ -94,8 +94,8 @@ module Mohawk
       define_method("#{name}_options") do
         adapter.combo(locator).options
       end
-      define_method("#{name}_control") do
-        adapter.combo(locator).control
+      define_method("#{name}_view") do
+        adapter.combo(locator).view
       end
     end
 
@@ -120,8 +120,8 @@ module Mohawk
       define_method("#{name}_value") do
         adapter.checkbox(locator).value
       end
-      define_method("#{name}_control") do
-        adapter.checkbox(locator).control
+      define_method("#{name}_view") do
+        adapter.checkbox(locator).view
       end
     end
 
@@ -143,8 +143,8 @@ module Mohawk
       define_method("#{name}?") do
         adapter.radio(locator).set?
       end
-      define_method("#{name}_control") do
-        adapter.radio(locator).control
+      define_method("#{name}_view") do
+        adapter.radio(locator).view
       end
     end
 
@@ -162,8 +162,8 @@ module Mohawk
       define_method("#{name}") do
         adapter.label(locator).value
       end
-      define_method("#{name}_control") do
-        adapter.label(locator).control
+      define_method("#{name}_view") do
+        adapter.label(locator).view
       end
     end
 
@@ -184,8 +184,8 @@ module Mohawk
       define_method("click_#{name}") do
         adapter.link(locator).click
       end
-      define_method("#{name}_control") do
-        adapter.link(locator).control
+      define_method("#{name}_view") do
+        adapter.link(locator).view
       end
     end
 

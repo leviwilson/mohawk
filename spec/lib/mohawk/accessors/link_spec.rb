@@ -27,8 +27,8 @@ describe Mohawk::Accessors::Link do
     screen.click_link_control
   end
 
-  it "can dish out the control" do
-    screen.link_control_control.should be(link_control)
+  it "can dish out the view" do
+    screen.link_control_view.should be(link_control)
   end
 
 end

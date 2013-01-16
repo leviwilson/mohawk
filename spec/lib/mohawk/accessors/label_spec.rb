@@ -22,8 +22,8 @@ describe Mohawk::Accessors::Label do
 		screen.label_control.should eq("some string")
 	end
 
-  it "can dish out the control" do
-    screen.label_control_control.should eq(label_control)
+  it "can dish out the view" do
+    screen.label_control_view.should eq(label_control)
   end
 
 end
