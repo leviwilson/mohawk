@@ -162,6 +162,9 @@ module Mohawk
       define_method("#{name}") do
         adapter.label(locator).value
       end
+      define_method("#{name}_control") do
+        adapter.label(locator).control
+      end
     end
 
     #
@@ -180,6 +183,9 @@ module Mohawk
       end
       define_method("click_#{name}") do
         adapter.link(locator).click
+      end
+      define_method("#{name}_control") do
+        adapter.link(locator).control
       end
     end
 
