@@ -1,16 +1,18 @@
 module Mohawk
   module Accessors
     class Radio
+      attr_reader :control
+
       def initialize(adapter, locator)
-        @radio = adapter.window.radio(locator)
+        @control = adapter.window.radio(locator)
       end
 
       def set
-        @radio.set
+        @control.set
       end
 
       def set?
-        @radio.set?
+        @control.set?
       end
     end
   end

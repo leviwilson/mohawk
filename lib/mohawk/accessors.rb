@@ -143,6 +143,9 @@ module Mohawk
       define_method("#{name}?") do
         adapter.radio(locator).set?
       end
+      define_method("#{name}_control") do
+        adapter.radio(locator).control
+      end
     end
 
     #

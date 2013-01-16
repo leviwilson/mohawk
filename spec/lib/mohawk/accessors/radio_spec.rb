@@ -27,5 +27,9 @@ describe Mohawk::Accessors::Radio do
       radio_control.should_receive(:set?)
       screen.radio_radio?
     end
+
+    it "can dish out the raw control" do
+      screen.radio_radio_control.should be(radio_control)
+    end
   end
 end
