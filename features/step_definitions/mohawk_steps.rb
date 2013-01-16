@@ -13,3 +13,7 @@ end
 Then /^we can confirm the window has the text "(.*?)"$/ do |what_text|   
   @screen.should have_text(what_text)
 end                                                                 
+
+Then /^we can wait for the control with a value of "(.*?)"$/ do |value|   
+  @screen.wait_for_control :value => value
+end                                                                      
