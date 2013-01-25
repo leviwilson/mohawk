@@ -62,8 +62,8 @@ describe Mohawk::Accessors::Table do
       screen.top_view.should_not be_nil
     end
 
-    describe Mohawk::Accessors::Table::Row do
-      let(:table_row) { double("RAutomation Table::Row") }
+    describe Mohawk::Accessors::TableRow do
+      let(:table_row) { double("RAutomation TableRow") }
 
       before(:each) do
         table.should_receive(:row).with(:index => 0).and_return(table_row)
