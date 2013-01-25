@@ -208,8 +208,9 @@ module Mohawk
     #
     # @example
     #   table(:some_table, :id => "tableId")
-    #   # will generate 'some_table=', 'some_table_rows' and 'some_table_row(item)' methods to
-    #   # select a table item, return all of the rows as well as return an individual row
+    #   # will generate 'some_table', 'some_table=', 'some_table_headers'
+    #   # and 'some_table_view' methods to get an Enumerable of table rows,
+    #   # select a table item, return all of the headers and get the raw view
     #
     # @param  [String]  the name used for the generated methods
     # @param  [Hash]  locator for how the label is found
