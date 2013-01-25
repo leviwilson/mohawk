@@ -4,7 +4,7 @@ require "require_all"
 require "mohawk/accessors"
 require "mohawk/navigation"
 require "mohawk/adapters/uia_adapter"
-require_all "lib/core_ext"
+require "mohawk/core_ext/string"
 
 require_rel "mohawk/accessors"
 
