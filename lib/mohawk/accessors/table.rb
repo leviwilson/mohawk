@@ -32,6 +32,10 @@ module Mohawk
         table.select which_item
       end
 
+      def headers
+        RAutomation::Adapter::MsUia::UiaDll.table_headers(table.hwnd)
+      end
+
       def rows
         table.rows.map do |row|
           Row.new(table, row).to_hash

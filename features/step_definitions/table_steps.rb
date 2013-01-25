@@ -25,3 +25,7 @@ Then /^the row with index "(.*?)" should look like the following:$/ do |which_ro
   actual_cells = on(DataEntryForm).people_row(which_row.to_i).cells
   actual_cells.should eq table.rows.first
 end
+
+Then /^the table headers are "(.*?)"$/ do |expected_headers|
+  on(DataEntryForm).people_headers.should eq(expected_headers.split(", "))
+end

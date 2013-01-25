@@ -222,6 +222,9 @@ module Mohawk
       define_method("#{name}=") do |which_item|
         adapter.table(locator).select which_item
       end
+      define_method("#{name}_headers") do
+        adapter.table(locator).headers
+      end
       define_method("#{name}_rows") do
         adapter.table(locator).rows
       end

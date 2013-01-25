@@ -51,6 +51,13 @@ describe Mohawk::Accessors::Table do
       expected_rows.should eq(screen.top_rows)
     end
 
+    it "has headers" do
+      expected_headers = ["first header", "second header"]
+      table.should_receive(:hwnd).and_return(1234)
+      RAutomation::Adapter::MsUia::UiaDll.should_receive(:table_headers).with(1234).and_return(expected_headers)
+      screen.top_headers.should eq(expected_headers)
+    end
+
     it "can return the raw view" do
       screen.top_view.should_not be_nil
     end

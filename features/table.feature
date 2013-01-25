@@ -21,3 +21,6 @@ Scenario: Retrieving the row values
     | text      | row |
     | John Doe  | 0   | 
     | Anna Doe  | 1   |
+
+Scenario: Retrieving the headers
+  Then the table headers are "Name, Date of birth, State"
