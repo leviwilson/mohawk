@@ -6,7 +6,7 @@ end
 Then /^the table row information should look like the following:$/ do |row_items|
   row_items.map_column!("row") { |r| r.to_i }
   row_items.map_headers!("text" => :text, "row" => :row)
-  on(DataEntryForm).people.to_a.should eq row_items.hashes
+  on(DataEntryForm).people.map(&:to_hash).should eq row_items.hashes
 end
 
 When /^we select the table row with index "(.*?)"$/ do |row_index|

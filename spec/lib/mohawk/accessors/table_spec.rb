@@ -48,7 +48,7 @@ describe Mohawk::Accessors::Table do
       fake_rows = [FakeTableRow.new("First Row", 0), FakeTableRow.new("Second Row", 1)]
       expected_rows = fake_rows.map {|r| {:text => r.text, :row => r.row} }
       table.should_receive(:rows).and_return(fake_rows)
-      expected_rows.should eq(screen.top.to_a)
+      screen.top.map(&:to_hash).should eq(expected_rows)
     end
 
     it "has headers" do

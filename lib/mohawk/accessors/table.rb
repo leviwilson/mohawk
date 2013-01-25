@@ -23,7 +23,7 @@ module Mohawk
 
       def each
         view.rows.map do |row|
-          yield TableRow.new(self, row).to_hash
+          yield TableRow.new(self, row)
         end
       end
     end
