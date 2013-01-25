@@ -10,11 +10,19 @@ module Mohawk
         end
         
         def selected?
-          @table.selected? row.row
+          @table.table.selected? row.row
         end
 
         def cells
           row.cells.map &:text
+        end
+        
+        def method_missing(name, *args)
+          header_methods = @table.headers.map do |header|
+            header.gsub(/\W+/, "_").downcase.to_sym
+          end
+          
+          cells[header_methods.index(name)]
         end
 
         def to_hash
@@ -38,12 +46,12 @@ module Mohawk
 
       def rows
         table.rows.map do |row|
-          Row.new(table, row).to_hash
+          Row.new(self, row).to_hash
         end
       end
 
       def row(which_row)
-        Row.new table, table.row(:index => which_row)
+        Row.new self, table.row(:index => which_row)
       end
 
       def view

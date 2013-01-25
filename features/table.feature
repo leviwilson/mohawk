@@ -24,3 +24,6 @@ Scenario: Retrieving the row values
 
 Scenario: Retrieving the headers
   Then the table headers are "Name, Date of birth, State"
+
+Scenario: Retrieving a row value by its header
+  Then the "date_of_birth" for the row at index "1" is "3/4/1975"

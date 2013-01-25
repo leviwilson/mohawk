@@ -29,3 +29,7 @@ end
 Then /^the table headers are "(.*?)"$/ do |expected_headers|
   on(DataEntryForm).people_headers.should eq(expected_headers.split(", "))
 end
+
+Then /^the "(.*?)" for the row at index "(.*?)" is "(.*?)"$/ do |header, which_row, expected_value|
+  on(DataEntryForm).people_row(which_row.to_i).send(header).should eq(expected_value)
+end                                                                               

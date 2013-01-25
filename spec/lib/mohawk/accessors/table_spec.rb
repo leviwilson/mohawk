@@ -84,6 +84,14 @@ describe Mohawk::Accessors::Table do
         table_row.should_receive(:cells).and_return(expected_cells)
         screen.top_row(0).cells.should eq expected_cells.map &:text
       end
+
+      it "can get cell values by header name" do
+        RAutomation::Adapter::MsUia::UiaDll.should_receive(:table_headers).and_return(["First Header", "Second Header"])
+        table.should_receive(:hwnd)
+        expected_cells = [FakeTableRow.new("Item 1", 0), FakeTableRow.new("Item 2", 1)]
+        table_row.should_receive(:cells).and_return(expected_cells)
+        screen.top_row(0).second_header.should eq("Item 2")
+      end
     end
   end
 
