@@ -18,11 +18,7 @@ module Mohawk
         end
         
         def method_missing(name, *args)
-          header_methods = @table.headers.map do |header|
-            header.gsub(/\W+/, "_").downcase.to_sym
-          end
-          
-          cells[header_methods.index(name)]
+          cells[@table.headers.map(&:to_method).index(name)]
         end
 
         def to_hash
