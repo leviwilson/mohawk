@@ -10,7 +10,7 @@ module Mohawk
         end
         
         def selected?
-          @table.table.selected? row.row
+          @table.view.selected? row.row
         end
 
         def cells
@@ -30,32 +30,28 @@ module Mohawk
         end
       end
 
-      attr_reader :table
+      attr_reader :view
 
       def initialize(adapter, locator)
-        @table = adapter.window.table(locator)
+        @view = adapter.window.table(locator)
       end
 
       def select(which_item)
-        table.select which_item
+        view.select which_item
       end
 
       def headers
-        RAutomation::Adapter::MsUia::UiaDll.table_headers(table.hwnd)
+        RAutomation::Adapter::MsUia::UiaDll.table_headers(view.hwnd)
       end
 
       def rows
-        table.rows.map do |row|
+        view.rows.map do |row|
           Row.new(self, row).to_hash
         end
       end
 
       def row(which_row)
-        Row.new self, table.row(:index => which_row)
-      end
-
-      def view
-        table
+        Row.new self, view.row(:index => which_row)
       end
     end
   end
