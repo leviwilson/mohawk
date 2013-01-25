@@ -2,7 +2,12 @@
 * Enhancements
   * Added _view methods to all accessors to access the underlying driver control
   * Added Mohawk#wait_for_control to block until a child control appears
-  * Can select Table rows by their value as well
+  * Table improvements
+    * access row values by table_name[index]
+    * table is now Enumerable
+    * added ability to get table headers
+    * can get a value of a cell by the name of its header
+    * can select Table rows by their value as well
   * Added Mohawk::Accessors#link to work with link controls
 
 === Version 0.2 / 2012-12-26
