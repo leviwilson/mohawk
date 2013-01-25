@@ -48,7 +48,7 @@ describe Mohawk::Accessors::Table do
       fake_rows = [FakeTableRow.new("First Row", 0), FakeTableRow.new("Second Row", 1)]
       expected_rows = fake_rows.map {|r| {:text => r.text, :row => r.row} }
       table.should_receive(:rows).and_return(fake_rows)
-      expected_rows.should eq(screen.top_rows)
+      expected_rows.should eq(screen.top.to_a)
     end
 
     it "has headers" do
@@ -71,18 +71,18 @@ describe Mohawk::Accessors::Table do
       end
 
       it "can get an individual row" do
-        screen.top_row(0).should_not be_nil
+        screen.top[0].should_not be_nil
       end
 
       it "knows if it is selected" do
         table.should_receive(:selected?).with(0).and_return(true)
-        screen.top_row(0).should be_selected
+        screen.top[0].should be_selected
       end
 
       it "has cells" do
         expected_cells = [FakeTableRow.new("Item 1", 0), FakeTableRow.new("Item 2", 1)]
         table_row.should_receive(:cells).and_return(expected_cells)
-        screen.top_row(0).cells.should eq expected_cells.map &:text
+        screen.top[0].cells.should eq expected_cells.map &:text
       end
 
       it "can get cell values by header name" do
@@ -90,7 +90,7 @@ describe Mohawk::Accessors::Table do
         table.should_receive(:hwnd)
         expected_cells = [FakeTableRow.new("Item 1", 0), FakeTableRow.new("Item 2", 1)]
         table_row.should_receive(:cells).and_return(expected_cells)
-        screen.top_row(0).second_header.should eq("Item 2")
+        screen.top[0].second_header.should eq("Item 2")
       end
     end
   end

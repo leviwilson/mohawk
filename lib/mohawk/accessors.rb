@@ -219,17 +219,14 @@ module Mohawk
     # * list_view
     #
     def table(name, locator)
+      define_method("#{name}") do
+        adapter.table(locator)
+      end
       define_method("#{name}=") do |which_item|
         adapter.table(locator).select which_item
       end
       define_method("#{name}_headers") do
         adapter.table(locator).headers
-      end
-      define_method("#{name}_rows") do
-        adapter.table(locator).rows
-      end
-      define_method("#{name}_row") do |which_row|
-        adapter.table(locator).row which_row
       end
       define_method("#{name}_view") do
         adapter.table(locator).view
