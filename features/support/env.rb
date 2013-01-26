@@ -6,6 +6,17 @@ require 'mohawk'
 
 World(Mohawk::Navigation)
 
+require_rel 'screens'
+
+Mohawk::Navigation.routes = {
+  :default => [
+    [MainScreen, :about],
+    [AboutScreen, :close],
+    [MainScreen, :data_entry_form_button],
+    [DataEntryForm]
+  ]  
+}
+
 Before do
   @process = ChildProcess.build('features\\support\\WindowsForms.exe')
   @process.start

@@ -5,6 +5,7 @@ class MainScreen
   text(:text_field, :id => "textField")
   text(:masked_text_field, :id => "maskedTextBox")
   button(:data_entry_form_button, :value => "Data Entry Form")
+  button(:about, :value => "&About")
   combo_box(:fruits, :id => "FruitsComboBox")
   checkbox(:first_checkbox, :id =>  "checkBox")
   radio(:first_radio, :id => "radioButton1")

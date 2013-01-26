@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'rautomation', '>= 0.8.0'
   gem.add_dependency 'require_all'
+  gem.add_dependency 'page_navigation'
 
   gem.add_development_dependency 'cucumber'
   gem.add_development_dependency 'rspec', '>= 2.12.0'
