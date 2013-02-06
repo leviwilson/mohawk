@@ -15,13 +15,25 @@ module Mohawk
       def cells
         row.cells.map &:text
       end
+
+      def value_from_header(name)
+        headers = header_methods
+        which_column = headers.index(name)
+        raise ArgumentError, "#{name} column does not exist in #{headers}" if which_column.nil?
+        cells[which_column]
+      end
       
       def method_missing(name, *args)
-        cells[@table.headers.map(&:to_method).index(name)]
+        value_from_header name
       end
 
       def to_hash
         {:text => row.text, :row => row.row }
+      end
+
+      private
+      def header_methods
+        @table.headers.map(&:to_method)
       end
     end
   end

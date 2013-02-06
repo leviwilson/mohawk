@@ -106,6 +106,13 @@ describe Mohawk::Accessors::Table do
         table_row.should_receive(:cells).and_return(expected_cells)
         screen.top[0].second_header.should eq("Item 2")
       end
+
+      it "clearly lets you know if a header is not there" do
+        RAutomation::Adapter::MsUia::UiaDll.should_receive(:table_headers).and_return(["First Header", "Second Header"])
+        table.should_receive(:hwnd)
+        expected_cells = [FakeTableRow.new("Item 1", 0), FakeTableRow.new("Item 2", 1)]
+        lambda { screen.top[0].does_not_exist }.should raise_error ArgumentError, "does_not_exist column does not exist in [:first_header, :second_header]"
+      end
     end
   end
 
