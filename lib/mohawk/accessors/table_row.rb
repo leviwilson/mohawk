@@ -17,9 +17,8 @@ module Mohawk
       end
 
       def value_from_header(name)
-        headers = header_methods
-        which_column = headers.index(name)
-        raise ArgumentError, "#{name} column does not exist in #{headers}" if which_column.nil?
+        which_column = header_methods.index(name)
+        raise ArgumentError, "#{name} column does not exist in #{header_methods}" if which_column.nil?
         cells[which_column]
       end
       
@@ -33,7 +32,7 @@ module Mohawk
 
       private
       def header_methods
-        @table.headers.map(&:to_method)
+        @headers ||= @table.headers.map(&:to_method)
       end
     end
   end
