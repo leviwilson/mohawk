@@ -16,6 +16,11 @@ describe Mohawk do
     TestScreen.new
   end
 
+  it "can accept additional locator information" do
+    RAutomation::Window.should_receive(:new).with(:title => "Some Window Title", :extra => 'test', :adapter => :ms_uia).and_return(window)
+    TestScreen.new :extra => 'test'
+  end
+
   context "using the UI Automation adapter" do
     before(:each) do
       RAutomation::Window.stub(:new).and_return(window)

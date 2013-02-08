@@ -16,8 +16,8 @@ module Mohawk
     cls.extend Mohawk::Accessors
   end
 
-  def initialize
-    @adapter = Mohawk::Adapters::UiaAdapter.new(which_window)
+  def initialize(extra={})
+    @adapter = Mohawk::Adapters::UiaAdapter.new(which_window.merge(extra))
   end 
 
   #
