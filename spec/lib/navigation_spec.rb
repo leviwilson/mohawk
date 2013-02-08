@@ -31,4 +31,9 @@ describe Mohawk::Navigation do
       screen.was_used
     end
   end
+
+  it "can pass additional locator information to the screen" do
+    NavigationTestScreen.should_receive(:new).with(:extra => 'info').and_return(screen)
+    on(NavigationTestScreen, :extra => 'info')
+  end
 end
