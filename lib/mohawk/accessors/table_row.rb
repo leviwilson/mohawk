@@ -12,6 +12,10 @@ module Mohawk
         @table.view.selected? row.row
       end
 
+      def select
+        @table.view.select row.row
+      end
+
       def cells
         row.cells.map &:text
       end

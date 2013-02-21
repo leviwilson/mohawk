@@ -93,6 +93,11 @@ describe Mohawk::Accessors::Table do
         screen.top[0].should be_selected
       end
 
+      it "can be selected" do
+        table.should_receive(:select).with(0)
+        screen.top[0].select
+      end
+
       it "has cells" do
         expected_cells = [FakeTableRow.new("Item 1", 0), FakeTableRow.new("Item 2", 1)]
         table_row.should_receive(:cells).and_return(expected_cells)

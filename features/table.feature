@@ -11,6 +11,10 @@ Scenario: Selecting a row by value
   When we select the table row with the value "Anna Doe"
   Then the row with index "1" should be selected
 
+Scenario: Selecting a row from a child item
+  When we select the "1"th table row
+  Then the row with index "1" should be selected
+
 Scenario: Rows have cells
   Then the row with index "0" should look like the following:
     | Name      | Date of Birth | State |
