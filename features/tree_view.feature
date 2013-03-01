@@ -47,3 +47,6 @@ Scenario: Collapsing items by value
   | Tree Items  |
   | Parent One  |
   | Parent Two  |
+
+Scenario: Working with the raw view
+  Then I am able to interact with the raw tree view

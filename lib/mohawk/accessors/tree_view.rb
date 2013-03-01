@@ -1,29 +1,31 @@
 module Mohawk
   module Accessors
     class TreeView
+      attr_reader :view
+
       def initialize(adapter, locator)
-        @tree = adapter.window.select_list(locator)
+        @view = adapter.window.select_list(locator)
       end
 
       def value
-        @tree.value
+        @view.value
       end
 
       def items
-        @tree.options.map &:text
+        @view.options.map &:text
       end
 
       def expand(which_item)
-        @tree.expand which_item
+        @view.expand which_item
       end
 
       def collapse(which_item)
-        @tree.collapse which_item
+        @view.collapse which_item
       end
 
       def select(which_item)
-        @tree.select which_item if which_item.is_a? Integer
-        @tree.set which_item if which_item.is_a? String
+        @view.select which_item if which_item.is_a? Integer
+        @view.set which_item if which_item.is_a? String
       end
     end
   end

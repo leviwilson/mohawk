@@ -29,3 +29,7 @@ end
 When /^I collapse the tree item "(.*?)"$/ do |which_item|      
   on(MainScreen).collapse_tree_view_item which_item
 end                                                                 
+
+Then /^I am able to interact with the raw tree view$/ do
+  on(MainScreen).tree_view_view.should be_visible
+end

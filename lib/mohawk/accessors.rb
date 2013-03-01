@@ -265,6 +265,9 @@ module Mohawk
       define_method("collapse_#{name}_item") do |which_item|
         adapter.tree_view(locator).collapse which_item
       end
+      define_method("#{name}_view") do
+        adapter.tree_view(locator).view
+      end
     end
 
     # combo_box aliases

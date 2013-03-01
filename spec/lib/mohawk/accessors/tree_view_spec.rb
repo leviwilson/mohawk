@@ -63,6 +63,11 @@ describe Mohawk::Accessors::TreeView do
       tree_field.should_receive(:collapse).with("some item")
       screen.collapse_oak_item "some item"
     end
+
+    it "can work with the raw view" do
+      tree_field.should_receive(:visible?).and_return(true)
+      screen.oak_view.should be_visible
+    end
   end
 
   context "aliases for tree_view" do
