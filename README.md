@@ -6,6 +6,10 @@ A gem to assist in building page-object like structures for testing Windows appl
 
 ## Installation
 
+### Runtime Environment
+In order for `mohawk` to work, you need to have the [.NET 4.0 Framework](http://www.microsoft.com/en-us/download/details.aspx?id=24872) as well as the [C++ Runtime Redistributable](http://www.microsoft.com/en-us/download/details.aspx?id=5555).
+
+### Ruby Environment
 Add this line to your application's Gemfile:
 
     gem 'mohawk'
