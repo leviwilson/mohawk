@@ -31,4 +31,8 @@ describe Mohawk::Accessors::Control do
     control.should_receive(:click)
     screen.click_control_yourself
   end
+
+  it "can work with the raw view" do
+    screen.control_yourself_view.should be(control)
+  end
 end

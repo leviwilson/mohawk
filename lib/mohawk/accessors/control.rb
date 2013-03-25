@@ -1,21 +1,22 @@
 module Mohawk
   module Accessors
     class Control
+      attr_reader :view
       def initialize(adapter, locator)
         @adapter = adapter
-        @control = adapter.window.value_control(locator)
+        @view = adapter.window.value_control(locator)
       end
 
       def value
-        @control.value
+        @view.value
       end
 
       def set(value)
-        @control.set value
+        @view.set value
       end
 
       def click
-        @control.click
+        @view.click
       end
     end
   end

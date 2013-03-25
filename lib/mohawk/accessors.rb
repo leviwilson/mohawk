@@ -280,6 +280,9 @@ module Mohawk
       define_method("click_#{name}") do
         adapter.value_control(locator).click
       end
+      define_method("#{name}_view") do
+        adapter.value_control(locator).view
+      end
     end
 
     # combo_box aliases
