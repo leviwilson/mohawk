@@ -277,6 +277,9 @@ module Mohawk
       define_method("#{name}=") do |value|
         adapter.value_control(locator).set value
       end
+      define_method("click_#{name}") do
+        adapter.value_control(locator).click
+      end
     end
 
     # combo_box aliases

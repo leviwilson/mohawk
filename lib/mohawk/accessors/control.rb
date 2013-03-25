@@ -13,6 +13,10 @@ module Mohawk
       def set(value)
         @control.set value
       end
+
+      def click
+        @control.click
+      end
     end
   end
 end

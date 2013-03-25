@@ -26,4 +26,9 @@ describe Mohawk::Accessors::Control do
     control.should_receive(:set).with('new value')
     screen.control_yourself = 'new value'
   end
+
+  it "can click the control" do
+    control.should_receive(:click)
+    screen.click_control_yourself
+  end
 end
