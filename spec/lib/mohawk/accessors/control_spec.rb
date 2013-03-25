@@ -21,4 +21,9 @@ describe Mohawk::Accessors::Control do
     control.should_receive(:value).and_return('expected value')
     screen.control_yourself_value.should eq('expected value')
   end
+
+  it "can set the value" do
+    control.should_receive(:set).with('new value')
+    screen.control_yourself = 'new value'
+  end
 end

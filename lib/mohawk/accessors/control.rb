@@ -9,6 +9,10 @@ module Mohawk
       def value
         @control.value
       end
+
+      def set(value)
+        @control.set value
+      end
     end
   end
 end
