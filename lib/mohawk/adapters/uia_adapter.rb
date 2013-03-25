@@ -46,6 +46,10 @@ module Mohawk
       def tree_view(locator)
         Mohawk::Accessors::TreeView.new(self, locator)
       end
+
+      def value_control(locator)
+        Mohawk::Accessors::Control.new(self, locator)
+      end
     end
   end
 end

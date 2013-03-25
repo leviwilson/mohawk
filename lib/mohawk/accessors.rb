@@ -270,6 +270,12 @@ module Mohawk
       end
     end
 
+    def control(name, locator)
+      define_method("#{name}_value") do
+        adapter.value_control(locator).value
+      end
+    end
+
     # combo_box aliases
     alias_method :combobox, :combo_box
     alias_method :dropdown, :combo_box
