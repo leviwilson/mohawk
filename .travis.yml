@@ -1,1 +1,4 @@
 language: ruby
+notifications:
+  webhooks:
+    - http://northwoods-projectmonitor.herokuapp.com/projects/10c36e9b-e308-48e0-ba53-1f27639a2da8/status
