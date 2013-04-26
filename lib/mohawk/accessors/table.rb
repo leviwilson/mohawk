@@ -14,7 +14,7 @@ module Mohawk
       end
 
       def headers
-        RAutomation::Adapter::MsUia::UiaDll.table_headers(view.hwnd)
+        RAutomation::Adapter::MsUia::UiaDll.table_headers(view.search_information)
       end
 
       def [](row)
