@@ -1,5 +1,8 @@
-=== Version 0.3
+=== Version 0.0.3 / 2013-04-26
 * Enhancements
+	*	Bumped the RAutomation dependency so we can now interact with controls
+	that do not have native window handles (i.e. WPF applications)
+	*	Added a control accessor for working with generic controls
   * Added _view methods to all accessors to access the underlying driver control
   * Added Mohawk#wait_for_control to block until a child control appears
   * Table improvements
@@ -11,7 +14,7 @@
   * Added Mohawk::Accessors#link to work with link controls
   * added ability to define routes with the page_navigation gem
 
-=== Version 0.2 / 2012-12-26
+=== Version 0.0.2 / 2012-12-26
 * Enhancements
   * Added the following Mohawk module methods:
     * active?
@@ -28,6 +31,6 @@
   * Enhanced navigation to wait until the Window is present before working with it
   * Added aliases for table, combo_box and tree_view accessors
 
-=== Version 0.1 / 2012-11-07
+=== Version 0.0.1 / 2012-11-07
 Initial release with support for text, button, combo, radio and checkbox
 controls
