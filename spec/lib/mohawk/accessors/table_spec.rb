@@ -107,8 +107,10 @@ describe Mohawk::Accessors::Table do
       it "can get cell values by header name" do
         RAutomation::Adapter::MsUia::UiaDll.should_receive(:table_headers).and_return(["First Header", "Second Header"])
         table.should_receive(:search_information)
-        expected_cells = [FakeTableRow.new("Item 1", 0), FakeTableRow.new("Item 2", 1)]
-        table_row.should_receive(:cells).and_return(expected_cells)
+
+        expected_cell = double('RAutomation Cell')
+        expected_cell.should_receive(:text).and_return('Item 2')
+        RAutomation::Adapter::MsUia::Cell.should_receive(:new).with(table_row, :index => 1).and_return(expected_cell)
         screen.top[0].second_header.should eq("Item 2")
       end
 
