@@ -1,5 +1,4 @@
 # Mohawk
-
 [![Build Status](https://travis-ci.org/leviwilson/mohawk.png)](https://travis-ci.org/leviwilson/mohawk)
 
 A gem to assist in building page-object like structures for testing Windows applications.
