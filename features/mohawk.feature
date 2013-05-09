@@ -15,3 +15,7 @@ Scenario: Determining if a window has text
 Scenario: Waiting for a particular control
   When we are using the "MainScreen"
   Then we can wait for the control with a value of "Data Entry Form"
+
+Scenario: Specifying a parent container
+  When we are using the "ScreenWithContainer"
+  Then our parent is the container, not the main window

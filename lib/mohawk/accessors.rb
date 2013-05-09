@@ -15,6 +15,18 @@ module Mohawk
         locator
       end
     end
+
+    #
+    # Defines a locator indicating a child container that is a descendant of
+    # the top-level window
+    #
+    # @example
+    #   parent(:id => 'someOtherContainer')
+    #
+    # @param  [Hash]  locator for a more specific parent container
+    #
+    def parent(locator)
+    end
     
     #
     # Generates methods to enter text into a text field, get its value

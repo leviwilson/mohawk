@@ -16,4 +16,8 @@ end
 
 Then /^we can wait for the control with a value of "(.*?)"$/ do |value|   
   @screen.wait_for_control :value => value
-end                                                                      
+end
+
+Then /^our parent is the container, not the main window$/ do
+  @screen.adapter.window.title.should_not match(/MainForm/)
+end
