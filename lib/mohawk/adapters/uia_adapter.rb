@@ -8,7 +8,11 @@ module Mohawk
 
       def window
         @actual_window ||= begin
-          @window = RAutomation::Window.new(:hwnd => @window.control(@container).hwnd, :adapter => :ms_uia) if @container
+          if @container
+            control = @window.control(@container)
+            RAutomation::WaitHelper.wait_until { control.exist? }
+            @window = RAutomation::Window.new(:hwnd => control.hwnd, :adapter => :ms_uia)
+          end
           @window
         end
       end
