@@ -20,4 +20,5 @@ end
 
 Then /^our parent is the container, not the main window$/ do
   @screen.adapter.window.title.should_not match(/MainForm/)
+  @screen.up_view.control_name.should eq('Forward')
 end

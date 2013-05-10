@@ -1,10 +1,16 @@
 module Mohawk
   module Adapters
     class UiaAdapter
-      attr_reader :window
-
-      def initialize(locator)
+      def initialize(locator, container=nil)
         @window = RAutomation::Window.new(locator.merge(:adapter => :ms_uia))
+        @container = container
+      end
+
+      def window
+        @actual_window ||= begin
+          @window = RAutomation::Window.new(:hwnd => @window.control(@container).hwnd, :adapter => :ms_uia) if @container
+          @window
+        end
       end
 
       def combo(locator)

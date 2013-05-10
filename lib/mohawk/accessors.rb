@@ -1,6 +1,6 @@
 module Mohawk
   module Accessors
-    
+
     #
     # Defines the locator indicating the top-level window that will be used
     # to find controls in the page
@@ -26,8 +26,11 @@ module Mohawk
     # @param  [Hash]  locator for a more specific parent container
     #
     def parent(locator)
+      define_method(:parent_container) do
+        locator
+      end
     end
-    
+
     #
     # Generates methods to enter text into a text field, get its value
     # and clear the text field
@@ -40,7 +43,7 @@ module Mohawk
     # @param  [Hash]  locator for how the text is found
     #
     def text(name, locator)
-      define_method("#{name}") do 
+      define_method("#{name}") do
         adapter.text(locator).value
       end
       define_method("#{name}=") do |text|
@@ -56,9 +59,9 @@ module Mohawk
         adapter.text(locator).view
       end
     end
-    
+
     #
-    # Generates methods to click on a button as well as get the value of 
+    # Generates methods to click on a button as well as get the value of
     # the button text
     #
     # @example
@@ -251,7 +254,7 @@ module Mohawk
     # @example
     #   tree_view(:tree, :id => "treeId")
     #   # will generate 'tree', 'tree=', 'tree_items', 'expand_tree_item' and 'collapse_tree_item'
-    #   # methods to get the tree value, set the tree value (index or string), get all of the 
+    #   # methods to get the tree value, set the tree value (index or string), get all of the
     #   # items, expand an item (index or string) and collapse an item (index or string)
     #
     # @param  [String]  the name used for the generated methods

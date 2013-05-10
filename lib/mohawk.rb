@@ -17,8 +17,10 @@ module Mohawk
   end
 
   def initialize(extra={})
-    @adapter = Mohawk::Adapters::UiaAdapter.new(which_window.merge(extra))
-  end 
+    locator = [which_window.merge(extra)]
+    locator << parent_container if respond_to?(:parent_container)
+    @adapter = Mohawk::Adapters::UiaAdapter.new(*locator)
+  end
 
   #
   # Returns whether or not the window exists
