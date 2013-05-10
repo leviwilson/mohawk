@@ -1,5 +1,6 @@
 # Mohawk
 [![Build Status](https://travis-ci.org/leviwilson/mohawk.png)](https://travis-ci.org/leviwilson/mohawk)
+[![Coverage Status](https://coveralls.io/repos/leviwilson/mohawk/badge.png?branch=master)](https://coveralls.io/r/leviwilson/mohawk?branch=master)
 
 A gem to assist in building page-object like structures for testing Windows applications.
 
