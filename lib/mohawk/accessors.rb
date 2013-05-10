@@ -11,7 +11,7 @@ module Mohawk
     # @param  [Hash]  locator for the top-level window that hosts the page
     #
     def window(locator)
-      define_method("which_window") do
+      define_method(:which_window) do
         locator
       end
     end
