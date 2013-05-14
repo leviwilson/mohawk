@@ -32,6 +32,10 @@ Scenario: Retrieving the headers
 Scenario: Retrieving a row value by its header
   Then the "date_of_birth" for the row at index "1" is "3/4/1975"
 
-Scenario: Working with lots of records
+Scenario: Working with lots of records counts
   When there are a lot of records in a table
-  Then the table response in a reasonable amount of time
+  Then the table count responds in a reasonable amount of time
+
+Scenario: Working with a row when there are a lot of records
+  When there are a lot of records in a table
+  Then accessing the values in row "12" should be snappy

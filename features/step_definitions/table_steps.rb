@@ -44,6 +44,10 @@ When(/^there are a lot of records in a table$/) do
   end
 end
 
-Then(/^the table response in a reasonable amount of time$/) do
+Then(/^the table count responds in a reasonable amount of time$/) do
   Timeout.timeout(5.0) { on(DataEntryForm).people.count.should eq(252) }
+end
+
+Then(/^accessing the values in row "([^"]*)" should be snappy$/) do |which_row|
+  Timeout.timeout(5.0) { on(DataEntryForm).people[which_row.to_i].cells.should_not be_empty }
 end

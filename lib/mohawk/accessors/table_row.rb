@@ -3,15 +3,13 @@ module Mohawk
     class TableRow
       include RAutomation::Adapter::MsUia
 
+      attr_reader :row
+
       def initialize(table, row_index)
-        @row_index = row_index
         @table = table
+        @row = Row.new(@table.view, :index => row_index)
       end
 
-      def row
-        @row ||= @table.view.row(:index => @row_index)
-      end
-      
       def selected?
         @table.view.selected? row.row
       end
