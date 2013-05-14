@@ -1,0 +1,3 @@
+[submodule "mohawk-testing-app"]
+	path = mohawk-testing-app
+	url = git://github.com/leviwilson/mohawk-testing-app.git
