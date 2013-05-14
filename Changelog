@@ -1,3 +1,7 @@
+=== Version 0.0.4
+*	Enhancements
+	*	sped up table access when there are many rows
+
 === Version 0.0.3 / 2013-04-26
 * Enhancements
 	*	Bumped the RAutomation dependency so we can now interact with controls
