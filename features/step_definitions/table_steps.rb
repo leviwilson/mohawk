@@ -36,4 +36,14 @@ end
 
 Then /^the "(.*?)" for the row at index "(.*?)" is "(.*?)"$/ do |header, which_row, expected_value|
   on(DataEntryForm).people[which_row.to_i].send(header).should eq(expected_value)
-end                                                                               
+end
+
+When(/^there are a lot of records in a table$/) do
+  on(DataEntryForm) do |screen|
+    5.times { screen.add_more }
+  end
+end
+
+Then(/^the table response in a reasonable amount of time$/) do
+  Timeout.timeout(5.0) { on(DataEntryForm).people.count.should eq(252) }
+end

@@ -3,6 +3,7 @@ class DataEntryForm
   window(:title => /DataEntry/)
 
   table(:people, :id => "personListView")
+  button(:add_more, :value => 'Add Many')
 
   def wait_until_present
     super

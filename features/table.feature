@@ -31,3 +31,7 @@ Scenario: Retrieving the headers
 
 Scenario: Retrieving a row value by its header
   Then the "date_of_birth" for the row at index "1" is "3/4/1975"
+
+Scenario: Working with lots of records
+  When there are a lot of records in a table
+  Then the table response in a reasonable amount of time
