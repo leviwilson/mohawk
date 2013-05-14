@@ -2,11 +2,14 @@ module Mohawk
   module Accessors
     class TableRow
       include RAutomation::Adapter::MsUia
-      attr_reader :row
 
-      def initialize(table, row)
-        @row = row
+      def initialize(table, row_index)
+        @row_index = row_index
         @table = table
+      end
+
+      def row
+        @row ||= @table.view.row(:index => @row_index)
       end
       
       def selected?

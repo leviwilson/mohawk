@@ -18,11 +18,11 @@ module Mohawk
       end
 
       def [](row)
-        TableRow.new(self, view.row(:index => row))
+        TableRow.new(self, row)
       end
 
       def each
-        view.rows.map do |row|
+        view.row_count.times.map do |row|
           yield TableRow.new(self, row)
         end
       end

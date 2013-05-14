@@ -59,9 +59,12 @@ describe Mohawk::Accessors::Table do
     end
 
     it "has rows" do
-      fake_rows = [FakeTableRow.new("First Row", 0), FakeTableRow.new("Second Row", 1)]
-      expected_rows = fake_rows.map {|r| {:text => r.text, :row => r.row} }
-      table.should_receive(:rows).and_return(fake_rows)
+      first_row = FakeTableRow.new "First Row", 0
+      second_row = FakeTableRow.new "Second Row", 1
+      expected_rows = [first_row, second_row].map {|r| {:text => r.text, :row => r.row} }
+      table.should_receive(:row_count).and_return(2)
+      table.should_receive(:row).with(:index => 0).and_return(first_row)
+      table.should_receive(:row).with(:index => 1).and_return(second_row)
       screen.top.map(&:to_hash).should eq(expected_rows)
     end
 
@@ -80,7 +83,7 @@ describe Mohawk::Accessors::Table do
       let(:table_row) { double("RAutomation TableRow") }
 
       before(:each) do
-        table.should_receive(:row).with(:index => 0).and_return(table_row)
+        table.stub(:row).with(:index => 0).and_return(table_row)
         table_row.stub(:row).and_return 0
       end
 
