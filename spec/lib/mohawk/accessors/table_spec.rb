@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'ffi'
 
 class TableScreen
   include Mohawk
@@ -18,19 +17,6 @@ class FakeTableRow
   def initialize(text, row)
     @text = text
     @row = row
-  end
-end
-
-module FFI
-  module Library
-    def ffi_lib(*names)
-    end
-
-    def ffi_libraries
-    end
-
-    def attach_function(name, func, args, returns = nil, options = nil)
-    end
   end
 end
 
