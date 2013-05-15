@@ -18,31 +18,38 @@ module Mohawk
       end
 
       def combo(locator)
-        Mohawk::Accessors::Combo.new(self, locator)
+        @combos ||= {}
+        @combos[locator] ||= Mohawk::Accessors::Combo.new(self, locator)
       end
 
       def checkbox(locator)
-        Mohawk::Accessors::CheckBox.new(self, locator)
+        @checkbox ||= {}
+        @checkbox[locator] ||= Mohawk::Accessors::CheckBox.new(self, locator)
       end
 
       def text(locator)
-        Mohawk::Accessors::Text.new(self, locator)
+        @text_fields ||= {}
+        @text_fields[locator] ||= Mohawk::Accessors::Text.new(self, locator)
       end
 
       def button(locator)
-        Mohawk::Accessors::Button.new(self, locator)
+        @buttons ||= {}
+        @buttons[locator] ||= Mohawk::Accessors::Button.new(self, locator)
       end
 
       def radio(locator)
-        Mohawk::Accessors::Radio.new(self, locator)
+        @radios ||= {}
+        @radios[locator] ||= Mohawk::Accessors::Radio.new(self, locator)
       end
 	  
       def label(locator)
-        Mohawk::Accessors::Label.new(self, locator)
+        @labels ||= {}
+        @labels[locator] ||= Mohawk::Accessors::Label.new(self, locator)
       end
 
       def link(locator)
-        Mohawk::Accessors::Link.new(self, locator)
+        @links ||= {}
+        @links[locator] ||= Mohawk::Accessors::Link.new(self, locator)
       end
 
       def menu_item(locator)
@@ -50,15 +57,18 @@ module Mohawk
       end
 
       def table(locator)
-        Mohawk::Accessors::Table.new(self, locator)
+        @tables ||= {}
+        @tables[locator] ||= Mohawk::Accessors::Table.new(self, locator)
       end
 
       def tree_view(locator)
-        Mohawk::Accessors::TreeView.new(self, locator)
+        @trees ||= {}
+        @trees[locator] ||= Mohawk::Accessors::TreeView.new(self, locator)
       end
 
       def value_control(locator)
-        Mohawk::Accessors::Control.new(self, locator)
+        @controls ||= {}
+        @controls[locator] ||= Mohawk::Accessors::Control.new(self, locator)
       end
     end
   end
