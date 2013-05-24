@@ -1,4 +1,4 @@
-=== Version 0.0.4
+=== Version 0.0.4 / 2013-05-24
 *	Enhancements
 	*	sped up table access when there are many rows
 	*	caches controls based on locator for quicker lookups
