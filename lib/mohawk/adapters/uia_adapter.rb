@@ -2,6 +2,7 @@ module Mohawk
   module Adapters
     class UiaAdapter
       def initialize(locator, container=nil)
+        @only_search_children = locator.delete(:children_only)
         @window = RAutomation::Window.new(locator.merge(:adapter => :ms_uia))
         @container = container
       end
@@ -19,56 +20,63 @@ module Mohawk
 
       def combo(locator)
         @combos ||= {}
-        @combos[locator] ||= Mohawk::Accessors::Combo.new(self, locator)
+        @combos[locator] ||= Mohawk::Accessors::Combo.new(self, merge(locator))
       end
+
 
       def checkbox(locator)
         @checkbox ||= {}
-        @checkbox[locator] ||= Mohawk::Accessors::CheckBox.new(self, locator)
+        @checkbox[locator] ||= Mohawk::Accessors::CheckBox.new(self, merge(locator))
       end
 
       def text(locator)
         @text_fields ||= {}
-        @text_fields[locator] ||= Mohawk::Accessors::Text.new(self, locator)
+        @text_fields[locator] ||= Mohawk::Accessors::Text.new(self, merge(locator))
       end
 
       def button(locator)
         @buttons ||= {}
-        @buttons[locator] ||= Mohawk::Accessors::Button.new(self, locator)
+        @buttons[locator] ||= Mohawk::Accessors::Button.new(self, merge(locator))
       end
 
       def radio(locator)
         @radios ||= {}
-        @radios[locator] ||= Mohawk::Accessors::Radio.new(self, locator)
+        @radios[locator] ||= Mohawk::Accessors::Radio.new(self, merge(locator))
       end
 	  
       def label(locator)
         @labels ||= {}
-        @labels[locator] ||= Mohawk::Accessors::Label.new(self, locator)
+        @labels[locator] ||= Mohawk::Accessors::Label.new(self, merge(locator))
       end
 
       def link(locator)
         @links ||= {}
-        @links[locator] ||= Mohawk::Accessors::Link.new(self, locator)
+        @links[locator] ||= Mohawk::Accessors::Link.new(self, merge(locator))
       end
 
       def menu_item(locator)
-        Mohawk::Accessors::MenuItem.new(self, locator)
+        Mohawk::Accessors::MenuItem.new(self, merge(locator))
       end
 
       def table(locator)
         @tables ||= {}
-        @tables[locator] ||= Mohawk::Accessors::Table.new(self, locator)
+        @tables[locator] ||= Mohawk::Accessors::Table.new(self, merge(locator))
       end
 
       def tree_view(locator)
         @trees ||= {}
-        @trees[locator] ||= Mohawk::Accessors::TreeView.new(self, locator)
+        @trees[locator] ||= Mohawk::Accessors::TreeView.new(self, merge(locator))
       end
 
       def value_control(locator)
         @controls ||= {}
-        @controls[locator] ||= Mohawk::Accessors::Control.new(self, locator)
+        @controls[locator] ||= Mohawk::Accessors::Control.new(self, merge(locator))
+      end
+
+      private
+      def merge(locator)
+        locator = locator.merge(:children_only => true) if @only_search_children
+        locator
       end
     end
   end
