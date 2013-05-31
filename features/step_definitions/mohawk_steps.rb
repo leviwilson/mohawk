@@ -22,3 +22,14 @@ Then /^our parent is the container, not the main window$/ do
   @screen.adapter.window.title.should_not match(/MainForm/)
   @screen.up_view.control_name.should eq('Forward')
 end
+
+When(/^we tell the screen to limit searches to children only$/) do
+  on(MainScreen).data_grid
+  on(ScreenScopedToChildren).should be_active
+end
+
+Then(/^we notice a performance increase, especially when data grid views are involved$/) do
+  start = Time.now
+  on(ScreenScopedToChildren).close
+  (Time.now - start).should be < 2
+end

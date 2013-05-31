@@ -19,3 +19,7 @@ Scenario: Waiting for a particular control
 Scenario: Specifying a parent container
   When we are using the "ScreenWithContainer"
   Then our parent is the container, not the main window
+
+Scenario: Forcing the search scope to children only
+  When we tell the screen to limit searches to children only
+  Then we notice a performance increase, especially when data grid views are involved
