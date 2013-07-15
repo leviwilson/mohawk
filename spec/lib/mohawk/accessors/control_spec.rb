@@ -28,8 +28,17 @@ describe Mohawk::Accessors::Control do
   end
 
   it "can click the control" do
-    control.should_receive(:click)
+    control.should_receive(:click).and_yield
     screen.click_control_yourself
+  end
+
+  it "can give a custom block to the click method" do
+    control.should_receive(:click).and_yield
+    result = false
+    screen.click_control_yourself do
+      result = true
+    end
+    result.should be_true
   end
 
   it "can work with the raw view" do

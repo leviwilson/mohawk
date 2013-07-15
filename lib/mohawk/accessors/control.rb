@@ -15,8 +15,9 @@ module Mohawk
         @view.set value
       end
 
-      def click
-        @view.click
+      def click(&block)
+        @view.click &block if block
+        @view.click { true } unless block
       end
     end
   end
