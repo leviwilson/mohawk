@@ -6,6 +6,7 @@ class MainScreen
   text(:masked_text_field, :id => "maskedTextBox")
   button(:data_entry_form_button, :value => "Data Entry Form")
   button(:about, :value => "About")
+  control(:about_control, :value => 'About')
   button(:data_grid, :value => "Data Grid View")
   combo_box(:fruits, :id => "FruitsComboBox")
   checkbox(:first_checkbox, :id =>  "checkBox")
