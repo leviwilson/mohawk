@@ -20,6 +20,8 @@ module Mohawk
     cls.extend Mohawk::Accessors
   end
 
+  attr_reader :adapter
+
   def self.start
     raise InvalidApplicationPath.new unless @app_path
     @app = ChildProcess.build(@app_path).start
