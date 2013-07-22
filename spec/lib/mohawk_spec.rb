@@ -11,6 +11,11 @@ describe Mohawk do
   let(:screen) { TestScreen.new }
   let(:window) { double('RAutomation Window') }
 
+  before(:each) do
+    Mohawk.app_path = nil
+    Mohawk.instance_variable_set(:@app, nil)
+  end
+
   it "uses the uia adapter by default" do
     RAutomation::Window.should_receive(:new).with(:title => "Some Window Title", :adapter => :ms_uia).and_return(window)
     TestScreen.new
@@ -22,17 +27,49 @@ describe Mohawk do
   end
 
   context 'launching an application' do
+    let(:process) { double('ChildProcess::Process') }
+
+    before(:each) do
+      process.stub(:start).and_return(process)
+      process.stub(:exited?)
+      process.stub(:stop)
+      ChildProcess.stub(:build).with('./the/app/path.exe').and_return(process)
+      Mohawk.app_path = './the/app/path.exe'
+    end
+
     it 'requires a path' do
+      Mohawk.app_path = nil
       lambda { Mohawk.start }.should raise_error(Mohawk::InvalidApplicationPath, 'You must set the Mohawk.app_path to start an application')
     end
 
     it 'can start an application' do
-      process = double('ChildProcess::Process')
-      ChildProcess.should_receive(:build).with('./the/app/path.exe').and_return(process)
       process.should_receive(:start)
-      Mohawk.app_path = './the/app/path.exe'
-
       Mohawk.start
+    end
+
+    it 'can stop an application' do
+      process.should_receive(:stop)
+      Mohawk.start
+
+      Mohawk.stop
+    end
+
+    it 'knows if a process was never started' do
+      lambda { Mohawk.stop }.should raise_error('An application was never started')
+    end
+
+    it 'does nothing if the process has exited' do
+      process.should_receive(:exited?).and_return(true)
+      process.should_not_receive(:stop)
+      Mohawk.start
+
+      Mohawk.stop
+    end
+
+    it 'has a clean slate if the application has been stopped' do
+      Mohawk.start
+      Mohawk.stop
+      Mohawk.app.should be_nil
     end
   end
 

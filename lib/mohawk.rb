@@ -16,15 +16,23 @@ module Mohawk
     end
   end
 
-  attr_reader :adapter
-
   def self.included(cls)
     cls.extend Mohawk::Accessors
   end
 
   def self.start
     raise InvalidApplicationPath.new unless @app_path
-    ChildProcess.build(@app_path).start
+    @app = ChildProcess.build(@app_path).start
+  end
+
+  def self.stop
+    raise 'An application was never started' unless @app
+    @app.stop unless @app.exited?
+    @app = nil
+  end
+
+  def self.app
+    @app
   end
 
   def self.app_path=(path)
