@@ -9,11 +9,20 @@ require "mohawk/core_ext/string"
 require_rel "mohawk/accessors"
 
 module Mohawk
+  class InvalidApplicationPath < StandardError
+    def initialize(message='You must set the Mohawk.app_path to start an application')
+      super
+    end
+  end
 
   attr_reader :adapter
 
   def self.included(cls)
     cls.extend Mohawk::Accessors
+  end
+
+  def self.start
+    raise InvalidApplicationPath.new
   end
 
   def initialize(extra={})

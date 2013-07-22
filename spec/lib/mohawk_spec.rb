@@ -21,6 +21,12 @@ describe Mohawk do
     TestScreen.new :extra => 'test'
   end
 
+  context 'launching an application' do
+    it 'requires a path' do
+      lambda { Mohawk.start }.should raise_error(Mohawk::InvalidApplicationPath, 'You must set the Mohawk.app_path to start an application')
+    end
+  end
+
   context "using the UI Automation adapter" do
     before(:each) do
       RAutomation::Window.stub(:new).and_return(window)
