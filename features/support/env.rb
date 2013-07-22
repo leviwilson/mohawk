@@ -20,10 +20,10 @@ Mohawk::Navigation.routes = {
 }
 
 Before do
-  @process = Mohawk.start
-  RAutomation::WaitHelper.wait_until {RAutomation::Window.new(:pid => @process.pid).present?}
+  process = Mohawk.start
+  RAutomation::WaitHelper.wait_until {RAutomation::Window.new(:pid => process.pid).present?}
 end
 
 After do
-  @process.stop
+  Mohawk.stop
 end

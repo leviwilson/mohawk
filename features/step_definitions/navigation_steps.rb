@@ -7,7 +7,7 @@ Then /^we should still arrive at our destination$/ do
 end
 
 When /^we give extra navigational information to a screen$/ do
-  @which_screen = on(MainScreen, :pid => @process.pid)
+  @which_screen = on(MainScreen, :pid => Mohawk.app.pid)
 end
                                                                    
 Then /^it should listen to every word that we say$/ do
