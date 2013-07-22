@@ -8,6 +8,8 @@ World(Mohawk::Navigation)
 
 require_rel 'screens'
 
+Mohawk.app_path = 'features/support/WindowsForms.exe'
+
 Mohawk::Navigation.routes = {
   :default => [
     [MainScreen, :about],
@@ -18,8 +20,7 @@ Mohawk::Navigation.routes = {
 }
 
 Before do
-  @process = ChildProcess.build('features\\support\\WindowsForms.exe')
-  @process.start
+  @process = Mohawk.start
   RAutomation::WaitHelper.wait_until {RAutomation::Window.new(:pid => @process.pid).present?}
 end
 
