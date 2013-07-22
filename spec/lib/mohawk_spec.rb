@@ -25,6 +25,15 @@ describe Mohawk do
     it 'requires a path' do
       lambda { Mohawk.start }.should raise_error(Mohawk::InvalidApplicationPath, 'You must set the Mohawk.app_path to start an application')
     end
+
+    it 'can start an application' do
+      process = double('ChildProcess::Process')
+      ChildProcess.should_receive(:build).with('./the/app/path.exe').and_return(process)
+      process.should_receive(:start)
+      Mohawk.app_path = './the/app/path.exe'
+
+      Mohawk.start
+    end
   end
 
   context "using the UI Automation adapter" do

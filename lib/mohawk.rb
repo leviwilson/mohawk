@@ -1,4 +1,5 @@
 require "rautomation"
+require 'childprocess'
 require "mohawk/version"
 require "require_all"
 require "mohawk/accessors"
@@ -22,7 +23,12 @@ module Mohawk
   end
 
   def self.start
-    raise InvalidApplicationPath.new
+    raise InvalidApplicationPath.new unless @app_path
+    ChildProcess.build(@app_path).start
+  end
+
+  def self.app_path=(path)
+    @app_path = path
   end
 
   def initialize(extra={})
