@@ -31,9 +31,12 @@ describe Mohawk do
 
     before(:each) do
       process.stub(:start).and_return(process)
-      process.stub(:exited?)
-      process.stub(:stop)
+      [:exited?, :stop, :pid].each &process.method(:stub)
       ChildProcess.stub(:build).with('./the/app/path.exe').and_return(process)
+
+      RAutomation::Window.stub(:new).and_return(window)
+      window.stub(:present?).and_return(true)
+
       Mohawk.app_path = './the/app/path.exe'
     end
 
@@ -44,6 +47,14 @@ describe Mohawk do
 
     it 'can start an application' do
       process.should_receive(:start)
+      Mohawk.start
+    end
+
+    it 'waits on the application' do
+      process.should_receive(:pid).and_return(123)
+      RAutomation::Window.should_receive(:new).with(:pid => 123).and_return(window)
+      window.should_receive(:present?).and_return(false, false, true)
+
       Mohawk.start
     end
 
