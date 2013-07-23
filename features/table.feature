@@ -11,6 +11,12 @@ Feature:  Working with tables
     When we select the table row with the value "Anna Doe"
     Then the row with index "1" should be selected
 
+  Scenario: Selecting a row by matching cell information
+    When we select the table row with the following information:
+      | name     | date_of_birth |
+      | Anna Doe | 3/4/1975      |
+    Then the row with index "1" should be selected
+
   Scenario: Selecting a row from a child item
     When we select the "1"th table row
     Then the row with index "1" should be selected

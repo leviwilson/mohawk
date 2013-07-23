@@ -17,6 +17,10 @@ When /^we select the table row with the value "([^"]*)"$/ do |row_value|
   on(DataEntryForm).people = row_value
 end
 
+When(/^we select the table row with the following information:$/) do |table|
+  on(DataEntryForm).select_people table.hashes.first
+end
+
 When /^we select the "(.*?)"th table row$/ do |index|
   on(DataEntryForm).people[index.to_i].select
 end
@@ -51,3 +55,4 @@ end
 Then(/^accessing the values in row "([^"]*)" should be snappy$/) do |which_row|
   Timeout.timeout(5.0) { on(DataEntryForm).people[which_row.to_i].cells.should_not be_empty }
 end
+

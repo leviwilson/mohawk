@@ -10,7 +10,14 @@ module Mohawk
       end
 
       def select(which_item)
-        view.select which_item
+        case which_item
+          when Hash
+            find do |row|
+              which_item.all? {|p| row.send(p[0]) == p[1] }
+            end.select
+          else
+            select_by_value(which_item)
+        end
       end
 
       def headers
@@ -25,6 +32,11 @@ module Mohawk
         view.row_count.times.map do |row|
           yield TableRow.new(self, row)
         end
+      end
+
+      private
+      def select_by_value(which_item)
+        view.select which_item
       end
     end
   end
