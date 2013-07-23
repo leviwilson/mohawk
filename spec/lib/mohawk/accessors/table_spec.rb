@@ -20,6 +20,8 @@ class FakeTableRow
   end
 end
 
+include RAutomation::Adapter::MsUia
+
 describe Mohawk::Accessors::Table do
   let(:screen) { TableScreen.new }
   let(:window) { double("RAutomation Window") }
@@ -51,16 +53,16 @@ describe Mohawk::Accessors::Table do
 
       def expected_rows=(rows)
         @the_rows = []
-        RAutomation::Adapter::MsUia::UiaDll.stub(:table_headers).and_return(rows.first.keys.map(&:to_s))
+        UiaDll.stub(:table_headers).and_return(rows.first.keys.map(&:to_s))
         table.stub(:row_count).and_return(rows.count)
         rows.each_with_index do |h, i|
           row = double("table row #{i}")
           row.stub(:row).and_return(i)
           @the_rows << row
-          RAutomation::Adapter::MsUia::Row.stub(:new).with(table, :index => i).and_return(row)
+          Row.stub(:new).with(table, :index => i).and_return(row)
           h.each_with_index do |key_value, cell_index|
             cell = double("Cell at #{i}, #{cell_index}")
-            RAutomation::Adapter::MsUia::Cell.stub(:new).with(row, :index =>cell_index).and_return(cell)
+            Cell.stub(:new).with(row, :index =>cell_index).and_return(cell)
             cell.stub(:text).and_return(key_value[1])
           end
         end
@@ -92,15 +94,15 @@ describe Mohawk::Accessors::Table do
       second_row = FakeTableRow.new "Second Row", 1
       expected_rows = [first_row, second_row].map {|r| {:text => r.text, :row => r.row} }
       table.should_receive(:row_count).and_return(2)
-      RAutomation::Adapter::MsUia::Row.should_receive(:new).with(table, :index => 0).and_return(first_row)
-      RAutomation::Adapter::MsUia::Row.should_receive(:new).with(table, :index => 1).and_return(second_row)
+      Row.should_receive(:new).with(table, :index => 0).and_return(first_row)
+      Row.should_receive(:new).with(table, :index => 1).and_return(second_row)
       screen.top.map(&:to_hash).should eq(expected_rows)
     end
 
     it "has headers" do
       expected_headers = ["first header", "second header"]
       table.should_receive(:search_information).and_return(1234)
-      RAutomation::Adapter::MsUia::UiaDll.should_receive(:table_headers).with(1234).and_return(expected_headers)
+      UiaDll.should_receive(:table_headers).with(1234).and_return(expected_headers)
       screen.top_headers.should eq(expected_headers)
     end
 
@@ -112,7 +114,7 @@ describe Mohawk::Accessors::Table do
       let(:table_row) { double("RAutomation TableRow") }
 
       before(:each) do
-        RAutomation::Adapter::MsUia::Row.should_receive(:new).with(table, :index => 0).and_return(table_row)
+        Row.should_receive(:new).with(table, :index => 0).and_return(table_row)
         table_row.stub(:row).and_return 0
       end
 
@@ -137,17 +139,17 @@ describe Mohawk::Accessors::Table do
       end
 
       it "can get cell values by header name" do
-        RAutomation::Adapter::MsUia::UiaDll.should_receive(:table_headers).and_return(["First Header", "Second Header"])
+        UiaDll.should_receive(:table_headers).and_return(["First Header", "Second Header"])
         table.should_receive(:search_information)
 
         expected_cell = double('RAutomation Cell')
         expected_cell.should_receive(:text).and_return('Item 2')
-        RAutomation::Adapter::MsUia::Cell.should_receive(:new).with(table_row, :index => 1).and_return(expected_cell)
+        Cell.should_receive(:new).with(table_row, :index => 1).and_return(expected_cell)
         screen.top[0].second_header.should eq("Item 2")
       end
 
       it "clearly lets you know if a header is not there" do
-        RAutomation::Adapter::MsUia::UiaDll.should_receive(:table_headers).and_return(["First Header", "Second Header"])
+        UiaDll.should_receive(:table_headers).and_return(["First Header", "Second Header"])
         table.should_receive(:search_information)
         lambda { screen.top[0].does_not_exist }.should raise_error ArgumentError, "does_not_exist column does not exist in [:first_header, :second_header]"
       end
