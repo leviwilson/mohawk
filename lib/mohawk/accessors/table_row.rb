@@ -22,6 +22,12 @@ module Mohawk
         row.cells.map &:text
       end
 
+      def all_match?(hash)
+        hash.all? do |key, value|
+          send(key) == value
+        end
+      end
+
       def value_from_header(name)
         which_column = header_methods.index(name)
         raise ArgumentError, "#{name} column does not exist in #{header_methods}" if which_column.nil?

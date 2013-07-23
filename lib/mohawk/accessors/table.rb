@@ -12,14 +12,16 @@ module Mohawk
       def select(which_item)
         case which_item
           when Hash
-            row = find do |row|
-              which_item.all? {|p| row.send(p[0]) == p[1] }
-            end
-            raise "A row with #{which_item} was not found" unless row
-            row.select
+            find_row_with(which_item).select
           else
             select_by_value(which_item)
         end
+      end
+
+      def find_row_with(row_info)
+        found_row = find { |r| r.all_match? row_info }
+        raise "A row with #{row_info} was not found" unless found_row
+        found_row
       end
 
       def headers
