@@ -24,7 +24,7 @@ module Mohawk
 
       def all_match?(hash)
         hash.all? do |key, value|
-          send(key) == value
+          send(key) == "#{value}"
         end
       end
 
