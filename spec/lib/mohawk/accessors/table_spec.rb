@@ -12,14 +12,6 @@ class TableScreen
   list_view(:my_list_view, :id => "list_viewAliasId")
 end
 
-class FakeTableRow
-  attr_reader :text, :row
-  def initialize(text, row)
-    @text = text
-    @row = row
-  end
-end
-
 include RAutomation::Adapter::MsUia
 
 describe Mohawk::Accessors::Table do
@@ -68,20 +60,17 @@ describe Mohawk::Accessors::Table do
     end
 
     it "has rows" do
-      first_row = FakeTableRow.new "First Row", 0
-      second_row = FakeTableRow.new "Second Row", 1
-      expected_rows = [first_row, second_row].map {|r| {:text => r.text, :row => r.row} }
-      table.should_receive(:row_count).and_return(2)
-      Row.should_receive(:new).with(table, :index => 0).and_return(first_row)
-      Row.should_receive(:new).with(table, :index => 1).and_return(second_row)
-      screen.top.map(&:to_hash).should eq(expected_rows)
+      TableStubber.stub(table)
+        .with_headers("Column")
+        .and_row("First Row")
+        .and_row("Second Row")
+
+      screen.top.map(&:column).should eq(["First Row", "Second Row"])
     end
 
     it "has headers" do
-      expected_headers = ["first header", "second header"]
-      table.should_receive(:search_information).and_return(1234)
-      UiaDll.should_receive(:table_headers).with(1234).and_return(expected_headers)
-      screen.top_headers.should eq(expected_headers)
+      TableStubber.stub(table).with_headers('first header', 'second header')
+      screen.top_headers.should eq(['first header', 'second header'])
     end
 
     it "can return the raw view" do
@@ -89,11 +78,8 @@ describe Mohawk::Accessors::Table do
     end
 
     describe Mohawk::Accessors::TableRow do
-      let(:table_row) { double("RAutomation TableRow") }
-
       before(:each) do
-        Row.should_receive(:new).with(table, :index => 0).and_return(table_row)
-        table_row.stub(:row).and_return 0
+        TableStubber.stub(table).with_headers('column').and_row('first row')
       end
 
       it "can get an individual row" do
@@ -111,25 +97,27 @@ describe Mohawk::Accessors::Table do
       end
 
       it "has cells" do
-        expected_cells = [FakeTableRow.new("Item 1", 0), FakeTableRow.new("Item 2", 1)]
-        table_row.should_receive(:cells).and_return(expected_cells)
-        screen.top[0].cells.should eq expected_cells.map &:text
+        TableStubber.stub(table)
+          .with_headers('first', 'second')
+          .and_row('Cell 1', 'Cell 2')
+
+        screen.top[0].cells.should eq(['Cell 1', 'Cell 2'])
       end
 
       it "can get cell values by header name" do
-        UiaDll.should_receive(:table_headers).and_return(["First Header", "Second Header"])
-        table.should_receive(:search_information)
+        TableStubber.stub(table)
+          .with_headers('First Header', 'Second Header')
+          .and_row('Item 1', 'Item 2')
 
-        expected_cell = double('RAutomation Cell')
-        expected_cell.should_receive(:text).and_return('Item 2')
-        Cell.should_receive(:new).with(table_row, :index => 1).and_return(expected_cell)
-        screen.top[0].second_header.should eq("Item 2")
+        screen.top[0].second_header.should eq('Item 2')
       end
 
       it "clearly lets you know if a header is not there" do
-        UiaDll.should_receive(:table_headers).and_return(["First Header", "Second Header"])
-        table.should_receive(:search_information)
-        lambda { screen.top[0].does_not_exist }.should raise_error ArgumentError, "does_not_exist column does not exist in [:first_header, :second_header]"
+        TableStubber.stub(table)
+          .with_headers('First Header', 'Second Header')
+          .and_row('Item 1', 'Item 2')
+
+        lambda { screen.top[0].does_not_exist }.should raise_error ArgumentError, 'does_not_exist column does not exist in [:first_header, :second_header]'
       end
     end
   end

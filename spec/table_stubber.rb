@@ -37,10 +37,13 @@ class TableStubber
   end
 
   def stub_cells_for(row, values)
+    cells = []
     values.each_with_index do |value, index|
       cell = double("Cell at #{row.row}, #{index}")
       Cell.stub(:new).with(row, :index => index).and_return(cell)
       cell.stub(:text).and_return(value)
+      cells << cell
     end
+    row.stub(:cells).and_return(cells)
   end
 end
