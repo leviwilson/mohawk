@@ -123,7 +123,7 @@ describe Mohawk do
     end
 
     it "tells you what you were waiting for if it fails" do
-      RAutomation::WaitHelper.should_receive(:wait_until).and_raise("you should have caught me")
+      screen.should_receive(:wait_until).and_raise("you should have caught me")
       locator = {:id => "whatever", :index => 0}
       window.should_receive(:control).with(locator)
       lambda { screen.wait_for_control(:id => "whatever", :index => 0) }.should raise_error(Exception, "A control with #{locator} was not found")

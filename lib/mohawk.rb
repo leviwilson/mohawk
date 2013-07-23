@@ -10,6 +10,9 @@ require "mohawk/core_ext/string"
 require_rel "mohawk/accessors"
 
 module Mohawk
+  include RAutomation::WaitHelper
+  extend RAutomation::WaitHelper
+
   class InvalidApplicationPath < StandardError
     def initialize(message='You must set the Mohawk.app_path to start an application')
       super
@@ -27,7 +30,7 @@ module Mohawk
     @app = ChildProcess.build(@app_path).start
 
     app_window = RAutomation::Window.new :pid => @app.pid
-    RAutomation::WaitHelper.wait_until { app_window.present? }
+    wait_until { app_window.present? }
   end
 
   def self.stop
@@ -84,17 +87,10 @@ module Mohawk
   def wait_for_control(locator)
     control = adapter.window.control(locator)
     begin
-      RAutomation::WaitHelper.wait_until { control.exist? }
+      wait_until { control.exist? }
     rescue
       raise "A control with #{locator} was not found"
     end
-  end
-
-  #
-  # Waits until the block returns true
-  #
-  def wait_until(timeout=RAutomation::Window.wait_timeout, &block)
-    RAutomation::WaitHelper.wait_until timeout, &block
   end
 
   #
