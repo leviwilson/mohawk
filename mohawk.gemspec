@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{High level wrapper around windows applications}
   gem.summary       = %q{High level wrapper around windows applications}
   gem.homepage      = "http://github.com/leviwilson/mohawk"
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
