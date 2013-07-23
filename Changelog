@@ -1,4 +1,4 @@
-=== Verison 0.0.5
+=== Version 0.0.5 / 2013-07-23
 *	Enhancements
 	*	can tell a screen to only consider child controls when searching (can
 	boost speed, especially on windows with data grid views)
