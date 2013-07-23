@@ -12,9 +12,11 @@ module Mohawk
       def select(which_item)
         case which_item
           when Hash
-            find do |row|
+            row = find do |row|
               which_item.all? {|p| row.send(p[0]) == p[1] }
-            end.select
+            end
+            raise "A row with #{which_item} was not found" unless row
+            row.select
           else
             select_by_value(which_item)
         end

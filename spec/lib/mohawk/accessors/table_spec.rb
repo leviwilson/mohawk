@@ -44,6 +44,49 @@ describe Mohawk::Accessors::Table do
       screen.top = "John Elway"
     end
 
+    context 'selecting a row by hash' do
+      before(:each) do
+        table.stub(:search_information).and_return(1234)
+      end
+
+      def expected_rows=(rows)
+        @the_rows = []
+        RAutomation::Adapter::MsUia::UiaDll.stub(:table_headers).and_return(rows.first.keys.map(&:to_s))
+        table.stub(:row_count).and_return(rows.count)
+        rows.each_with_index do |h, i|
+          row = double("table row #{i}")
+          row.stub(:row).and_return(i)
+          @the_rows << row
+          RAutomation::Adapter::MsUia::Row.stub(:new).with(table, :index => i).and_return(row)
+          h.each_with_index do |key_value, cell_index|
+            cell = double("Cell at #{i}, #{cell_index}")
+            RAutomation::Adapter::MsUia::Cell.stub(:new).with(row, :index =>cell_index).and_return(cell)
+            cell.stub(:text).and_return(key_value[1])
+          end
+        end
+      end
+
+      it 'selects the row if all values match' do
+        self.expected_rows = [
+          {'Column One' => 'first', 'Column Two' => 'something', 'Column Three' => 'foo'},
+          {'Column One' => 'second', 'Column Two' => 'another', 'Column Three' => 'bar'},
+        ]
+
+        table.should_receive(:select).with(1)
+        screen.select_top :column_one => 'second', :column_three => 'bar'
+      end
+
+      it 'raises if no row is found' do
+        self.expected_rows = [
+            {'Column One' => 'first', 'Column Two' => 'something', 'Column Three' => 'foo'},
+            {'Column One' => 'second', 'Column Two' => 'another', 'Column Three' => 'bar'},
+        ]
+
+        lambda { screen.select_top :column_one => 'not found' }.should raise_error "A row with {:column_one=>\"not found\"} was not found"
+      end
+
+    end
+
     it "has rows" do
       first_row = FakeTableRow.new "First Row", 0
       second_row = FakeTableRow.new "Second Row", 1
