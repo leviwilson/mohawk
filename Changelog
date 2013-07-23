@@ -3,6 +3,7 @@
 	*	can tell a screen to only consider child controls when searching (can
 	boost speed, especially on windows with data grid views)
 	*   added a simplified way to start and stop an application
+	*   added the ability to select a table row based on a hash
 
 === Version 0.0.4 / 2013-05-24
 *	Enhancements
