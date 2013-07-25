@@ -17,6 +17,12 @@ Feature:  Working with tables
       | Anna Doe | 3/4/1975      |
     Then the row with index "1" should be selected
 
+  Scenario: Finding a row
+    Then we can find the row with the following information:
+      | name     | date_of_birth | state |
+      | John Doe | 12/15/1967    | FL    |
+
+
   Scenario: Selecting a row from a child item
     When we select the "1"th table row
     Then the row with index "1" should be selected

@@ -38,6 +38,18 @@ describe Mohawk::Accessors::Table do
       screen.top = 'John Elway'
     end
 
+    it 'can find a row by hash' do
+      TableStubber.stub(table)
+        .with_headers('Favorite Color', 'Favorite Number', 'Name')
+        .and_row('Blue', '7', 'Levi')
+        .and_row('Purple', '9', 'Larry')
+
+      found_row = screen.find_top :favorite_number => 9
+      found_row.favorite_color.should eq('Purple')
+      found_row.favorite_number.should eq('9')
+      found_row.name.should eq('Larry')
+    end
+
     context 'selecting a row by hash' do
       it 'selects the row if all values match' do
         TableStubber.stub(table)

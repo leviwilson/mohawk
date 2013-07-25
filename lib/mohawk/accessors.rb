@@ -223,8 +223,8 @@ module Mohawk
     #
     # @example
     #   table(:some_table, :id => "tableId")
-    #   # will generate 'some_table', 'some_table=', 'some_table_headers', 'select_some_table'
-    #   # and 'some_table_view' methods to get an Enumerable of table rows,
+    #   # will generate 'some_table', 'some_table=', 'some_table_headers', 'select_some_table',
+    #   # find_some_table and 'some_table_view' methods to get an Enumerable of table rows,
     #   # select a table item, return all of the headers and get the raw view
     #
     # @param  [String]  the name used for the generated methods
@@ -243,6 +243,9 @@ module Mohawk
       end
       define_method("select_#{name}") do |hash_info|
         adapter.table(locator).select hash_info
+      end
+      define_method("find_#{name}") do |hash_info|
+        adapter.table(locator).find_row_with hash_info
       end
       define_method("#{name}_headers") do
         adapter.table(locator).headers

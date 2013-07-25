@@ -21,6 +21,14 @@ When(/^we select the table row with the following information:$/) do |table|
   on(DataEntryForm).select_people table.hashes.first
 end
 
+Then(/^we can find the row with the following information:$/) do |table|
+  expected_info = table.hashes.first
+  actual_info = on(DataEntryForm).find_people expected_info
+  expected_info.each do |key, value|
+    actual_info.send(key).should eq(value)
+  end
+end
+
 When /^we select the "(.*?)"th table row$/ do |index|
   on(DataEntryForm).people[index.to_i].select
 end
@@ -55,4 +63,3 @@ end
 Then(/^accessing the values in row "([^"]*)" should be snappy$/) do |which_row|
   Timeout.timeout(5.0) { on(DataEntryForm).people[which_row.to_i].cells.should_not be_empty }
 end
-
