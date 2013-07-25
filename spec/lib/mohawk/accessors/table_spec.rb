@@ -61,6 +61,15 @@ describe Mohawk::Accessors::Table do
         screen.select_top :column_one => 'second', :column_three => 'bar'
       end
 
+      it 'returns the row that it selected' do
+        TableStubber.stub(table)
+        .with_headers('name', 'age')
+        .and_row('Levi', '33')
+
+        table.should_receive(:select).with(0)
+        screen.select_top(:age => 33).name.should eq('Levi')
+      end
+
       it 'can handle non-string values' do
         TableStubber.stub(table)
           .with_headers('name', 'age')

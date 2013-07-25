@@ -12,7 +12,7 @@ module Mohawk
       def select(which_item)
         case which_item
           when Hash
-            find_row_with(which_item).select
+            select_by_hash(which_item)
           else
             select_by_value(which_item)
         end
@@ -41,6 +41,12 @@ module Mohawk
       private
       def select_by_value(which_item)
         view.select which_item
+      end
+
+      def select_by_hash(which_item)
+        found_row = find_row_with(which_item)
+        found_row.select
+        found_row
       end
     end
   end
