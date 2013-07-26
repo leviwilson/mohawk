@@ -1,3 +1,7 @@
+===	Version 0.0.7
+*	Enhancements
+	*	added support for tab controls
+
 === Version 0.0.6 / 2013-07-25
 *	Enhancements
 	*	can find a table row based on a hash
