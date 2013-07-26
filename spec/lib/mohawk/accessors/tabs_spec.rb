@@ -24,6 +24,11 @@ describe Mohawk::Accessors::Tabs do
     window.should_receive(:tab_control).with(:id => 'tabsId').and_return(tab_control)
   end
 
+  def tabs_are(*tabs)
+    expected = tabs.each_with_index.map {|t, i| TabItem.new(t, i) }
+    tab_control.should_receive(:items).and_return(expected)
+  end
+
   it 'knows the currently selected tab' do
     tab_control.should_receive(:value).and_return('Current Tab')
 
@@ -31,13 +36,23 @@ describe Mohawk::Accessors::Tabs do
   end
 
   it 'knows the available tabs' do
-    tab_control.should_receive(:items).and_return([TabItem.new('first', 0), TabItem.new('second', 1)])
-
+    tabs_are('first', 'second')
     subject.tab_items.should eq(['first', 'second'])
   end
 
   it 'can select tabs by index' do
     tab_control.should_receive(:select).with(1)
     subject.tab = 1
+  end
+
+  it 'can select tabs by value' do
+    tab_control.should_receive(:set).with('The Tab')
+    subject.tab = 'The Tab'
+  end
+
+  it 'can select tabs by regex' do
+    tabs_are('Something', 'With the Number 7')
+    tab_control.should_receive(:set).with('With the Number 7')
+    subject.tab = /\d+/
   end
 end

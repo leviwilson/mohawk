@@ -12,7 +12,14 @@ module Mohawk
       end
 
       def selected_tab=(which)
-        view.select(which)
+        case which
+          when String
+            view.set(which)
+          when Regexp
+            view.set items.find {|t| t.match which }
+          else
+            view.select(which)
+        end
       end
 
       def items

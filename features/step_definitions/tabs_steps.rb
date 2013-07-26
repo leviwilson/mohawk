@@ -17,3 +17,7 @@ end
 When(/^we select the tab with the text "([^"]*)"$/) do |which|
   on(AboutScreen).tab = which
 end
+
+When(/^we select the tab with the regex "([^"]*)"$/) do |which_regex|
+  on(AboutScreen).tab = /#{which_regex}/
+end
