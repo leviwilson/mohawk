@@ -291,6 +291,12 @@ module Mohawk
       end
     end
 
+    def tabs(name, locator)
+      define_method(name) do
+        adapter.tab_control(locator).value
+      end
+    end
+
     def control(name, locator)
       define_method("#{name}_value") do
         adapter.value_control(locator).value

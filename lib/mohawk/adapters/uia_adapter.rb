@@ -73,6 +73,10 @@ module Mohawk
         @controls[locator] ||= Mohawk::Accessors::Control.new(self, merge(locator))
       end
 
+      def tab_control(locator)
+        Mohawk::Accessors::Tabs.new(self, merge(locator))
+      end
+
       private
       def merge(locator)
         locator = locator.merge(:children_only => true) if @only_search_children
