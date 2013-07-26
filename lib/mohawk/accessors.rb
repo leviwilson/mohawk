@@ -291,6 +291,17 @@ module Mohawk
       end
     end
 
+    # Generates methods for working with tab controls
+    #
+    # @example
+    #   tabs(:tab, :id => "tableId")
+    #   # will generate 'tab', 'tab=' and 'tab_items' methods to get the current tab,
+    #   # set the currently selected tab (Fixnum, String or RegEx) and to get the
+    #   # available tabs to be selected
+    #
+    # @param  [String]  the name used for the generated methods
+    # @param  [Hash]  locator for how the tab control is found
+    #
     def tabs(name, locator)
       define_method(name) do
         adapter.tab_control(locator).value
