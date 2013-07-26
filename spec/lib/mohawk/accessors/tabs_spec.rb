@@ -35,4 +35,9 @@ describe Mohawk::Accessors::Tabs do
 
     subject.tab_items.should eq(['first', 'second'])
   end
+
+  it 'can select tabs by index' do
+    tab_control.should_receive(:select).with(1)
+    subject.tab = 1
+  end
 end

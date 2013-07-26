@@ -9,3 +9,11 @@ end
 Then(/^we know that the available tabs are "([^"]*)"$/) do |tabs|
   on(AboutScreen).tab_items.should eq(tabs.split(', '))
 end
+
+When(/^we select the tab at index "([^"]*)"$/) do |tab_index|
+  on(AboutScreen).tab = tab_index.to_i
+end
+
+When(/^we select the tab with the text "([^"]*)"$/) do |which|
+  on(AboutScreen).tab = which
+end

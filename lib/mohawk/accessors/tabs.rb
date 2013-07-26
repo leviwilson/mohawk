@@ -11,6 +11,10 @@ module Mohawk
         view.value
       end
 
+      def selected_tab=(which)
+        view.select(which)
+      end
+
       def items
         @view.items.map(&:text)
       end

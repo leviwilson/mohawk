@@ -295,6 +295,9 @@ module Mohawk
       define_method(name) do
         adapter.tab_control(locator).value
       end
+      define_method("#{name}=") do |which|
+        adapter.tab_control(locator).selected_tab = which
+      end
       define_method("#{name}_items") do
         adapter.tab_control(locator).items
       end
