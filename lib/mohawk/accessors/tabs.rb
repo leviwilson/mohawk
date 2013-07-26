@@ -10,6 +10,10 @@ module Mohawk
       def value
         view.value
       end
+
+      def items
+        @view.items.map(&:text)
+      end
     end
   end
 end
