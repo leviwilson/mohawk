@@ -26,4 +26,9 @@ describe Mohawk::Accessors::Spinner do
     spinner.should_receive(:set).with(11.0)
     subject.price_is_right = 11.0
   end
+
+  it 'can be incremented' do
+    spinner.should_receive(:increment).and_return(11.0)
+    subject.increment_price_is_right.should eq(11.0)
+  end
 end

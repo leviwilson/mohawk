@@ -308,6 +308,9 @@ module Mohawk
       define_method("#{name}=") do |value|
         adapter.spinner(locator).value = value
       end
+      define_method("increment_#{name}") do
+        adapter.spinner(locator).increment
+      end
     end
 
     # Generates methods for working with tab controls

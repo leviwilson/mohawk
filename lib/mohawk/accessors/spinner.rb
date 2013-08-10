@@ -12,6 +12,10 @@ module Mohawk
       def value=(value)
         @view.set value
       end
+
+      def increment
+        @view.increment
+      end
     end
   end
 end
