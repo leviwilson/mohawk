@@ -16,4 +16,5 @@ class MainScreen
   menu_item(:file_roundabout_way_to_about, :path => ["File", "Roundabout Way", "To", "About"])
   tree_view(:tree_view, :id => "treeView")
   control(:value_control_field, :id => "automatableMonthCalendar1")
+  spinner(:spinner, :id => 'numericUpDown1')
 end
