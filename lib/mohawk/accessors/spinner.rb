@@ -1,6 +1,8 @@
 module Mohawk
   module Accessors
     class Spinner
+      attr_reader :view
+
       def initialize(adapter, locator)
         @view = adapter.window.spinner(locator)
       end
