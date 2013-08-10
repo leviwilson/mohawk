@@ -291,6 +291,25 @@ module Mohawk
       end
     end
 
+    # Generates methods for working with spinner controls
+    #
+    # @example
+    # spinner(:age, :id => "ageId")
+    #   # will generate 'age', 'age=' methods to get the spinner value and
+    #   # set the spinner value.
+    #
+    # @param  [String] the name used for the generated methods
+    # @param  [Hash] locator for how the spinner control is found
+    #
+    def spinner(name, locator)
+      define_method(name) do
+        adapter.spinner(locator).value
+      end
+      define_method("#{name}=") do |value|
+        adapter.spinner(locator).value = value
+      end
+    end
+
     # Generates methods for working with tab controls
     #
     # @example

@@ -73,6 +73,10 @@ module Mohawk
         @controls[locator] ||= Mohawk::Accessors::Control.new(self, merge(locator))
       end
 
+      def spinner(locator)
+        Mohawk::Accessors::Spinner.new(self, merge(locator))
+      end
+
       def tab_control(locator)
         Mohawk::Accessors::Tabs.new(self, merge(locator))
       end
