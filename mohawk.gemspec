@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Mohawk::VERSION
   gem.authors       = ["Levi Wilson"]
   gem.email         = ["levi@leviwilson.com"]
-  gem.description   = %q{High level wrapper around windows applications}
-  gem.summary       = %q{High level wrapper around windows applications}
+  gem.description   = %q{Mohawk is a page-object style driver that makes it easy to automate windows applications. It allows you to create a very flexible, clean and natural DSL around whatever windows application that you are trying to automate using the RAutomation gem as the underlying driver.}
+  gem.summary       = %q{Provides a page-object style driver for automating Windows applications}
   gem.homepage      = "http://github.com/leviwilson/mohawk"
   gem.license       = 'MIT'
 
