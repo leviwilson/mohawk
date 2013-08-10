@@ -31,4 +31,9 @@ describe Mohawk::Accessors::Spinner do
     spinner.should_receive(:increment).and_return(11.0)
     subject.increment_price_is_right.should eq(11.0)
   end
+
+  it 'can be decremented' do
+    spinner.should_receive(:decrement).and_return(11.0)
+    subject.decrement_price_is_right.should eq(11.0)
+  end
 end

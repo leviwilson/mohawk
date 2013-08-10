@@ -311,6 +311,9 @@ module Mohawk
       define_method("increment_#{name}") do
         adapter.spinner(locator).increment
       end
+      define_method("decrement_#{name}") do
+        adapter.spinner(locator).decrement
+      end
     end
 
     # Generates methods for working with tab controls

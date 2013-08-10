@@ -10,7 +10,9 @@ When(/^the spinner is set to "([^"]*)"$/) do |value|
 end
 
 Then(/^we can crank it up to "([^"]*)"$/) do |expected_value|
-  on(MainScreen) do |screen|
-    screen.increment_spinner.should eq(expected_value.to_f)
-  end
+  on(MainScreen).increment_spinner.should eq(expected_value.to_f)
+end
+
+Then(/^we can knock it down to "([^"]*)"$/) do |expected_value|
+  on(MainScreen).decrement_spinner.should eq(expected_value.to_f)
 end

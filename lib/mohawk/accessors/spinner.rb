@@ -16,6 +16,10 @@ module Mohawk
       def increment
         @view.increment
       end
+
+      def decrement
+        @view.decrement
+      end
     end
   end
 end
