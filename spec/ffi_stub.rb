@@ -9,6 +9,7 @@ module FFI
     end
 
     def attach_function(name, func, args, returns = nil, options = nil)
+      define_singleton_method(name) {|*the_args|}
     end
   end
 end
