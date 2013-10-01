@@ -42,7 +42,7 @@ module Mohawk
       def select_by_value(which_item)
         case which_item
           when Fixnum
-            row = view.row(index: which_item)
+            row = self[which_item]
           else
             row = view.row(text: which_item)
         end

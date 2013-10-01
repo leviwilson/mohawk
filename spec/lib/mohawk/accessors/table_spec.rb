@@ -29,10 +29,12 @@ describe Mohawk::Accessors::Table do
     end
 
     it 'can select a row by index' do
-      row = double('row')
-      table.should_receive(:row).with(index: 1).and_return(row)
-      row.should_receive(:select)
+      stubber = TableStubber.stub(table)
+        .with_headers('Name')
+        .and_row('First Person')
+        .and_row('Secont Person')
 
+      stubber.rows[1].should_receive(:select)
       screen.top = 1
     end
 
