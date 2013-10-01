@@ -26,9 +26,11 @@ describe Mohawk::Accessors::Combo do
   let(:screen) { ComboBoxScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:combo_box_field) { double("ComboBox Field") }
+  let(:options) { double("ComboBox::Options").as_null_object }
 
   before(:each) do
     RAutomation::Window.stub(:new).and_return(window)
+    combo_box_field.stub(:options).and_return(options)
   end
 
   context "accessing combo box controls" do
@@ -43,12 +45,12 @@ describe Mohawk::Accessors::Combo do
     end
 
     it "selects items by index" do
-      combo_box_field.should_receive(:select).with(3)
+      options.should_receive(:[]).with(3).and_return(double.as_null_object)
       screen.nacho_combos = 3
     end
 
     it "selects items by value" do
-      combo_box_field.should_receive(:set).with("Desired Value")
+      combo_box_field.should_receive(:option).with(text: "Desired Value").and_return(double.as_null_object)
       screen.nacho_combos = "Desired Value"
     end
 

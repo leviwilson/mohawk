@@ -29,12 +29,18 @@ describe Mohawk::Accessors::Table do
     end
 
     it 'can select a row by index' do
-      table.should_receive(:select).with(1)
+      row = double('row')
+      table.should_receive(:row).with(index: 1).and_return(row)
+      row.should_receive(:select)
+
       screen.top = 1
     end
 
     it 'can select a row by value' do
-      table.should_receive(:select).with 'John Elway'
+      row = double('row')
+      table.should_receive(:row).with(text: 'John Elway').and_return(row)
+      row.should_receive(:select)
+
       screen.top = 'John Elway'
     end
 
@@ -52,30 +58,30 @@ describe Mohawk::Accessors::Table do
 
     context 'selecting a row by hash' do
       it 'selects the row if all values match' do
-        TableStubber.stub(table)
+        stubber = TableStubber.stub(table)
           .with_headers('Column One', 'Column Two', 'Column Three')
           .and_row('first', 'something', 'foo')
           .and_row('second', 'another', 'bar')
 
-        table.should_receive(:select).with(1)
+        stubber.rows[1].should_receive(:select)
         screen.select_top :column_one => 'second', :column_three => 'bar'
       end
 
       it 'returns the row that it selected' do
-        TableStubber.stub(table)
+        stubber = TableStubber.stub(table)
         .with_headers('name', 'age')
         .and_row('Levi', '33')
 
-        table.should_receive(:select).with(0)
+        stubber.rows[0].should_receive(:select)
         screen.select_top(:age => 33).name.should eq('Levi')
       end
 
       it 'can handle non-string values' do
-        TableStubber.stub(table)
+        stubber = TableStubber.stub(table)
           .with_headers('name', 'age')
           .and_row('Levi', '33')
 
-        table.should_receive(:select).with(0)
+        stubber.rows[0].should_receive(:select)
         screen.select_top :age => 33
       end
 
@@ -108,8 +114,9 @@ describe Mohawk::Accessors::Table do
     end
 
     describe Mohawk::Accessors::TableRow do
+      let(:table_stubber) { TableStubber.stub(table) }
       before(:each) do
-        TableStubber.stub(table).with_headers('column').and_row('first row')
+        table_stubber.with_headers('column').and_row('first row')
       end
 
       it 'can get an individual row' do
@@ -117,12 +124,12 @@ describe Mohawk::Accessors::Table do
       end
 
       it 'knows if it is selected' do
-        table.should_receive(:selected?).with(0).and_return(true)
+        table_stubber.rows[0].should_receive(:selected?).and_return(true)
         screen.top[0].should be_selected
       end
 
       it 'can be selected' do
-        table.should_receive(:select).with(0)
+        table_stubber.rows[0].should_receive(:select)
         screen.top[0].select
       end
 

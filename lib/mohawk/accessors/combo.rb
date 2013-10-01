@@ -12,8 +12,8 @@ module Mohawk
       end
 
       def set(value)
-        @view.select value if value.instance_of? Fixnum
-        @view.set value if value.instance_of? String
+        @view.options[value].select if value.instance_of? Fixnum
+        @view.option(text: value).select if value.instance_of? String
       end
 
       def options

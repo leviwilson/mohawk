@@ -24,9 +24,12 @@ describe Mohawk::Accessors::TreeView do
   let(:screen) { TreeViewScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:tree_field) { double("TreeView Field") }
+  let(:options) { double("TreeView Options") }
+  let(:option) { double("TreeView Option") }
 
   before(:each) do
     RAutomation::Window.stub(:new).and_return(window)
+    tree_field.stub(:options).and_return(options)
   end
 
   context "working with TreeView controls" do
@@ -40,12 +43,16 @@ describe Mohawk::Accessors::TreeView do
     end
 
     it "can select items by index" do
-      tree_field.should_receive(:select).with(7)
+      options.should_receive(:[]).with(7).and_return(option)
+      option.should_receive(:select)
+
       screen.oak = 7
     end
 
     it "can select items by their value" do
-      tree_field.should_receive(:set).with("item value")
+      tree_field.should_receive(:option).with(text: 'item value').and_return(option)
+      option.should_receive(:select)
+
       screen.oak = "item value"
     end
 

@@ -24,8 +24,8 @@ module Mohawk
       end
 
       def select(which_item)
-        @view.select which_item if which_item.is_a? Integer
-        @view.set which_item if which_item.is_a? String
+        @view.options[which_item].select if which_item.is_a? Integer
+        @view.option(text: which_item).select if which_item.is_a? String
       end
     end
   end

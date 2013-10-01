@@ -40,7 +40,13 @@ module Mohawk
 
       private
       def select_by_value(which_item)
-        view.select which_item
+        case which_item
+          when Fixnum
+            row = view.row(index: which_item)
+          else
+            row = view.row(text: which_item)
+        end
+        row.select
       end
 
       def select_by_hash(which_item)

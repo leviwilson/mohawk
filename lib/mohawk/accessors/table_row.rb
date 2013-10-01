@@ -11,11 +11,11 @@ module Mohawk
       end
 
       def selected?
-        @table.view.selected? row.row
+        row.selected?
       end
 
       def select
-        @table.view.select row.row
+        row.select
       end
 
       def cells
