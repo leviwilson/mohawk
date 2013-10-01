@@ -22,10 +22,14 @@ Feature:  Working with tables
       | name     | date_of_birth | state |
       | John Doe | 12/15/1967    | FL    |
 
-
   Scenario: Selecting a row from a child item
     When we select the "1"th table row
     Then the row with index "1" should be selected
+
+  Scenario: Adding rows to the selection
+    Given there are a lot of records in a table
+    When we add rows "1, 3, 5" to the selection
+    Then rows "1, 3, 5" should all be selected
 
   Scenario: Rows have cells
     Then the row with index "0" should look like the following:

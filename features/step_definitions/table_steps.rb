@@ -17,6 +17,22 @@ When /^we select the table row with the value "([^"]*)"$/ do |row_value|
   on(DataEntryForm).people = row_value
 end
 
+When(/^we add rows "([^"]*)" to the selection$/) do |which_rows|
+  on(DataEntryForm) do |screen|
+    which_rows.split(', ').map(&:to_i).each do |row|
+      screen.people = row
+    end
+  end
+end
+
+Then(/^rows "([^"]*)" should all be selected$/) do |which_rows|
+  on(DataEntryForm) do |screen|
+    which_rows.split(', ').map(&:to_i).each do |row|
+      screen.people[row].should be_selected
+    end
+  end
+end
+
 When(/^we select the table row with the following information:$/) do |table|
   on(DataEntryForm).select_people table.hashes.first
 end
@@ -63,3 +79,4 @@ end
 Then(/^accessing the values in row "([^"]*)" should be snappy$/) do |which_row|
   Timeout.timeout(5.0) { on(DataEntryForm).people[which_row.to_i].cells.should_not be_empty }
 end
+
