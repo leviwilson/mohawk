@@ -10,25 +10,22 @@ module Mohawk
       end
 
       def select(which_item)
-        case which_item
-          when Hash
-            find_and(which_item, :select)
-          else
-            select_by_value(which_item)
-        end
+        find_row_with(which_item).select
       end
 
       def clear(which_item)
-        case which_item
-          when Hash
-            find_and(which_item, :clear)
-          else
-            self[which_item].clear
-        end
+        find_row_with(which_item).clear
       end
 
       def find_row_with(row_info)
-        found_row = find { |r| r.all_match? row_info }
+        found_row = case row_info
+                      when Hash
+                        find_by_hash(row_info)
+                      when Fixnum
+                        find_by_index(row_info)
+                      when String
+                        find_by_value(row_info)
+                    end
         raise "A row with #{row_info} was not found" unless found_row
         found_row
       end
@@ -48,20 +45,16 @@ module Mohawk
       end
 
       private
-      def select_by_value(which_item)
-        case which_item
-          when Fixnum
-            row = self[which_item]
-          else
-            row = view.row(text: which_item)
-        end
-        row.select
+      def find_by_index(which_item)
+        self[which_item]
       end
 
-      def find_and(which_item, what)
-        found_row = find_row_with(which_item)
-        found_row.send(what)
-        found_row
+      def find_by_value(which_item)
+        view.row(text: which_item)
+      end
+
+      def find_by_hash(row_info)
+        find { |r| r.all_match? row_info }
       end
     end
   end

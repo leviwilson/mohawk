@@ -16,6 +16,7 @@ module Mohawk
 
       def select
         row.select
+        self
       end
 
       def clear
