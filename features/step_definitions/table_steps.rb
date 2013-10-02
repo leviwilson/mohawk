@@ -33,10 +33,11 @@ When(/^we clear rows "([^"]*)" from the selection$/) do |which_rows|
   end
 end
 
-Then(/^rows "([^"]*)" should all be selected$/) do |which_rows|
+Then(/^rows "([^"]*)" should all (not )?be selected$/) do |which_rows, to_not_be|
+  should_or_should_not = (to_not_be && :should_not) || :should
   on(DataEntryForm) do |screen|
     which_rows.split(', ').map(&:to_i).each do |row|
-      screen.people[row].should be_selected
+      screen.people[row].send(should_or_should_not, be_selected)
     end
   end
 end
