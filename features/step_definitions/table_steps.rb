@@ -42,8 +42,8 @@ Then(/^rows "([^"]*)" should all (not )?be selected$/) do |which_rows, to_not_be
   end
 end
 
-When(/^we select the table row with the following information:$/) do |table|
-  on(DataEntryForm).select_people table.hashes.first
+When(/^we (select|clear) the table row with the following information:$/) do |select_or_clear, table|
+  on(DataEntryForm).send("#{select_or_clear}_people", table.hashes.first)
 end
 
 Then(/^we can find the row with the following information:$/) do |table|
@@ -58,8 +58,9 @@ When /^we select the "(.*?)"th table row$/ do |index|
   on(DataEntryForm).people[index.to_i].select
 end
 
-Then /^the row with index "(.*?)" should be selected$/ do |which_row|
-  on(DataEntryForm).people[which_row.to_i].should be_selected
+Then /^the row with index "(.*?)" should (not )?be selected$/ do |which_row, to_not_be|
+  should_or_should_not = (to_not_be && :should_not) || :should
+  on(DataEntryForm).people[which_row.to_i].send(should_or_should_not, be_selected)
 end
 
 Then /^the row with index "(.*?)" should look like the following:$/ do |which_row, table|

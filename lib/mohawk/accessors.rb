@@ -247,8 +247,8 @@ module Mohawk
       define_method("find_#{name}") do |hash_info|
         adapter.table(locator).find_row_with hash_info
       end
-      define_method("clear_#{name}") do |which_item|
-        adapter.table(locator)[which_item].clear
+      define_method("clear_#{name}") do |hash_info|
+        adapter.table(locator).clear hash_info
       end
       define_method("#{name}_headers") do
         adapter.table(locator).headers

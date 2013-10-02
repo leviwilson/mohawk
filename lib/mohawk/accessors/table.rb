@@ -18,6 +18,15 @@ module Mohawk
         end
       end
 
+      def clear(which_item)
+        case which_item
+          when Hash
+            find_row_with(which_item).clear
+          else
+            self[which_item].clear
+        end
+      end
+
       def find_row_with(row_info)
         found_row = find { |r| r.all_match? row_info }
         raise "A row with #{row_info} was not found" unless found_row

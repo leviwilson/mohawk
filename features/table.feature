@@ -38,6 +38,13 @@ Feature:  Working with tables
     Then rows "3, 5" should all be selected
     And rows "2, 4" should all not be selected
 
+  Scenario: Clearing a row by matching cell information
+    Given we add rows "0, 1" to the selection
+    When we clear the table row with the following information:
+      | name     | date_of_birth |
+      | Anna Doe | 3/4/1975      |
+    Then the row with index "1" should not be selected
+
   Scenario: Rows have cells
     Then the row with index "0" should look like the following:
       | Name     | Date of Birth | State |
