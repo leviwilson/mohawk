@@ -54,6 +54,14 @@ describe Mohawk::Accessors::Table do
       screen.clear_top(0)
     end
 
+    it 'can clear a row by value' do
+      row = double('row')
+      table.should_receive(:row).with(text: 'John Elway').and_return(row)
+      row.should_receive(:clear)
+
+      screen.clear_top('John Elway')
+    end
+
     it 'can find a row by hash' do
       TableStubber.stub(table)
         .with_headers('Favorite Color', 'Favorite Number', 'Name')
