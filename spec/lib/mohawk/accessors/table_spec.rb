@@ -62,29 +62,46 @@ describe Mohawk::Accessors::Table do
       screen.clear_top('John Elway')
     end
 
-    it 'can find a row by hash' do
-      TableStubber.stub(table)
+    context 'finding rows by Hash' do
+      it 'can find a row by hash' do
+        TableStubber.stub(table)
         .with_headers('Favorite Color', 'Favorite Number', 'Name')
         .and_row('Blue', '7', 'Levi')
         .and_row('Purple', '9', 'Larry')
 
-      found_row = screen.find_top :favorite_number => 9
-      found_row.favorite_color.should eq('Purple')
-      found_row.favorite_number.should eq('9')
-      found_row.name.should eq('Larry')
+        found_row = screen.find_top :favorite_number => 9
+        found_row.favorite_color.should eq('Purple')
+        found_row.favorite_number.should eq('9')
+        found_row.name.should eq('Larry')
+      end
+
+      it 'matches all values' do
+        stubber = TableStubber.stub(table)
+        .with_headers('Column One', 'Column Two', 'Column Three')
+        .and_row('first', 'something', 'foo')
+        .and_row('second', 'another', 'bar')
+
+        screen.find_top(:column_one => 'second', :column_three => 'bar').row.should eq(stubber.rows[1])
+      end
+
+      it 'can handle non-string values' do
+        stubber = TableStubber.stub(table)
+        .with_headers('name', 'age')
+        .and_row('Levi', '33')
+
+        screen.find_top(:age => 33).row.should eq(stubber.rows.first)
+      end
+
+      it 'raises if no row is found' do
+        TableStubber.stub(table)
+        .with_headers('Column One', 'Column Two', 'Column Three')
+        .and_row('first', 'something', 'foo')
+
+        expect { screen.find_top :column_one => 'not found' }.to raise_error "A row with {:column_one=>\"not found\"} was not found"
+      end
     end
 
     context 'selecting a row by hash' do
-      it 'selects the row if all values match' do
-        stubber = TableStubber.stub(table)
-          .with_headers('Column One', 'Column Two', 'Column Three')
-          .and_row('first', 'something', 'foo')
-          .and_row('second', 'another', 'bar')
-
-        stubber.rows[1].should_receive(:select)
-        screen.select_top :column_one => 'second', :column_three => 'bar'
-      end
-
       it 'returns the row that it selected' do
         stubber = TableStubber.stub(table)
         .with_headers('name', 'age')
@@ -94,23 +111,38 @@ describe Mohawk::Accessors::Table do
         screen.select_top(:age => 33).name.should eq('Levi')
       end
 
-      it 'can handle non-string values' do
+      it 'uses the find_row semantics' do
         stubber = TableStubber.stub(table)
           .with_headers('name', 'age')
           .and_row('Levi', '33')
 
+        Mohawk::Accessors::Table.any_instance.should_receive(:find_row_with).with(:age => 33).and_call_original
+
         stubber.rows[0].should_receive(:select)
         screen.select_top :age => 33
       end
+    end
 
-      it 'raises if no row is found' do
-        TableStubber.stub(table)
-        .with_headers('Column One', 'Column Two', 'Column Three')
-        .and_row('first', 'something', 'foo')
+    context 'clearing a row by hash' do
+      it 'returns the row that it cleared' do
+        stubber = TableStubber.stub(table)
+        .with_headers('name', 'age')
+        .and_row('Levi', '33')
 
-        lambda { screen.select_top :column_one => 'not found' }.should raise_error "A row with {:column_one=>\"not found\"} was not found"
+        stubber.rows[0].should_receive(:clear)
+        screen.clear_top(:age => 33).name.should eq('Levi')
       end
 
+      it 'uses the find_row semantics' do
+        stubber = TableStubber.stub(table)
+        .with_headers('name', 'age')
+        .and_row('Levi', '33')
+
+        Mohawk::Accessors::Table.any_instance.should_receive(:find_row_with).with(:age => 33).and_call_original
+
+        stubber.rows[0].should_receive(:clear)
+        screen.clear_top :age => 33
+      end
     end
 
     it 'has rows' do

@@ -21,6 +21,7 @@ module Mohawk
 
       def clear
         row.clear
+        self
       end
 
       def cells
