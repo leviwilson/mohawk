@@ -12,7 +12,7 @@ module Mohawk
       def select(which_item)
         case which_item
           when Hash
-            select_by_hash(which_item)
+            find_and(which_item, :select)
           else
             select_by_value(which_item)
         end
@@ -21,7 +21,7 @@ module Mohawk
       def clear(which_item)
         case which_item
           when Hash
-            find_row_with(which_item).clear
+            find_and(which_item, :clear)
           else
             self[which_item].clear
         end
@@ -58,9 +58,9 @@ module Mohawk
         row.select
       end
 
-      def select_by_hash(which_item)
+      def find_and(which_item, what)
         found_row = find_row_with(which_item)
-        found_row.select
+        found_row.send(what)
         found_row
       end
     end
