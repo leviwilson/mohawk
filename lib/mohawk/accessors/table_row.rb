@@ -18,6 +18,10 @@ module Mohawk
         row.select
       end
 
+      def clear
+        row.clear
+      end
+
       def cells
         row.cells.map &:text
       end

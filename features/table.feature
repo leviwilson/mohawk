@@ -31,6 +31,12 @@ Feature:  Working with tables
     When we add rows "1, 3, 5" to the selection
     Then rows "1, 3, 5" should all be selected
 
+  Scenario: Clearing rows from a selection
+    Given there are a lot of records in a table
+    When we add rows "2, 3, 4, 5" to the selection
+    But we clear rows "2, 4" from the selection
+    Then rows "3, 5" should all be selected
+
   Scenario: Rows have cells
     Then the row with index "0" should look like the following:
       | Name     | Date of Birth | State |

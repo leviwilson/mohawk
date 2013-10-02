@@ -25,6 +25,14 @@ When(/^we add rows "([^"]*)" to the selection$/) do |which_rows|
   end
 end
 
+When(/^we clear rows "([^"]*)" from the selection$/) do |which_rows|
+  on(DataEntryForm) do |screen|
+    which_rows.split(', ').map(&:to_i).each do |row|
+      screen.clear_people(row)
+    end
+  end
+end
+
 Then(/^rows "([^"]*)" should all be selected$/) do |which_rows|
   on(DataEntryForm) do |screen|
     which_rows.split(', ').map(&:to_i).each do |row|
@@ -79,4 +87,3 @@ end
 Then(/^accessing the values in row "([^"]*)" should be snappy$/) do |which_row|
   Timeout.timeout(5.0) { on(DataEntryForm).people[which_row.to_i].cells.should_not be_empty }
 end
-
