@@ -1,3 +1,9 @@
+===	Version 0.1.0
+*	Enhancments
+	*	added multi-select support to tables and select lists
+	*	bumped RAutomation dependency to include fixes for selecting
+		ListBox items when they are out of view
+
 === Version 0.0.9 / 2013-09-12
 *	Fixes
 	*	loosened the gemspec restrictions on RAutomation
