@@ -16,6 +16,7 @@ module Mohawk
       end
 
       def method_missing(meth, *args, &block)
+        return super unless @view.respond_to?(meth)
         @view.send(meth, *args, &block)
       end
 
