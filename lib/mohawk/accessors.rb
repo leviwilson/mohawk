@@ -89,7 +89,7 @@ module Mohawk
     #
     # @example
     #   combo_box(:status, :id => 'statusComboBox')
-    #   # will generate 'status', 'status=' and 'status_options' methods
+    #   # will generate 'status', 'status_selections', 'status=', 'select_status','clear_status' and 'status_options' methods
     #
     # @param  [String]  the name used for the generated methods
     # @param  [Hash]  locator for how the combo box is found
@@ -232,9 +232,9 @@ module Mohawk
     #
     # @example
     #   table(:some_table, :id => "tableId")
-    #   # will generate 'some_table', 'some_table=', 'some_table_headers', 'select_some_table',
+    #   # will generate 'some_table', 'some_table=', 'some_table_headers', 'select_some_table', 'clear_some_table',
     #   # find_some_table and 'some_table_view' methods to get an Enumerable of table rows,
-    #   # select a table item, return all of the headers and get the raw view
+    #   # select a table item, clear a table item, return all of the headers and get the raw view
     #
     # @param  [String]  the name used for the generated methods
     # @param  [Hash]  locator for how the label is found
