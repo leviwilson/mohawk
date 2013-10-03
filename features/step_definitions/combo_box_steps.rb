@@ -10,6 +10,10 @@ When /^I select the value "(.*?)" from the "(.*?)" combo box$/ do |index, name|
   on(MainScreen).send "#{name.to_field}=", index
 end
 
+When(/^I clear the item at index "([^"]*)" from the "([^"]*)" combo box$/) do |which, name|
+  on(MainScreen).send("clear_#{name.to_field}", which.to_i)
+end
+
 Then /^the "(.*?)" option(s)? should be selected in the "(.*?)" combo box$/ do |value, has_multiple, name|
   on(MainScreen).send("#{name.to_field}_selections").should eq(value.split(', '))
 end

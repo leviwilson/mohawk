@@ -12,6 +12,10 @@ module Mohawk
         @view.option(text: value).select if value.instance_of? String
       end
 
+      def clear(value)
+        @view.options[value].clear
+      end
+
       def method_missing(meth, *args, &block)
         @view.send(meth, *args, &block)
       end

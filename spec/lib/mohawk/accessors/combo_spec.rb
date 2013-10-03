@@ -55,8 +55,19 @@ describe Mohawk::Accessors::Combo do
     end
 
     it "selects items by value" do
-      combo_box_field.should_receive(:option).with(text: "Desired Value").and_return(double.as_null_object)
+      option = double('combo option')
+      combo_box_field.should_receive(:option).with(text: "Desired Value").and_return(option)
+      option.should_receive(:select)
+
       screen.nacho_combos = "Desired Value"
+    end
+
+    it 'clears items by index' do
+      option = double('combo option')
+      options.should_receive(:[]).with(3).and_return(option)
+      option.should_receive(:clear)
+
+      screen.clear_nacho_combos 3
     end
 
     it "is aware of the available options" do

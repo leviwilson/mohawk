@@ -103,6 +103,9 @@ module Mohawk
       define_method("#{name}") do
         adapter.combo(locator).value
       end
+      define_method("clear_#{name}") do |item|
+        adapter.combo(locator).clear item
+      end
       define_method("#{name}_selections") do
         adapter.combo(locator).values
       end
