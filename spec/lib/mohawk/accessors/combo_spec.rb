@@ -44,6 +44,11 @@ describe Mohawk::Accessors::Combo do
       screen.nacho_combos.should eq("Selected Item")
     end
 
+    it 'knows the currently selected items' do
+      combo_box_field.should_receive(:values).and_return(['first', 'second'])
+      screen.nacho_combos_selections.should eq(['first', 'second'])
+    end
+
     it "selects items by index" do
       options.should_receive(:[]).with(3).and_return(double.as_null_object)
       screen.nacho_combos = 3

@@ -8,7 +8,11 @@ class MainScreen
   button(:about, :value => "About")
   control(:about_control, :value => 'About')
   button(:data_grid, :value => "Data Grid View")
+
+  button(:toggle_multi, :value => 'Toggle Multi-Select')
   combo_box(:fruits, :id => "FruitsComboBox")
+  select_list(:fruits_list, :id => 'FruitListBox')
+
   checkbox(:first_checkbox, :id =>  "checkBox")
   radio(:first_radio, :id => "radioButton1")
   label(:label_control, :id => "label1")
