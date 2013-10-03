@@ -13,7 +13,8 @@ module Mohawk
       end
 
       def clear(value)
-        @view.options[value].clear
+        @view.options[value].clear if value.instance_of? Fixnum
+        @view.option(text: value).clear if value.instance_of? String
       end
 
       def method_missing(meth, *args, &block)
