@@ -62,6 +62,14 @@ describe Mohawk::Accessors::Combo do
       screen.nacho_combos = "Desired Value"
     end
 
+    it 'select is an alias for equals' do
+      option = double('combo option')
+      combo_box_field.should_receive(:option).with(text: 'Desired Value').and_return(option)
+      option.should_receive(:select)
+
+      screen.select_nacho_combos 'Desired Value'
+    end
+
     it 'clears items by index' do
       option = double('combo option')
       options.should_receive(:[]).with(3).and_return(option)

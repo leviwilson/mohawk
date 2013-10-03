@@ -109,9 +109,12 @@ module Mohawk
       define_method("#{name}_selections") do
         adapter.combo(locator).values
       end
+
       define_method("#{name}=") do |item|
         adapter.combo(locator).set item
       end
+      alias_method "select_#{name}", "#{name}="
+
       define_method("#{name}_options") do
         adapter.combo(locator).options
       end

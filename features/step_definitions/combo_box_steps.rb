@@ -1,7 +1,7 @@
 When /^I select index(es)? "(.*?)" from the "(.*?)" combo box$/ do |_, indexes, name|
   on(MainScreen) do |screen|
     indexes.split(', ').map(&:to_i).each do |index|
-      screen.send "#{name.to_field}=", index
+      screen.send "select_#{name.to_field}", index
     end
   end
 end
