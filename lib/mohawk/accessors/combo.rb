@@ -8,13 +8,11 @@ module Mohawk
       end
 
       def set(value)
-        @view.options[value].select if value.instance_of? Fixnum
-        @view.option(text: value).select if value.instance_of? String
+        find(value).select
       end
 
       def clear(value)
-        @view.options[value].clear if value.instance_of? Fixnum
-        @view.option(text: value).clear if value.instance_of? String
+        find(value).clear
       end
 
       def method_missing(meth, *args, &block)
@@ -23,6 +21,15 @@ module Mohawk
 
       def options
         @view.options.map &:text
+      end
+
+      def find(what)
+        case what
+          when Fixnum
+            @view.options[what]
+          when String
+            @view.option(text: what)
+        end
       end
     end
   end
