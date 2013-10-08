@@ -34,16 +34,16 @@ describe Mohawk::Accessors::Table do
         .and_row('First Person')
         .and_row('Second Person')
 
-      stubber.rows[1].should_receive(:select)
+      stubber.should_singly_select_row 1
       screen.top = 1
     end
 
     it 'can select a row by value' do
-      row = double('row')
-      table.should_receive(:selected_rows).and_return([])
-      table.should_receive(:row).with(text: 'John Elway').and_return(row)
-      row.should_receive(:select)
+      stubber = TableStubber.stub(table)
+        .with_headers('Name')
+        .and_row('John Elway')
 
+      stubber.should_singly_select_row 0
       screen.top = 'John Elway'
     end
 
@@ -56,10 +56,10 @@ describe Mohawk::Accessors::Table do
     end
 
     it 'can clear a row by value' do
-      row = double('row')
-      table.should_receive(:row).with(text: 'John Elway').and_return(row)
-      row.should_receive(:clear)
+      stubber = TableStubber.stub(table)
+      .with_headers('Name').and_row('John Elway')
 
+      stubber.rows[0].should_receive(:clear)
       screen.clear_top('John Elway')
     end
 
@@ -103,17 +103,13 @@ describe Mohawk::Accessors::Table do
     end
 
     context 'selecting a row by hash' do
-      it 'clears previously selected rows' do
+      it 'singly selects the row' do
         stubber = TableStubber.stub(table)
         .with_headers('name', 'age')
         .and_row('Levi', '33')
         .and_row('John', '54')
 
-        previous_selection = [double('first selection'), double('second selection')]
-        table.should_receive(:selected_rows).and_return(previous_selection)
-        previous_selection.each { |s| s.should_receive(:clear) }
-
-        stubber.rows[1].should_receive(:select)
+        stubber.should_singly_select_row(1)
         screen.select_top(:age => 54)
       end
 
@@ -122,7 +118,7 @@ describe Mohawk::Accessors::Table do
         .with_headers('name', 'age')
         .and_row('Levi', '33')
 
-        stubber.rows[0].should_receive(:select)
+        stubber.should_singly_select_row(0)
         screen.select_top(:age => 33).name.should eq('Levi')
       end
 
@@ -133,7 +129,7 @@ describe Mohawk::Accessors::Table do
 
         Mohawk::Accessors::Table.any_instance.should_receive(:find_row_with).with(:age => 33).and_call_original
 
-        stubber.rows[0].should_receive(:select)
+        stubber.should_singly_select_row(0)
         screen.select_top :age => 33
       end
     end

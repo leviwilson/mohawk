@@ -10,8 +10,7 @@ module Mohawk
       end
 
       def select(which_item)
-        clear_all
-        find_row_with(which_item).select
+        find_row_with(which_item).single_select
       end
 
       def add(which_item)
@@ -59,7 +58,7 @@ module Mohawk
       end
 
       def find_by_value(which_item)
-        view.row(text: which_item)
+        find { |r| r.row.value == which_item }
       end
 
       def find_by_hash(row_info)

@@ -19,6 +19,11 @@ module Mohawk
         self
       end
 
+      def single_select
+        UiaDll::table_single_select(@table.view.search_information, row.row)
+        self
+      end
+
       def clear
         row.clear
         self

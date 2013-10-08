@@ -27,6 +27,10 @@ class TableStubber
     self
   end
 
+  def should_singly_select_row(which)
+    RAutomation::Adapter::MsUia::UiaDll.should_receive(:table_single_select).with(@id, which)
+  end
+
   private
   def add_row
     row = double("table #{@id}, row #{rows.count}")
@@ -45,6 +49,7 @@ class TableStubber
       cell.stub(:text).and_return(value)
       cells << cell
     end
+    row.stub(:value).and_return(values.first)
     row.stub(:cells).and_return(cells)
   end
 end
