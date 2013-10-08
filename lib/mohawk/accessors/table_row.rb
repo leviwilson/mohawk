@@ -15,12 +15,12 @@ module Mohawk
       end
 
       def select
-        row.select
+        UiaDll::table_single_select(@table.view.search_information, row.row)
         self
       end
 
-      def single_select
-        UiaDll::table_single_select(@table.view.search_information, row.row)
+      def add_to_selection
+        row.select
         self
       end
 

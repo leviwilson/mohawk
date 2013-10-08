@@ -211,7 +211,7 @@ describe Mohawk::Accessors::Table do
       end
 
       it 'can be selected' do
-        table_stubber.rows[0].should_receive(:select)
+        table_stubber.should_singly_select_row(0)
         screen.top[0].select
       end
 

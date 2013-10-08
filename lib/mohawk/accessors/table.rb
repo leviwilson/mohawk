@@ -10,11 +10,11 @@ module Mohawk
       end
 
       def select(which_item)
-        find_row_with(which_item).single_select
+        find_row_with(which_item).select
       end
 
       def add(which_item)
-        find_row_with(which_item).select
+        find_row_with(which_item).add_to_selection
       end
 
       def clear_all

@@ -1,7 +1,7 @@
 require 'securerandom'
 
 class TableStubber
-  include RSpec::Mocks::ExampleMethods
+  include RSpec::Mocks::ExampleMethods, RAutomation::Adapter::MsUia
 
   attr_reader :table, :rows
 
@@ -28,7 +28,7 @@ class TableStubber
   end
 
   def should_singly_select_row(which)
-    RAutomation::Adapter::MsUia::UiaDll.should_receive(:table_single_select).with(@id, which)
+    UiaDll.should_receive(:table_single_select).with(@id, which)
   end
 
   private
