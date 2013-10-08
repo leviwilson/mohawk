@@ -10,7 +10,16 @@ module Mohawk
       end
 
       def select(which_item)
+        clear_all
         find_row_with(which_item).select
+      end
+
+      def add(which_item)
+        find_row_with(which_item).select
+      end
+
+      def clear_all
+        view.selected_rows.each(&:clear)
       end
 
       def clear(which_item)

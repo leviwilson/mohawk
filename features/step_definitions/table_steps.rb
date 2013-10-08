@@ -20,7 +20,7 @@ end
 When(/^we add rows "([^"]*)" to the selection$/) do |which_rows|
   on(DataEntryForm) do |screen|
     which_rows.split(', ').map(&:to_i).each do |row|
-      screen.people = row
+      screen.add_people row
     end
   end
 end

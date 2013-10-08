@@ -9,6 +9,7 @@ class TableStubber
     @table = table
     @id = SecureRandom.base64
     @table.stub(:search_information).and_return(@id)
+    @table.stub(:selected_rows).and_return []
     @rows = []
   end
 

@@ -32,7 +32,7 @@ describe Mohawk::Accessors::Table do
       stubber = TableStubber.stub(table)
         .with_headers('Name')
         .and_row('First Person')
-        .and_row('Secont Person')
+        .and_row('Second Person')
 
       stubber.rows[1].should_receive(:select)
       screen.top = 1
@@ -40,6 +40,7 @@ describe Mohawk::Accessors::Table do
 
     it 'can select a row by value' do
       row = double('row')
+      table.should_receive(:selected_rows).and_return([])
       table.should_receive(:row).with(text: 'John Elway').and_return(row)
       row.should_receive(:select)
 
@@ -102,6 +103,20 @@ describe Mohawk::Accessors::Table do
     end
 
     context 'selecting a row by hash' do
+      it 'clears previously selected rows' do
+        stubber = TableStubber.stub(table)
+        .with_headers('name', 'age')
+        .and_row('Levi', '33')
+        .and_row('John', '54')
+
+        previous_selection = [double('first selection'), double('second selection')]
+        table.should_receive(:selected_rows).and_return(previous_selection)
+        previous_selection.each { |s| s.should_receive(:clear) }
+
+        stubber.rows[1].should_receive(:select)
+        screen.select_top(:age => 54)
+      end
+
       it 'returns the row that it selected' do
         stubber = TableStubber.stub(table)
         .with_headers('name', 'age')
@@ -142,6 +157,27 @@ describe Mohawk::Accessors::Table do
 
         stubber.rows[0].should_receive(:clear)
         screen.clear_top :age => 33
+      end
+    end
+
+    context 'adding a row to the selection' do
+      let(:stubber) do
+        TableStubber.stub(table)
+          .with_headers('name')
+          .and_row('Levi')
+          .and_row('John')
+      end
+
+      it 'returns the row that is added' do
+        stubber.rows[1].should_receive(:select)
+        screen.add_top(name: 'John').name.should eq('John')
+      end
+
+      it 'uses the find_row semantics' do
+        Mohawk::Accessors::Table.any_instance.should_receive(:find_row_with).with(name: 'Levi').and_call_original
+
+        stubber.rows[0].should_receive(:select)
+        screen.add_top name: 'Levi'
       end
     end
 

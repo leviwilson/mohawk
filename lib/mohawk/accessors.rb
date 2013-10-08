@@ -250,6 +250,9 @@ module Mohawk
       define_method("#{name}=") do |which_item|
         adapter.table(locator).select which_item
       end
+      define_method("add_#{name}") do |hash_info|
+        adapter.table(locator).add hash_info
+      end
       define_method("select_#{name}") do |hash_info|
         adapter.table(locator).select hash_info
       end
