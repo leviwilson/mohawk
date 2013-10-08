@@ -1,3 +1,7 @@
+===	Version 0.2.0
+*	Enhancements
+	*	make it more explicit if you want to add a row to the selection
+
 ===	Version 0.1.0 / 2013-10-03
 *	Enhancments
 	*	added multi-select support to tables and select lists
