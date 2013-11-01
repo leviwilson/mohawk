@@ -5,6 +5,7 @@ require "require_all"
 require "mohawk/accessors"
 require "mohawk/navigation"
 require "mohawk/adapters/rautomation_adapter"
+require "mohawk/adapters/uia_adapter"
 require "mohawk/core_ext/string"
 
 require_rel "mohawk/accessors"
@@ -47,18 +48,18 @@ module Mohawk
     @app_path = path
   end
 
-  def default_adapter
-    @default_adapter = Mohawk::Adapters::RAutomationAdapter
+  def self.default_adapter
+    @default_adapter || Mohawk::Adapters::RAutomationAdapter
   end
 
-  def default_adapter=(cls)
+  def self.default_adapter=(cls)
     @default_adapter = cls
   end
 
   def initialize(extra={})
     locator = [which_window.merge(extra)]
     locator << parent_container if respond_to?(:parent_container)
-    @adapter = default_adapter.new(*locator)
+    @adapter = Mohawk.default_adapter.new(*locator)
   end
 
   #

@@ -19,6 +19,14 @@ Mohawk::Navigation.routes = {
   ]  
 }
 
+Before '@uia' do
+  Mohawk.default_adapter = Mohawk::Adapters::UiaAdapter
+end
+
+Before '~@uia' do
+  Mohawk.default_adapter = Mohawk::Adapters::RAutomationAdapter
+end
+
 Before do
   Mohawk.start
 end
