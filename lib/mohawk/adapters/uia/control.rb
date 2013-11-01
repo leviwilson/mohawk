@@ -14,6 +14,10 @@ module Mohawk
             @parent.find @locator
           end
         end
+
+        def value
+          element.name
+        end
       end
     end
   end

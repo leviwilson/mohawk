@@ -17,6 +17,10 @@ module Mohawk
       def button(locator)
         Button.new self, locator
       end
+
+      def checkbox(locator)
+        CheckBox.new self, locator
+      end
     end
   end
 end

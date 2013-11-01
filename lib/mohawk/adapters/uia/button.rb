@@ -4,10 +4,6 @@ module Mohawk
       class Button < Control
         include Mohawk::Waiter, Locators
 
-        def value
-          element.name
-        end
-
         def click
           element.as(:invoke).invoke
         end
