@@ -47,10 +47,18 @@ module Mohawk
     @app_path = path
   end
 
+  def default_adapter
+    @default_adapter = Mohawk::Adapters::RAutomationAdapter
+  end
+
+  def default_adapter=(cls)
+    @default_adapter = cls
+  end
+
   def initialize(extra={})
     locator = [which_window.merge(extra)]
     locator << parent_container if respond_to?(:parent_container)
-    @adapter = Mohawk::Adapters::RAutomationAdapter.new(*locator)
+    @adapter = default_adapter.new(*locator)
   end
 
   #
