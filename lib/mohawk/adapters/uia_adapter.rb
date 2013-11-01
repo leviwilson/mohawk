@@ -21,6 +21,10 @@ module Mohawk
       def checkbox(locator)
         CheckBox.new self, locator
       end
+
+      def text(locator)
+        TextBox.new self, locator
+      end
     end
   end
 end
