@@ -7,7 +7,7 @@ class LabelScreen
 	label(:label_control, :id => "labelID")
 end
 
-describe Mohawk::Accessors::Label do
+describe Mohawk::Adapters::RAuto::Label do
 	let(:screen) { LabelScreen.new }
 	let(:window) { double("RAutomation Window") }
 	let(:label_control) { double("Label Control") }

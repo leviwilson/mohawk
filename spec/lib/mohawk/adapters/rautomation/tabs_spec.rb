@@ -14,7 +14,7 @@ class TabItem
   end
 end
 
-describe Mohawk::Accessors::Tabs do
+describe Mohawk::Adapters::RAuto::Tabs do
   let(:window) { double('RAutomation Window') }
   let(:tab_control) { double('RAutomation TabControl') }
   subject { TabsScreen.new }

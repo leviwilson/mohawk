@@ -7,7 +7,7 @@ class ControlScreen
   control(:control_yourself, :id => "controlId")
 end
 
-describe Mohawk::Accessors::Control do
+describe Mohawk::Adapters::RAuto::Control do
   let(:screen) { ControlScreen.new }
   let(:window) { double("RAutomation Window") }
   let(:control) { double("Control Window") }

@@ -7,7 +7,7 @@ class SpinnerScreen
   spinner(:price_is_right, :id => 'barker')
 end
 
-describe Mohawk::Accessors::Spinner do
+describe Mohawk::Adapters::RAuto::Spinner do
   let(:window) { double('RAutomation Window') }
   let(:spinner) { double('RAutomation Spinner') }
   subject { SpinnerScreen.new }
