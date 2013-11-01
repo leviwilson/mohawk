@@ -21,7 +21,7 @@ RSpec::Matchers.define(:only_search_children_for_a) do |control_type, the_alias=
   end
 end
 
-describe Mohawk::Adapters::UiaAdapter do
+describe Mohawk::Adapters::RAutomationAdapter do
   subject(:screen) { AnyScreen.new }
 
   let(:window) { double('RAutomation Window') }
