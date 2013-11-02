@@ -1,3 +1,4 @@
+@uia
 Feature:  Navigating by way of routes
 
   Scenario: Defining a route through the application

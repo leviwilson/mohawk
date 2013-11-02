@@ -94,7 +94,7 @@ module Mohawk
   # Waits until a control exists
   #
   def wait_for_control(locator)
-    control = adapter.window.control(locator)
+    control = adapter.control(locator)
     begin
       wait_until { control.exist? }
     rescue

@@ -76,6 +76,7 @@ module Mohawk
         @controls ||= {}
         @controls[locator] ||= Control.new(self, merge(locator))
       end
+      alias_method :control, :value_control
 
       def spinner(locator)
         Spinner.new(self, merge(locator))

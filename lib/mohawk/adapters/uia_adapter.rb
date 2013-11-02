@@ -34,10 +34,11 @@ module Mohawk
         TextBox.new self, locator
       end
 
-      def label(locator)
+      def control(locator)
         Control.new self, locator
       end
-      alias_method :link, :label
+      alias_method :label, :control
+      alias_method :link, :control
     end
   end
 end

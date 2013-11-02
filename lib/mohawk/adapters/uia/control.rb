@@ -13,6 +13,10 @@ module Mohawk
           element.click
         end
 
+        def exist?
+          element != nil
+        end
+
         def element
           @element ||= wait_for do
             @parent.find @locator

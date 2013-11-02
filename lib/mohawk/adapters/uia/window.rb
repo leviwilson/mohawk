@@ -1,4 +1,5 @@
 require 'uia'
+require 'mohawk/win_32'
 
 module Mohawk
   module Adapters
@@ -13,6 +14,10 @@ module Mohawk
 
         def element
           @element ||= Uia.find_element(@locator)
+        end
+
+        def active?
+          Mohawk::Win32.foreground_window == element.handle
         end
 
         def present?
