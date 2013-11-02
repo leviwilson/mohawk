@@ -2,30 +2,6 @@ module Mohawk
   module Adapters
     module UIA
       class Table < Control
-        class Row
-          attr_reader :index
-
-          def initialize(table, element, index)
-            @table, @element, @index = table, element, index
-          end
-
-          def cells
-            @element.items.map &:name
-          end
-
-          def selected?
-            selection_item.selected?
-          end
-
-          def to_hash
-            {text: @element.name, row: index}
-          end
-
-          private
-          def selection_item
-            @element.as :selection_item
-          end
-        end
         include ElementLocator, Enumerable
 
         def select(which)
@@ -45,11 +21,11 @@ module Mohawk
         end
 
         def [](index)
-          Row.new self, all_items[index], index
+          TableRow.new self, all_items[index], index
         end
 
         def each
-          all_items.each_with_index.map { |el, index| yield Row.new self, el, index }
+          all_items.each_with_index.map { |el, index| yield TableRow.new self, el, index }
         end
 
         def find_row_with(row_info)
