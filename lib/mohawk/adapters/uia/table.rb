@@ -2,7 +2,19 @@ module Mohawk
   module Adapters
     module UIA
       class Table < Control
-        include ElementLocator
+        class Row
+          attr_reader :index
+
+          def initialize(table, element, index)
+            @table, @element, @index = table, element, index
+          end
+
+          def to_hash
+            {text: element.name, row: index}
+          end
+
+        end
+        include ElementLocator, Enumerable
 
         def select(which)
           find_row_with(which).select
@@ -16,21 +28,21 @@ module Mohawk
           find_row_with(which).remove_from_selection
         end
 
-        def count
-          table.row_count
-        end
-
         def headers
           table.headers.map &:name
         end
 
+        def each
+          all_items.each_with_index.map { |el, index| yield Row.new self, el, index }
+        end
+
         def find_row_with(row_info)
           found_row = case row_info
-            when Hash
-              find_by_hash(row_info)
-            else
-              find(row_info)
-          end
+                        when Hash
+                          find_by_hash(row_info)
+                        else
+                          find(row_info)
+                      end
           raise "A row with #{row_info} was not found" unless found_row
           found_row
         end
