@@ -37,6 +37,7 @@ module Mohawk
       def label(locator)
         Control.new self, locator
       end
+      alias_method :link, :label
     end
   end
 end

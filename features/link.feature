@@ -1,3 +1,4 @@
+@uia
 Feature:  Working with link controls
 
   Scenario: Getting the value of the link
