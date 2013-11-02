@@ -24,9 +24,23 @@ module Mohawk
           {text: @element.name, row: index}
         end
 
+        def method_missing(name, *args)
+          value_from_header name
+        end
+
         private
         def selection_item
           @element.as :selection_item
+        end
+
+        def value_from_header(name)
+          which_column = header_methods.index(name)
+          raise ArgumentError, "#{name} column does not exist in #{header_methods}" if which_column.nil?
+          cells[which_column]
+        end
+
+        def header_methods
+          @headers ||= @table.headers.map(&:to_method)
         end
       end
     end
