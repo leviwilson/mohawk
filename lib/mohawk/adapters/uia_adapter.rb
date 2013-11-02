@@ -22,6 +22,10 @@ module Mohawk
         CheckBox.new self, locator
       end
 
+      def combo(locator)
+        SelectList.new self, locator
+      end
+
       def text(locator)
         TextBox.new self, locator
       end
