@@ -9,6 +9,10 @@ module Mohawk
           @locator = sanitize(locator)
         end
 
+        def click
+          element.click
+        end
+
         def element
           @element ||= wait_for do
             @parent.find @locator

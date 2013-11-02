@@ -7,5 +7,5 @@ When(/^I click the control identified by "([^"]*)"$/) do |what|
 end
 
 Then(/^the "([^"]*)" screen should be shown$/) do |screen|
-  on(AboutScreen).should be_active
+  on(AboutScreen).should be_present
 end

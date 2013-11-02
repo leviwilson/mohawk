@@ -11,8 +11,16 @@ module Mohawk
           @locator = sanitize(locator)
         end
 
+        def element
+          @element ||= Uia.find_element(@locator)
+        end
+
+        def present?
+          element != nil
+        end
+
         def wait_until_present
-          wait_for { @element = Uia.find_element(@locator) }
+          wait_for { element }
         end
       end
     end

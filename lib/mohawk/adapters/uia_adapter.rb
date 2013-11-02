@@ -14,6 +14,10 @@ module Mohawk
         @window ||= Window.new @locator
       end
 
+      def value_control(locator)
+        ValueControl.new self, locator
+      end
+
       def button(locator)
         Button.new self, locator
       end
