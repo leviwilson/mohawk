@@ -52,6 +52,10 @@ module Mohawk
         MenuItem.new self, merge(locator)
       end
 
+      def spinner(locator)
+        Spinner.new self, merge(locator)
+      end
+
       def control(locator)
         Control.new self, merge(locator)
       end
