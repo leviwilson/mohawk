@@ -19,12 +19,18 @@ module Mohawk
 
         def element
           @element ||= wait_for do
-            @parent.find @locator
+            scope = (@locator[:children_only] && :children) || :descendants
+            @parent.find @locator.merge(scope: scope)
           end
         end
 
         def value
           element.name
+        end
+        alias_method :control_name, :value
+
+        def view
+          self
         end
       end
     end

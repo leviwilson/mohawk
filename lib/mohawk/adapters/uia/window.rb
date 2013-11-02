@@ -8,16 +8,33 @@ module Mohawk
         include Mohawk::Waiter, Locators
         attr_reader :element
 
-        def initialize(locator)
+        def initialize(locator, container)
           @locator = sanitize(locator)
+          @container = container
         end
 
         def element
           @element ||= Uia.find_element(@locator)
+          if @element && @container
+            @element = @element.find(@container) || @element
+          end
+          @element
         end
 
         def active?
           Mohawk::Win32.foreground_window == element.handle
+        end
+
+        def exist?
+          Mohawk::Win32.is_window element.handle
+        end
+
+        def title
+          element.name
+        end
+
+        def text
+          element.descendants.map &:name
         end
 
         def present?
