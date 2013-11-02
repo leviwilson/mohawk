@@ -9,27 +9,43 @@ module Mohawk
             @table, @element, @index = table, element, index
           end
 
-          def to_hash
-            {text: element.name, row: index}
+          def cells
+            @element.items.map &:name
           end
 
+          def selected?
+            selection_item.selected?
+          end
+
+          def to_hash
+            {text: @element.name, row: index}
+          end
+
+          private
+          def selection_item
+            @element.as :selection_item
+          end
         end
         include ElementLocator, Enumerable
 
         def select(which)
-          find_row_with(which).select
+          find_row_with(which).as(:selection_item).select
         end
 
         def add(which)
-          find_row_with(which).add_to_selection
+          find_row_with(which).as(:selection_item).add_to_selection
         end
 
         def clear(which)
-          find_row_with(which).remove_from_selection
+          find_row_with(which).as(:selection_item).remove_from_selection
         end
 
         def headers
           table.headers.map &:name
+        end
+
+        def [](index)
+          Row.new self, all_items[index], index
         end
 
         def each
@@ -56,9 +72,7 @@ module Mohawk
         end
 
         def all_items
-          table.rows.map do |row|
-            row.as(:selection_item)
-          end
+          table.rows
         end
       end
     end
