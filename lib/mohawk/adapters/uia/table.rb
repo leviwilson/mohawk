@@ -8,17 +8,31 @@ module Mohawk
           find_row_with(which).select
         end
 
+        def add(which)
+          find_row_with(which).add_to_selection
+        end
+
+        def clear(which)
+          find_row_with(which).remove_from_selection
+        end
+
+        def count
+          table.row_count
+        end
+
         def headers
           table.headers.map &:name
         end
 
-        def find_row_with(which)
-          case which
+        def find_row_with(row_info)
+          found_row = case row_info
             when Hash
-              find_by_hash(which)
+              find_by_hash(row_info)
             else
-              find(which)
+              find(row_info)
           end
+          raise "A row with #{row_info} was not found" unless found_row
+          found_row
         end
 
         private
