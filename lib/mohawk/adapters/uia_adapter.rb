@@ -33,6 +33,10 @@ module Mohawk
       def text(locator)
         TextBox.new self, locator
       end
+
+      def label(locator)
+        Control.new self, locator
+      end
     end
   end
 end
