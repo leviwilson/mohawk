@@ -2,6 +2,10 @@ module Mohawk
   module Adapters
     module UIA
       module ElementLocator
+        def [](index)
+          all_items[index]
+        end
+
         private
         def find(value)
           case value

@@ -24,6 +24,10 @@ module Mohawk
         Button.new self, merge(locator)
       end
 
+      def table(locator)
+        Table.new self, merge(locator)
+      end
+
       def checkbox(locator)
         CheckBox.new self, merge(locator)
       end
