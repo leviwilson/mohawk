@@ -44,6 +44,10 @@ module Mohawk
         TextBox.new self, merge(locator)
       end
 
+      def tab_control(locator)
+        TabControl.new self, merge(locator)
+      end
+
       def control(locator)
         Control.new self, merge(locator)
       end
