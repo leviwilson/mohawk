@@ -2,6 +2,7 @@ module Mohawk
   module Adapters
     module UIA
       class SelectList < Control
+        include ElementLocator
 
         def set(value)
           which = find(value)
@@ -18,7 +19,7 @@ module Mohawk
         end
 
         def options
-          selection_items.map &:name
+          all_items.map &:name
         end
 
         private
@@ -26,21 +27,12 @@ module Mohawk
           element.as :selection
         end
 
-        def find(value)
-          case value
-            when String
-              selection_items.find { |e| e.name == value }
-            when Fixnum
-              selection_items[value]
-          end
-        end
-
-        def selection_items
+        def all_items
           select_list.selection_items
         end
 
         def selected_items
-          selection_items.select &:selected?
+          all_items.select &:selected?
         end
       end
     end
