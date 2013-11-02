@@ -48,6 +48,10 @@ module Mohawk
         TabControl.new self, merge(locator)
       end
 
+      def menu_item(locator)
+        MenuItem.new self, merge(locator)
+      end
+
       def control(locator)
         Control.new self, merge(locator)
       end

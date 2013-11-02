@@ -1,3 +1,4 @@
+@uia
 Feature:  Working with menu items
 
 Scenario: Selecting an item from the menu
