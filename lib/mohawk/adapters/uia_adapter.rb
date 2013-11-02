@@ -32,6 +32,10 @@ module Mohawk
         SelectList.new self, merge(locator)
       end
 
+      def tree_view(locator)
+        TreeView.new self, merge(locator)
+      end
+
       def radio(locator)
         Radio.new self, merge(locator)
       end

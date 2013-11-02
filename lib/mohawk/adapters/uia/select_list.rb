@@ -18,7 +18,7 @@ module Mohawk
         end
 
         def options
-          items.map &:name
+          selection_items.map &:name
         end
 
         private
@@ -29,18 +29,18 @@ module Mohawk
         def find(value)
           case value
             when String
-              items.find { |e| e.name == value }
+              selection_items.find { |e| e.name == value }
             when Fixnum
-              items[value]
+              selection_items[value]
           end
         end
 
-        def items
+        def selection_items
           select_list.selection_items
         end
 
         def selected_items
-          items.select &:selected?
+          selection_items.select &:selected?
         end
       end
     end

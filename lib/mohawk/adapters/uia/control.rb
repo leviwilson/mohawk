@@ -17,6 +17,10 @@ module Mohawk
           element != nil
         end
 
+        def visible?
+          element.visible?
+        end
+
         def element
           @element ||= wait_for do
             scope = (@locator[:children_only] && :children) || :descendants
