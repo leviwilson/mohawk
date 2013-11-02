@@ -21,24 +21,29 @@ module Mohawk
       end
 
       def button(locator)
-        Button.new self,merge(locator)
+        Button.new self, merge(locator)
       end
 
       def checkbox(locator)
-        CheckBox.new self,merge(locator)
+        CheckBox.new self, merge(locator)
       end
 
       def combo(locator)
-        SelectList.new self,merge(locator)
+        SelectList.new self, merge(locator)
+      end
+
+      def radio(locator)
+        Radio.new self, merge(locator)
       end
 
       def text(locator)
-        TextBox.new self,merge(locator)
+        TextBox.new self, merge(locator)
       end
 
       def control(locator)
-        Control.new self,merge(locator)
+        Control.new self, merge(locator)
       end
+
       alias_method :label, :control
       alias_method :link, :control
 
