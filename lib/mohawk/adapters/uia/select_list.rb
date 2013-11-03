@@ -6,8 +6,11 @@ module Mohawk
 
         def set(value)
           which = find_element(value)
-          do_it = (select_list.multi_select? && :add_to_selection) || :select
-          which.send do_it
+          if select_list.multi_select?
+            which.add_to_selection
+          else
+            click_or_select which
+          end
         end
 
         def clear(value)
@@ -33,6 +36,17 @@ module Mohawk
 
         def selected_items
           all_items.select &:selected?
+        end
+
+        def click_or_select(item)
+          try_to_click item
+          item.select unless item.selected?
+        end
+
+        def try_to_click(item)
+          item.click
+        rescue Exception => e
+          # ignored
         end
       end
     end

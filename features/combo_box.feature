@@ -34,3 +34,7 @@ Feature:  Working with combo boxes
       | Coconut       |
       | Orange        |
       | Passion Fruit |
+
+  Scenario: Interacting with ListBox controls
+    When I select the value "Orange" from the "fruits_list" combo box
+    Then the application should know that "Orange" was selected

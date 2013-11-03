@@ -34,3 +34,7 @@ end
 Given(/^we toggle the multi-select button$/) do
   on(MainScreen).toggle_multi
 end
+
+Then(/^the application should know that "([^"]*)" was selected$/) do |expected_value|
+  on(MainScreen).fruits_label.should eq(expected_value)
+end
