@@ -1,6 +1,7 @@
-===	Version 0.2.0
+===	Version 0.1.4
 *	Enhancements
 	*	make it more explicit if you want to add a row to the selection
+	*	added another adapter that uses the uia gem
 
 ===	Version 0.1.0 / 2013-10-03
 *	Enhancments
