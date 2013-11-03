@@ -21,6 +21,10 @@ module Mohawk
           element.visible?
         end
 
+        def send_keys(*keys)
+          element.send_keys Keys.encode(keys)
+        end
+
         def element
           @element ||= wait_for do
             scope = (@locator[:children_only] && :children) || :descendants
