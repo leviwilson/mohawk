@@ -3,7 +3,7 @@ module Mohawk
     module UIA
       module ElementLocator
         private
-        def find(value)
+        def find_element(value)
           case value
             when Regexp
               all_items.find { |e| e.name =~ value }

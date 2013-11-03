@@ -16,8 +16,22 @@ module Mohawk
           selection_item.select
         end
 
+        def add
+          selection_item.add_to_selection
+        end
+
+        def clear
+          selection_item.remove_from_selection
+        end
+
         def selected?
           selection_item.selected?
+        end
+
+        def all_match?(hash)
+          hash.all? do |key, value|
+            send(key) == "#{value}"
+          end
         end
 
         def to_hash

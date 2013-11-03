@@ -5,7 +5,7 @@ module Mohawk
         include ElementLocator
 
         def selected_tab=(which)
-          find(which).select
+          find_element(which).select
         end
 
         def value

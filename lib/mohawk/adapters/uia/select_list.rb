@@ -5,13 +5,13 @@ module Mohawk
         include ElementLocator
 
         def set(value)
-          which = find(value)
+          which = find_element(value)
           do_it = (select_list.multi_select? && :add_to_selection) || :select
           which.send do_it
         end
 
         def clear(value)
-          find(value).remove_from_selection
+          find_element(value).remove_from_selection
         end
 
         def values

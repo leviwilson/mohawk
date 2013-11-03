@@ -3,11 +3,11 @@ module Mohawk
     module UIA
       class TreeView < SelectList
         def expand(what)
-          find(what).as(:expand_collapse).expand
+          find_element(what).as(:expand_collapse).expand
         end
 
         def collapse(what)
-          find(what).as(:expand_collapse).collapse
+          find_element(what).as(:expand_collapse).collapse
         end
 
         def value
