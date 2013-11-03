@@ -17,6 +17,10 @@ module Mohawk
           element != nil
         end
 
+        def enabled?
+          element.enabled?
+        end
+
         def visible?
           element.visible?
         end
