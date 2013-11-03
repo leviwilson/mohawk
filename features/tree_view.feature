@@ -1,4 +1,3 @@
-@uia
 Feature:  Working with TreeView controls
 
 Scenario: Selecting an item by index

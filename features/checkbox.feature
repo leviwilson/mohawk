@@ -1,4 +1,3 @@
-@uia
 Feature:  Working with checkbox controls
 
 Scenario: Setting the checkbox

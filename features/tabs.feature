@@ -1,4 +1,3 @@
-@uia
 Feature:  Working with tab controls
 
   Background:

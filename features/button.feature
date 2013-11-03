@@ -1,4 +1,3 @@
-@uia
 Feature:  Working with button controls
 
 Scenario: Clicking buttons

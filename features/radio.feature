@@ -1,4 +1,3 @@
-@uia
 Feature:  Working with radio controls
 
 Scenario: Setting and getting radio button values

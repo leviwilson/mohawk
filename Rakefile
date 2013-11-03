@@ -19,7 +19,6 @@ namespace :features do
 
   Cucumber::Rake::Task.new(:uia) do |t|
     t.profile = 'uia'
-    t.cucumber_opts = '--tags @uia'
   end
 end
 

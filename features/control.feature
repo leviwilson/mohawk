@@ -1,4 +1,3 @@
-@uia
 Feature:  Working with controls
 
   Scenario: Getting and setting the value of value controls

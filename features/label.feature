@@ -1,4 +1,3 @@
-@uia
 Feature: Working with label controls
 
 Scenario: Getting the value of the control

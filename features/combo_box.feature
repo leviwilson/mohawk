@@ -1,4 +1,3 @@
-@uia
 Feature:  Working with combo boxes
 
   Scenario: Selecting items by index

@@ -1,4 +1,3 @@
-@uia
 Feature:  Using Mohawk
 
 Scenario: Determining if a window exists
