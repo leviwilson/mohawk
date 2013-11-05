@@ -9,7 +9,7 @@ module Mohawk
         attr_reader :element
 
         def initialize(locator, container)
-          @locator = sanitize(locator)
+          @locator = locator
           @container = container
         end
 
@@ -19,6 +19,10 @@ module Mohawk
             @element = @element.find(@container) || @element
           end
           @element
+        end
+
+        def send_keys(*keys)
+          element.send_keys keys
         end
 
         def active?
