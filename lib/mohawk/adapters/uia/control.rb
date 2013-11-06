@@ -21,6 +21,10 @@ module Mohawk
           element.enabled?
         end
 
+        def disabled?
+          !enabled?
+        end
+
         def visible?
           element.visible?
         end
