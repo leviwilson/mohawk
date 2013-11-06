@@ -2,11 +2,11 @@ module Mohawk
   module Adapters
     module UIA
       class Control
-        include Mohawk::Waiter, Locators
+        include Mohawk::Waiter
 
         def initialize(adapter, locator)
           @parent = adapter.window.element
-          @locator = sanitize(locator)
+          @locator = locator
         end
 
         def click

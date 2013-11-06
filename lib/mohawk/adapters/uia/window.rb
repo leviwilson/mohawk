@@ -5,7 +5,7 @@ module Mohawk
   module Adapters
     module UIA
       class Window
-        include Mohawk::Waiter, Locators
+        include Mohawk::Waiter
         attr_reader :element
 
         def initialize(locator, container)
