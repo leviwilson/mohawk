@@ -39,14 +39,9 @@ module Mohawk
         end
 
         def click_or_select(item)
-          try_to_click item
-          item.select unless item.selected?
-        end
-
-        def try_to_click(item)
           item.click
-        rescue Exception => e
-          # ignored
+        rescue
+          item.select
         end
       end
     end
