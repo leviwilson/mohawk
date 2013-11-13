@@ -3,6 +3,7 @@ class MainScreen
   window(:title => /MainFormWindow/)
 
   text(:text_field, :id => "textField")
+  text(:text_box_field, :id => "multiLineTextField")
   text(:masked_text_field, :id => "maskedTextBox")
   button(:data_entry_form_button, :value => "Data Entry Form")
   button(:about, :value => "About")
