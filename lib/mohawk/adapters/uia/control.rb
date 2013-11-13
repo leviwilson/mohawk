@@ -14,11 +14,11 @@ module Mohawk
         end
 
         def exist?
-          element != nil
+          locate_element != nil
         end
 
         def enabled?
-          element.enabled?
+          exist? && element.enabled?
         end
 
         def disabled?
@@ -26,7 +26,7 @@ module Mohawk
         end
 
         def visible?
-          element.visible?
+          exist? && element.visible?
         end
 
         def send_keys(*keys)
@@ -34,10 +34,7 @@ module Mohawk
         end
 
         def element
-          @element ||= wait_for do
-            scope = (@locator[:children_only] && :children) || :descendants
-            @parent.find @locator.merge(scope: scope)
-          end
+          @element ||= wait_for  { locate_element }
         end
 
         def value
@@ -47,6 +44,12 @@ module Mohawk
 
         def view
           self
+        end
+
+        private
+        def locate_element
+          scope = (@locator[:children_only] && :children) || :descendants
+          @parent.find @locator.merge(scope: scope)
         end
       end
     end
