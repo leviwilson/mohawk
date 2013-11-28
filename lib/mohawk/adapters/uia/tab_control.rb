@@ -18,7 +18,7 @@ module Mohawk
 
         private
         def all_items
-          element.select(control_type: :tab_item).map {|e| e.as :selection_item }
+          element.filter(control_type: :tab_item).map {|e| e.as :selection_item }
         end
       end
     end

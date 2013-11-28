@@ -11,7 +11,7 @@ module Mohawk
         private
         def menu_item
           @locator[:path].reduce(@parent) do |current_item, menu_item|
-            item = current_item.select(control_type: :menu_item, name: menu_item).first
+            item = current_item.filter(control_type: :menu_item, name: menu_item).first
             raise MenuItemNotFound, menu_item unless item
             try_to_expand item
           end
