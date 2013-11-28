@@ -17,6 +17,10 @@ module Mohawk
           find_element(value).remove_from_selection
         end
 
+        def value
+          values.first
+        end
+
         def values
           selected_items.map &:name
         end

@@ -19,7 +19,11 @@ When(/^I clear item "([^"]*)" from the "([^"]*)" combo box$/) do |which, name|
 end
 
 Then /^the "(.*?)" option(s)? should be selected in the "(.*?)" combo box$/ do |value, has_multiple, name|
-  on(MainScreen).send("#{name.to_field}_selections").should eq(value.split(', '))
+  if has_multiple
+    on(MainScreen).send("#{name.to_field}_selections").should eq(value.split(', '))
+  else
+    on(MainScreen).send("#{name.to_field}").should eq(value)
+  end
 end
 
 When /^I look at the options for the "(.*?)" combo box"$/ do |name|
