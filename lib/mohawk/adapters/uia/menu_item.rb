@@ -8,6 +8,12 @@ module Mohawk
           menu_item.as(:invoke).invoke
         end
 
+        def exist?
+          !!menu_item
+        rescue MenuItemNotFound
+          false
+        end
+
         private
         def menu_item
           @locator[:path].reduce(@parent) do |current_item, menu_item|
