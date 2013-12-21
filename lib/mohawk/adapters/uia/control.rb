@@ -13,6 +13,10 @@ module Mohawk
           element.click
         end
 
+        def focus
+          element.focus
+        end
+
         def exist?
           locate_element != nil
         end
