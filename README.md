@@ -51,6 +51,13 @@ on(LoginScreen) do |screen|
 end
 ```
 
+## Accessors
+### `window`
+The `window` accessor defines how to locate the top-level window that you would like to use for your screen. Valid locators are dictated by the [RAutomation::Window](https://github.com/jarmo/RAutomation/blob/master/lib/rautomation/adapter/ms_uia/window.rb) class.
+
+### `parent`
+There are times where you need to define the root parent window for your screen, but it happens to be within a child window of a top-level window. The `parent` accessor allows you to specify further within `window`, and that will be used as the root of all other searches.
+
 ## Contributing
 
 1. Fork it
