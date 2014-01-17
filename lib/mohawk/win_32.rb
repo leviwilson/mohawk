@@ -6,5 +6,6 @@ module Mohawk
     ffi_lib 'user32.dll'
     attach_function :foreground_window, :GetForegroundWindow, [], :int
     attach_function :is_window, :IsWindow, [:int], :bool
+    attach_function :activate, :SetActiveWindow, [:int], :int
   end
 end
