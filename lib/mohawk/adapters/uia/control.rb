@@ -41,6 +41,10 @@ module Mohawk
           @element ||= wait_for  { locate_element }
         end
 
+        def handle
+          element.handle
+        end
+
         def value
           element.name
         end
