@@ -26,15 +26,19 @@ module Mohawk
         end
 
         def active?
-          Mohawk::Win32.foreground_window == element.handle
+          Mohawk::Win32.foreground_window == handle
         end
 
         def activate
-          Mohawk::Win32.activate element.handle
+          Mohawk::Win32.activate handle
         end
 
         def exist?
-          Mohawk::Win32.is_window element.handle
+          Mohawk::Win32.is_window handle
+        end
+
+        def handle
+          element.handle
         end
 
         def title
