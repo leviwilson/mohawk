@@ -22,7 +22,7 @@ module Mohawk
         end
 
         def values
-          selected_items.map &:name
+          select_list.selected_items.map &:name
         end
 
         def options
@@ -36,10 +36,6 @@ module Mohawk
 
         def all_items
           select_list.selection_items
-        end
-
-        def selected_items
-          all_items.select &:selected?
         end
 
         def click_or_select(item)
