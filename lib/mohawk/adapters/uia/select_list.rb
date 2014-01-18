@@ -18,7 +18,7 @@ module Mohawk
         end
 
         def value
-          values.first
+          values.first || ''
         end
 
         def values
