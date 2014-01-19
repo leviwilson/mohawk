@@ -14,14 +14,17 @@ module Mohawk
 
         def select
           selection_item.select
+          self
         end
 
         def add
           selection_item.add_to_selection
+          self
         end
 
         def clear
           selection_item.remove_from_selection
+          self
         end
 
         def selected?
