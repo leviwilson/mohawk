@@ -22,7 +22,11 @@ module Mohawk
         end
 
         def values
-          select_list.selected_items.map &:name
+          selected_items.map &:name
+        end
+
+        def selected_items
+          select_list.selected_items
         end
 
         def options
