@@ -13,13 +13,13 @@ Feature:  Working with tables
 
   Scenario: Selecting a row by matching cell information
     When we select the table row with the following information:
-      | name     | date_of_birth |
+      | full_name     | date_of_birth |
       | Anna Doe | 3/4/1975      |
     Then the row with index "1" should be selected
 
   Scenario: Finding a row
     Then we can find the row with the following information:
-      | name     | date_of_birth | state |
+      | full_name     | date_of_birth | state |
       | John Doe | 12/15/1967    | FL    |
 
   Scenario: Selecting a row from a child item
@@ -41,7 +41,7 @@ Feature:  Working with tables
   Scenario: Clearing a row by matching cell information
     Given we add rows "0, 1" to the selection
     When we clear the table row with the following information:
-      | name     | date_of_birth |
+      | full_name     | date_of_birth |
       | Anna Doe | 3/4/1975      |
     Then the row with index "1" should not be selected
 
@@ -57,7 +57,7 @@ Feature:  Working with tables
       | Anna Doe | 1   |
 
   Scenario: Retrieving the headers
-    Then the table headers are "Name, Date of birth, State"
+    Then the table headers are "Full Name, Date of birth, State"
 
   Scenario: Retrieving a row value by its header
     Then the "date_of_birth" for the row at index "1" is "3/4/1975"

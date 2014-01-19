@@ -8,6 +8,10 @@ module Mohawk
           @table, @element, @index = table, element, index
         end
 
+        def name
+          @element.name
+        end
+
         def cells
           @element.items.map &:name
         end
