@@ -37,7 +37,7 @@ module Mohawk
 
         def all_match?(hash)
           hash.all? do |key, value|
-            send(key) == "#{value}"
+            value_from_header(key) == value
           end
         end
 
@@ -49,15 +49,15 @@ module Mohawk
           value_from_header name
         end
 
+        def value_from_header(name)
+          which_column = header_methods.find_index {|h| h.to_s == name.to_s }
+          raise ArgumentError, "#{name} column does not exist in #{header_methods}" if which_column.nil?
+          cells[which_column]
+        end
+
         private
         def selection_item
           @element.as :selection_item
-        end
-
-        def value_from_header(name)
-          which_column = header_methods.index(name)
-          raise ArgumentError, "#{name} column does not exist in #{header_methods}" if which_column.nil?
-          cells[which_column]
         end
 
         def header_methods
