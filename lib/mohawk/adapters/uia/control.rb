@@ -54,6 +54,14 @@ module Mohawk
           self
         end
 
+        def method_missing(meth, *args, &block)
+          if element.respond_to? meth
+            element.send meth, *args, &block
+          else
+            super
+          end
+        end
+
         private
         def locate_element
           scope = (@locator[:children_only] && :children) || :descendants
