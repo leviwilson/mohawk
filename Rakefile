@@ -4,7 +4,6 @@ require 'rspec/core/rake_task'
 require 'rubygems'
 require 'cucumber'
 require 'cucumber/rake/task'
-require 'mohawk'
 
 RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.ruby_opts = "-I lib:spec"
