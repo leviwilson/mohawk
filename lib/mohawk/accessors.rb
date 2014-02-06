@@ -226,6 +226,9 @@ module Mohawk
       define_method("#{name}") do
         adapter.menu_item(locator).select
       end
+      define_method("click_#{name}") do
+        adapter.menu_item(locator).click
+      end
     end
 
     # Generates methods for working with table or list view controls
