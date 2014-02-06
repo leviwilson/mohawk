@@ -1,4 +1,8 @@
-===	Version 0.1.4
+===	Version 0.2
+*	Enhancements
+	*	menu_items can be clicked, rather than selected (UIA Adapter only)
+
+===	Version 0.1.4 / 2014-02-05
 *	Enhancements
 	*	make it more explicit if you want to add a row to the selection
 	*	added another adapter that uses the uia gem
