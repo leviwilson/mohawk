@@ -2,7 +2,9 @@ module Mohawk
   module Adapters
     module UIA
       class TextBox < Control
-        alias_method :enter, :send_keys
+        def enter(*args)
+          send_keys *args
+        end
 
         def set(value)
           if is_value?

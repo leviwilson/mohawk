@@ -33,10 +33,6 @@ module Mohawk
           exist? && element.visible?
         end
 
-        def send_keys(*keys)
-          element.send_keys Keys.encode(keys)
-        end
-
         def element
           @element ||= wait_for  { locate_element }
         end
