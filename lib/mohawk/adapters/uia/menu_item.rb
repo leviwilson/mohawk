@@ -9,7 +9,7 @@ module Mohawk
         end
 
         def click
-          menu_item.click
+          menu_item.click_center
         end
 
         def exist?
