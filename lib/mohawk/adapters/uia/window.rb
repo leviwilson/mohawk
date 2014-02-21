@@ -22,6 +22,7 @@ module Mohawk
         end
 
         def send_keys(*keys)
+          activate
           element.send_keys keys
         end
 
@@ -30,6 +31,7 @@ module Mohawk
         end
 
         def activate
+          Mohawk::Win32.set_foreground_window handle
           Mohawk::Win32.activate handle
         end
 
