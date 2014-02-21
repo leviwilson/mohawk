@@ -1,3 +1,3 @@
 module Mohawk
-  VERSION = "0.1.9.16"
+  VERSION = "0.1.9.17"
 end
