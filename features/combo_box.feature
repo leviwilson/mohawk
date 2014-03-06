@@ -8,6 +8,10 @@ Feature:  Working with combo boxes
     When I select the value "Orange" from the "fruits" combo box
     Then the "Orange" option should be selected in the "fruits" combo box
 
+  Scenario: Selecting items by regex
+    When I select the regex value "[Or]an" from the "fruits" combo box
+    Then the "Orange" option should be selected in the "fruits" combo box
+
   Scenario: Selecting multiple items
     Given we toggle the multi-select button
     When I select indexes "0, 1, 2" from the "fruits_list" combo box

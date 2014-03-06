@@ -31,6 +31,8 @@ module Mohawk
               @view.options[what]
             when String
               @view.option(text: what)
+            when Regexp
+              find options.find {|s| s =~ what}
           end
         end
       end

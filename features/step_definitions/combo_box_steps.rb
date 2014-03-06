@@ -10,6 +10,12 @@ When /^I select the value "(.*?)" from the "(.*?)" combo box$/ do |index, name|
   on(MainScreen).send "#{name.to_field}=", index
 end
 
+When(/^I select the regex value "([^"]*)" from the "([^"]*)" combo box$/) do |regex, name|
+  puts /#{regex}/
+  puts regex
+  on(MainScreen).send "#{name.to_field}=", /#{regex}/
+end
+
 When(/^I clear the item at index "([^"]*)" from the "([^"]*)" combo box$/) do |which, name|
   on(MainScreen).send("clear_#{name.to_field}", which.to_i)
 end
