@@ -13,14 +13,14 @@ Feature:  Working with tables
 
   Scenario: Selecting a row by matching cell information
     When we select the table row with the following information:
-      | full_name     | date_of_birth |
-      | Anna Doe | 3/4/1975      |
+      | full_name | date_of_birth |
+      | Anna Doe  | 3/4/1975      |
     Then the row with index "1" should be selected
 
   Scenario: Finding a row
     Then we can find the row with the following information:
-      | full_name     | date_of_birth | state |
-      | John Doe | 12/15/1967    | FL    |
+      | full_name | date_of_birth | state |
+      | John Doe  | 12/15/1967    | FL    |
 
   Scenario: Selecting a row from a child item
     When we select the "1"th table row
@@ -41,8 +41,8 @@ Feature:  Working with tables
   Scenario: Clearing a row by matching cell information
     Given we add rows "0, 1" to the selection
     When we clear the table row with the following information:
-      | full_name     | date_of_birth |
-      | Anna Doe | 3/4/1975      |
+      | full_name | date_of_birth |
+      | Anna Doe  | 3/4/1975      |
     Then the row with index "1" should not be selected
 
   Scenario: Rows have cells
