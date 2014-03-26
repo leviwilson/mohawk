@@ -37,7 +37,7 @@ module Mohawk
 
         def all_match?(hash)
           hash.all? do |key, value|
-            value_from_header(key) == value
+            value_from_header(key) == "#{value}"
           end
         end
 
