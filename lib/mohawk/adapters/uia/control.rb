@@ -60,7 +60,7 @@ module Mohawk
 
         private
         def locate_element
-          scope = (@locator[:children_only] && :children) || :descendants
+          scope = (@locator.delete(:children_only) && :children) || :descendants
           @parent.find @locator.merge(scope: scope)
         end
       end
