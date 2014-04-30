@@ -4,6 +4,14 @@ module Mohawk
       class Control
         include Mohawk::Waiter
 
+        class << self
+          attr_reader :control_types
+
+          def valid_control_types(*control_types)
+            @control_types = control_types
+          end
+        end
+
         def initialize(adapter, locator)
           @parent = adapter.window.element
           @locator = locator
@@ -61,7 +69,10 @@ module Mohawk
         private
         def locate_element
           scope = (@locator.delete(:children_only) && :children) || :descendants
-          @parent.find @locator.merge(scope: scope)
+          locator = @locator.merge(scope: scope)
+          locator.merge!(control_type: self.class.control_types) if self.class.control_types
+
+          @parent.find locator
         end
       end
     end
