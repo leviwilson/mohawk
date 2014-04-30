@@ -2,6 +2,8 @@ module Mohawk
   module Adapters
     module UIA
       class Radio < Control
+        valid_control_types :radio_button
+
         def set
           selection_item.select
         end

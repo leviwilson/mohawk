@@ -2,6 +2,8 @@ module Mohawk
   module Adapters
     module UIA
       class Spinner < Control
+        valid_control_types :spinner
+
         def value=(value)
           spinner.value = value
         end
