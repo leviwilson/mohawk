@@ -11,8 +11,6 @@ When /^I select the value "(.*?)" from the "(.*?)" combo box$/ do |index, name|
 end
 
 When(/^I select the regex value "([^"]*)" from the "([^"]*)" combo box$/) do |regex, name|
-  puts /#{regex}/
-  puts regex
   on(MainScreen).send "#{name.to_field}=", /#{regex}/
 end
 
