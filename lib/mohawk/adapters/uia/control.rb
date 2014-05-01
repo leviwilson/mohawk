@@ -70,7 +70,9 @@ module Mohawk
         def locate_element
           scope = (@locator.delete(:children_only) && :children) || :descendants
           locator = @locator.merge(scope: scope)
-          locator.merge!(control_type: self.class.control_types) if self.class.control_types
+
+          control_type = @locator.delete(:control_type) || self.class.control_types
+          locator.merge!(control_type: control_type) if control_type
 
           @parent.find locator
         end
