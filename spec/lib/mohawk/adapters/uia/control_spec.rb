@@ -1,15 +1,12 @@
 require 'spec_helper'
 
 describe Mohawk::Adapters::UiaAdapter::Control do
-  let(:adapter) { double('uia adapter') }
-  let(:parent) { double('uia parent') }
+  let(:adapter) { double(window: window) }
+  let(:window) { double(element: parent) }
+  let(:parent) { double(find: element) }
   let(:element) { double('uia element') }
 
-  Given(:control) do
-    adapter.stub_chain(:window, :element).and_return(parent)
-    expect(parent).to receive(:find).and_return element
-    Mohawk::Adapters::UiaAdapter::Control.new(adapter, id: 'whatever')
-  end
+  Given(:control) { Mohawk::Adapters::UiaAdapter::Control.new(adapter, id: 'whatever') }
 
   context 'working with the element directly' do
     context 'passes through if it can' do
