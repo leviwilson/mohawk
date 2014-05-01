@@ -64,10 +64,7 @@ module Mohawk
         Control.new self, merge(locator)
       end
 
-      def label(locator)
-        Label.new self, merge(locator)
-      end
-
+      alias_method :label, :control
       alias_method :link, :control
 
       private
