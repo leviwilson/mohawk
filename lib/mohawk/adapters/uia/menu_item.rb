@@ -30,7 +30,7 @@ module Mohawk
         end
 
         def path
-          @locator[:path]
+          [@locator[:path] || @locator[:text]].flatten
         end
 
         def try_to_expand(item)

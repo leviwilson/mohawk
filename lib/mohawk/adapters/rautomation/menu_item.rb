@@ -13,9 +13,13 @@ module Mohawk
 
         private
         def menu_item
-          @locator[:path].reduce(@adapter.window) do |the_menu, menu_item|
+          path.reduce(@adapter.window) do |the_menu, menu_item|
             the_menu.menu :text => menu_item
           end
+        end
+
+        def path
+          [@locator[:path] || @locator[:text]].flatten
         end
       end
     end
