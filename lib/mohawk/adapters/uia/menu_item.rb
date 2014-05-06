@@ -17,6 +17,7 @@ module Mohawk
         rescue MenuItemNotFound
           false
         end
+        alias_method :exists?, :exist?
 
         private
         def menu_item
