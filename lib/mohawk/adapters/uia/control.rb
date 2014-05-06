@@ -28,6 +28,7 @@ module Mohawk
         def exist?
           locate_element != nil
         end
+        alias_method :exists?, :exist?
 
         def enabled?
           exist? && element.enabled?
