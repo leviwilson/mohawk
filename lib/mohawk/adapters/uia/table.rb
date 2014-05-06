@@ -3,7 +3,7 @@ module Mohawk
     module UIA
       class Table < Control
         include ElementLocator, Enumerable
-        valid_control_types :table, :list, :data_grid
+        valid_patterns :table
 
         def select(which)
           find_row_with(which).select

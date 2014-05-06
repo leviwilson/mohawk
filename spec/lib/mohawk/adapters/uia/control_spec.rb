@@ -24,23 +24,23 @@ describe Mohawk::Adapters::UiaAdapter::Control do
     end
   end
 
-  class HasControl < Mohawk::Adapters::UiaAdapter::Control
-    valid_control_types :this, :that
+  class HasPattern < Mohawk::Adapters::UiaAdapter::Control
+    valid_patterns :this, :that
   end
 
-  context '#control_types' do
+  context '#patterns' do
     Given { parent.stub(:find) {|l| @locator = l } }
     Given(:no_filter) { new_control(id: 'hi') }
-    Given(:some_filter) { HasControl.new adapter, id: 'hi' }
-    Given(:overridden) { HasControl.new adapter, id: 'hi', control_type: :overridden }
+    Given(:some_filter) { HasPattern.new adapter, id: 'hi' }
+    Given(:overridden) { HasPattern.new adapter, id: 'hi', pattern: :overridden }
 
-    def control_type(control)
+    def pattern(control)
       control.exist?
-      @locator.delete(:control_type)
+      @locator.delete(:pattern)
     end
 
-    Then { control_type(no_filter) == nil }
-    Then { control_type(some_filter) == [:this, :that] }
-    Then { control_type(overridden) == :overridden }
+    Then { pattern(no_filter) == nil }
+    Then { pattern(some_filter) == [:this, :that] }
+    Then { pattern(overridden) == :overridden }
   end
 end

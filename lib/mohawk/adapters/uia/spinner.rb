@@ -2,7 +2,7 @@ module Mohawk
   module Adapters
     module UIA
       class Spinner < Control
-        valid_control_types :spinner
+        valid_patterns :range_value
 
         def value=(value)
           spinner.value = value

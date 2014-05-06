@@ -5,10 +5,10 @@ module Mohawk
         include Mohawk::Waiter
 
         class << self
-          attr_reader :control_types
+          attr_reader :patterns
 
-          def valid_control_types(*control_types)
-            @control_types = control_types
+          def valid_patterns(*patterns)
+            @patterns = patterns
           end
         end
 
@@ -71,8 +71,8 @@ module Mohawk
           scope = (@locator.delete(:children_only) && :children) || :descendants
           locator = @locator.merge(scope: scope)
 
-          control_type = @locator.delete(:control_type) || self.class.control_types
-          locator.merge!(control_type: control_type) if control_type
+          patterns = @locator.delete(:pattern) || self.class.patterns
+          locator.merge!(pattern: patterns) if patterns
 
           @parent.find locator
         end

@@ -2,7 +2,7 @@ module Mohawk
   module Adapters
     module UIA
       class TextBox < Control
-        valid_control_types :edit, :document
+        valid_patterns :text, :value
 
         def enter(*args)
           send_keys *args

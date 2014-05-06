@@ -3,7 +3,7 @@ module Mohawk
     module UIA
       class Button < Control
         include Mohawk::Waiter
-        valid_control_types :button
+        valid_patterns :invoke
 
         def click
           element.as(:invoke).invoke
