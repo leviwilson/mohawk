@@ -4,16 +4,16 @@ module Mohawk
       class TableRow
         attr_reader :index
 
-        def initialize(table, element, index)
-          @table, @element, @index = table, element, index
+        def initialize(table, index)
+          @table, @index = table, index
         end
 
         def name
-          @element.name
+          element.name
         end
 
         def cells
-          @element.items.map &:name
+          element.items.map &:name
         end
 
         def select
@@ -42,7 +42,7 @@ module Mohawk
         end
 
         def to_hash
-          {text: @element.name, row: index}
+          {text: element.name, row: index}
         end
 
         def method_missing(name, *args)
@@ -56,8 +56,12 @@ module Mohawk
         end
 
         private
+        def element
+          @element ||= @table.element.row_at(@index)
+        end
+
         def selection_item
-          @element.as :selection_item
+          element.as :selection_item
         end
 
         def header_methods

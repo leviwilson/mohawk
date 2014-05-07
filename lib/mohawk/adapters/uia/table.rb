@@ -18,11 +18,11 @@ module Mohawk
         end
 
         def headers
-          table.headers.map &:name
+          element.headers.map &:name
         end
 
         def [](index)
-          all_items[index]
+          row_at(index)
         end
 
         def each
@@ -40,17 +40,21 @@ module Mohawk
           found_row
         end
 
-        private
-        def table
-          element.as :table
+        def element
+          super.as(:table)
         end
 
+        private
         def find_by_hash(hash)
           find { |r| r.all_match? hash }
         end
 
+        def row_at(index)
+          TableRow.new self, index
+        end
+
         def all_items
-          table.rows.each_with_index.map { |el, index| TableRow.new self, el, index }
+          element.row_count.times.map { |index| TableRow.new self, index }
         end
       end
     end
