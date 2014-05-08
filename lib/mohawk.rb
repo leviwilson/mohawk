@@ -48,6 +48,12 @@ module Mohawk
     @app_path = path
   end
 
+  class << self
+    attr_accessor :timeout
+    attr_accessor :default_adapter
+  end
+  self.timeout = 60
+
   def self.default_adapter
     @default_adapter || Mohawk::Adapters::RAutomationAdapter
   end

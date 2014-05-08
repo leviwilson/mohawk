@@ -26,6 +26,15 @@ describe Mohawk do
     TestScreen.new :extra => 'test'
   end
 
+  context '#default_timeout' do
+    Given!(:default_timeout) { Mohawk.timeout }
+
+    Then { default_timeout == 60 }
+
+    When { Mohawk.timeout = 123 }
+    Then { Mohawk.timeout == 123 }
+  end
+
   context 'launching an application' do
     let(:process) { double('ChildProcess::Process') }
 
