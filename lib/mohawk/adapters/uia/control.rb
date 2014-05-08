@@ -43,7 +43,7 @@ module Mohawk
         end
 
         def element
-          @element ||= wait_for  { locate_element }
+          @element ||= wait_until  { locate_element }
         end
 
         def handle

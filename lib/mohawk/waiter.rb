@@ -3,7 +3,7 @@ module Mohawk
     class WaitTimeout < StandardError;
     end
 
-    def wait_for(timeout=60, &block)
+    def wait_until(timeout=60, &block)
       start = Time.now
       until (result = block.call) || (Time.now - start > timeout)
         sleep 0.25

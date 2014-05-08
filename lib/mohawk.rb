@@ -31,7 +31,7 @@ module Mohawk
     @app = ChildProcess.build(@app_path).start
 
     app_window = RAutomation::Window.new :pid => @app.pid
-    wait_for { app_window.present? }
+    wait_until { app_window.present? }
   end
 
   def self.stop
@@ -96,7 +96,7 @@ module Mohawk
   def wait_for_control(locator)
     control = adapter.control(locator)
     begin
-      wait_for { control.exist? }
+      wait_until { control.exist? }
     rescue
       raise "A control with #{locator} was not found"
     end

@@ -56,7 +56,7 @@ module Mohawk
         end
 
         def wait_until_present
-          wait_for { element }
+          wait_until { element }
         end
       end
     end
