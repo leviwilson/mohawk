@@ -1,5 +1,7 @@
 module Mohawk
   module Waiter
+    extend self
+
     class WaitTimeout < StandardError;
     end
 
