@@ -80,78 +80,82 @@ describe Mohawk do
     end
 
     context 'stopping' do
-      Given { Mohawk.start }
-      When { Mohawk.stop }
-      Then { expect(process).to have_received(:stop) }
-    end
+      context '#stop' do
+        Given { Mohawk.start }
+        When { Mohawk.stop }
+        Then { expect(process).to have_received(:stop) }
+      end
 
-    it 'knows if a process was never started' do
-      lambda { Mohawk.stop }.should raise_error('An application was never started')
-    end
+      context 'never started' do
+        Then { expect { Mohawk.stop }.to raise_error 'An application was never started'}
+      end
 
-    it 'does nothing if the process has exited' do
-      process.should_receive(:exited?).and_return(true)
-      process.should_not_receive(:stop)
-      Mohawk.start
+      context 'already stopped' do
+        Given { expect(process).to receive(:exited?).and_return true }
+        When { Mohawk.start; Mohawk.stop }
+        Then { expect(process).not_to have_received :stop }
+      end
 
-      Mohawk.stop
-    end
-
-    it 'has a clean slate if the application has been stopped' do
-      Mohawk.start
-      Mohawk.stop
-      Mohawk.app.should be_nil
+      context 'cleans up state' do
+        When { Mohawk.start; Mohawk.stop }
+        Then { Mohawk.app == nil }
+      end
     end
   end
 
-  context Mohawk::Adapters::UiaAdapter do
-    Given(:window) do
-      window = double 'window', element: element
-      expect(Mohawk::Adapters::UIA::Window).to receive(:new).and_return window
-      window
-    end
-    Given(:element) { double 'element' }
+  context Mohawk::Adapters do
+    Given(:screen) { TestScreen.new }
+    Given(:window) { double('window').as_null_object }
+    Given { screen.adapter.stub(:window).and_return window }
 
-    it "knows if a window exists" do
-      window.should_receive(:exist?)
-      screen.exist?
-    end
+    context 'window' do
+      context '#exist?' do
+        When { screen.exist? }
+        Then { expect(window).to have_received(:exist?) }
+      end
 
-    it "knows if a window is active or not" do
-      window.should_receive(:active?)
-      screen.active?
-    end
+      context '#active?' do
+        When { screen.active? }
+        Then { expect(window).to have_received(:active?) }
+      end
 
-    it "knows if the window is present" do
-      window.should_receive(:present?)
-      screen.present?
-    end
+      context '#present?' do
+        When { screen.present? }
+        Then { expect(window).to have_received(:present?) }
+      end
 
-    it "can hold off until the window is present" do
-      window.should_receive(:wait_until_present)
-      screen.wait_until_present
-    end
-
-    it "can hold off until I say so" do
-      window.should_receive(:present?).twice.and_return(false, true)
-      screen.wait_until {screen.present?}
+      context 'has_text?' do
+        Given { expect(window).to receive(:text).and_return 'lots of text, but blardy blar is in it' }
+        Then { expect(screen).to have_text 'blardy blar' }
+      end
     end
 
-    it "can wait for a control" do
-      expect(screen.adapter).to receive(:control).with(id: 'whatever', index: 0).and_return(double exist?: true)
-      screen.wait_for_control(id: 'whatever', index: 0)
-    end
+    context 'waiting' do
+      context '#wait_until_present' do
+        When { screen.wait_until_present }
+        Then { expect(window).to have_received(:wait_until_present) }
+      end
 
-    it "tells you what you were waiting for if it fails" do
-      screen.should_receive(:wait_until).and_raise
-      locator = {id: 'whatever', index: 0}
-      expect { screen.wait_for_control(id: 'whatever', index: 0) }.to raise_error(Exception, "A control with #{locator} was not found")
-    end
+      context '#wait_until' do
+        Then { screen.respond_to?(:wait_until) }
+      end
 
-    it "knows if a window has text" do
-      window.should_receive(:text).and_return("lots of text but I wanted to find blardy blar blar")
-      screen.should have_text "blardy blar"
+      context '#wait_for_control' do
+        Given do
+          control = double 'control', exist?: true
+          expect(screen.adapter).to receive(:control).with(id: 'whatever').and_return control
+          control
+        end
+
+        Then { screen.wait_for_control id: 'whatever' }
+
+        context 'not there' do
+          Given { expect(screen).to receive(:wait_until).and_raise }
+          Then { expect { screen.wait_for_control(id: 'whatever') }.to raise_error "A control with #{{id: 'whatever'}} was not found" }
+        end
+      end
     end
-    
   end
+
 end
+
