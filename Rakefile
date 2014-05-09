@@ -12,16 +12,6 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
 end
 task :spec
 
-namespace :features do
-  Cucumber::Rake::Task.new(:rautomation) do |t|
-    t.profile = 'rautomation'
-  end
-
-  Cucumber::Rake::Task.new(:uia) do |t|
-    t.profile = 'uia'
-  end
-end
-
-task :features => ['features:rautomation', 'features:uia']
+Cucumber::Rake::Task.new(:features)
 
 task :default => :spec

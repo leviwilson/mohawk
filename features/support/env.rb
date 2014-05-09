@@ -19,11 +19,6 @@ Mohawk::Navigation.routes = {
   ]  
 }
 
-AfterConfiguration do |config|
-  Mohawk.default_adapter = (ENV['MOHAWK_ADAPTER'] == 'uia' && Mohawk::Adapters::UiaAdapter) || Mohawk::Adapters::RAutomationAdapter
-  ENV['MOHAWK_ADAPTER']
-end
-
 Before do
   Mohawk.start
 end

@@ -7,6 +7,5 @@ require 'rspec-given'
 require 'ffi_stub'
 require 'mohawk'
 require 'coveralls'
-require_rel 'table_stubber'
 
 Coveralls.wear!

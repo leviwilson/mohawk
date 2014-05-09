@@ -3,7 +3,7 @@ When /^I click the "(.*?)" button$/ do |name|
 end
 
 Then /^I should see the "(.*?)" window$/ do |window_title|
-  RAutomation::Window.new(:title => window_title).wait_until_exists
+  Mohawk::Waiter.wait_until { Uia.find_element title: window_title }
 end
 
 When /^I look at the value of the "(.*?)" control$/ do |name|

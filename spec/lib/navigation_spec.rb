@@ -6,34 +6,28 @@ end
 include Mohawk::Navigation
 
 describe Mohawk::Navigation do
-  let(:screen) { double("Mohawk Screen").as_null_object }
-
   before(:each) do
     NavigationTestScreen.stub(:new).and_return(screen)
-    RAutomation::WaitHelper.stub(:sleep)
   end
 
-  it "can create screen objects" do
-    on(NavigationTestScreen).should eq screen
+  Given(:screen) { double('Mohawk Screen').as_null_object }
+
+  Then { on(NavigationTestScreen) == screen }
+
+  context 'blocks' do
+    When { on(NavigationTestScreen) {|s| s.expected_method } }
+    Then { expect(screen).to have_received(:expected_method) }
   end
 
-  it "should give the screen to a block if desired" do
-    screen.should_receive(:expected_method)
-    on(NavigationTestScreen) do |screen|
-      screen.expected_method
-    end
+  context 'waiting until it exists' do
+    When { on(NavigationTestScreen).was_used }
+    Then { expect(screen).to have_received :wait_until_present }
+    And { expect(screen).to have_received :was_used }
   end
 
-  it "waits for the screen to be present before proceeding" do
-    screen.should_receive(:wait_until_present)
-    screen.should_receive(:was_used)
-    on(NavigationTestScreen) do |screen|
-      screen.was_used
-    end
-  end
-
-  it "can pass additional locator information to the screen" do
-    NavigationTestScreen.should_receive(:new).with(:extra => 'info').and_return(screen)
-    on(NavigationTestScreen, :extra => 'info')
+  context 'additional information' do
+    Given { expect(NavigationTestScreen).to receive(:new).with(extra: :info).and_return(screen) }
+    When(:result) { on(NavigationTestScreen, extra: :info) }
+    Then { result == screen }
   end
 end

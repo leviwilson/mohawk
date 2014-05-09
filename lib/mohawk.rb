@@ -1,14 +1,12 @@
-require "rautomation"
 require 'childprocess'
-require "mohawk/version"
-require "require_all"
-require "mohawk/accessors"
-require "mohawk/navigation"
-require "mohawk/adapters/rautomation_adapter"
-require "mohawk/adapters/uia_adapter"
-require "mohawk/core_ext/string"
+require 'mohawk/version'
+require 'require_all'
+require 'mohawk/accessors'
+require 'mohawk/navigation'
+require 'mohawk/adapters/uia_adapter'
+require 'mohawk/core_ext/string'
 
-require_rel "mohawk/accessors"
+require_rel 'mohawk/accessors'
 
 module Mohawk
   include Waiter
@@ -30,8 +28,7 @@ module Mohawk
     raise InvalidApplicationPath.new unless @app_path
     @app = ChildProcess.build(@app_path).start
 
-    app_window = RAutomation::Window.new :pid => @app.pid
-    wait_until { app_window.present? }
+    wait_until { Uia.find_element pid: @app.pid  }
   end
 
   def self.stop
@@ -55,7 +52,7 @@ module Mohawk
   self.timeout = 60
 
   def self.default_adapter
-    @default_adapter || Mohawk::Adapters::RAutomationAdapter
+    @default_adapter || Mohawk::Adapters::UiaAdapter
   end
 
   def self.default_adapter=(cls)

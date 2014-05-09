@@ -9,21 +9,28 @@ end
 
 describe Mohawk do
   let(:screen) { TestScreen.new }
-  let(:window) { double('RAutomation Window') }
+  let(:window) { double 'window' }
 
   before(:each) do
     Mohawk.app_path = nil
     Mohawk.instance_variable_set(:@app, nil)
   end
 
-  it "uses the uia adapter by default" do
-    RAutomation::Window.should_receive(:new).with(:title => "Some Window Title", :adapter => :ms_uia).and_return(window)
-    TestScreen.new
+  def expected_window(*args)
+    w = double 'window'
+    expect(Mohawk::Adapters::UIA::Window).to receive(:new).with(*args).and_return w
+    w
   end
 
-  it "can accept additional locator information" do
-    RAutomation::Window.should_receive(:new).with(:title => "Some Window Title", :extra => 'test', :adapter => :ms_uia).and_return(window)
-    TestScreen.new :extra => 'test'
+  context 'default adapter' do
+    Then { TestScreen.new.adapter.class ==  Mohawk::Adapters::UiaAdapter  }
+  end
+
+  context 'additional locator information' do
+    Then do
+      expect(Mohawk.default_adapter).to receive(:new).with title: 'Some Window Title', extra: 'test'
+      TestScreen.new extra: 'test'
+    end
   end
 
   context '#default_timeout' do
@@ -36,42 +43,46 @@ describe Mohawk do
   end
 
   context 'launching an application' do
-    let(:process) { double('ChildProcess::Process') }
+    let(:process) { double 'child process', pid: 123 }
 
     before(:each) do
+      Uia.stub(:find_element).and_return double
       process.stub(:start).and_return(process)
-      [:exited?, :stop, :pid].each &process.method(:stub)
+      [:exited?, :stop].each &process.method(:stub)
       ChildProcess.stub(:build).with('./the/app/path.exe').and_return(process)
 
-      RAutomation::Window.stub(:new).and_return(window)
       window.stub(:present?).and_return(true)
 
       Mohawk.app_path = './the/app/path.exe'
     end
 
-    it 'requires a path' do
-      Mohawk.app_path = nil
-      lambda { Mohawk.start }.should raise_error(Mohawk::InvalidApplicationPath, 'You must set the Mohawk.app_path to start an application')
+    context 'requires app_path' do
+      When { Mohawk.app_path = nil }
+      Then { expect { Mohawk.start }.to raise_error(Mohawk::InvalidApplicationPath, 'You must set the Mohawk.app_path to start an application') }
     end
 
-    it 'can start an application' do
-      process.should_receive(:start)
-      Mohawk.start
+    context 'starting' do
+      context 'fast starters' do
+        Given { expect(Uia).to receive(:find_element).and_return double }
+        Then do
+          expect(process).to receive(:start)
+          Mohawk.start
+        end
+      end
+
+      context 'slow starters' do
+        Then { process.pid == 123}
+        Then do
+          expect(Uia).to receive(:find_element).with(pid: 123).and_return(nil, nil, double)
+          Mohawk.start
+        end
+      end
     end
 
-    it 'waits on the application' do
-      process.should_receive(:pid).and_return(123)
-      RAutomation::Window.should_receive(:new).with(:pid => 123).and_return(window)
-      window.should_receive(:present?).and_return(false, false, true)
-
-      Mohawk.start
-    end
-
-    it 'can stop an application' do
-      process.should_receive(:stop)
-      Mohawk.start
-
-      Mohawk.stop
+    context 'stopping' do
+      Given { Mohawk.start }
+      When { Mohawk.stop }
+      Then { expect(process).to have_received(:stop) }
     end
 
     it 'knows if a process was never started' do
@@ -93,11 +104,13 @@ describe Mohawk do
     end
   end
 
-  context "using the UI Automation adapter" do
-    before(:each) do
-      RAutomation::Window.stub(:new).and_return(window)
-      RAutomation::WaitHelper.stub(:sleep)
+  context Mohawk::Adapters::UiaAdapter do
+    Given(:window) do
+      window = double 'window', element: element
+      expect(Mohawk::Adapters::UIA::Window).to receive(:new).and_return window
+      window
     end
+    Given(:element) { double 'element' }
 
     it "knows if a window exists" do
       window.should_receive(:exist?)
@@ -125,17 +138,14 @@ describe Mohawk do
     end
 
     it "can wait for a control" do
-      found_control = double("control to wait for")
-      found_control.should_receive(:exist?).and_return(true)
-      window.should_receive(:control).with(:id => "whatever", :index => 0).and_return(found_control)
-      screen.wait_for_control(:id => "whatever", :index => 0)
+      expect(screen.adapter).to receive(:control).with(id: 'whatever', index: 0).and_return(double exist?: true)
+      screen.wait_for_control(id: 'whatever', index: 0)
     end
 
     it "tells you what you were waiting for if it fails" do
-      screen.should_receive(:wait_until).and_raise("you should have caught me")
-      locator = {:id => "whatever", :index => 0}
-      window.should_receive(:control).with(locator)
-      lambda { screen.wait_for_control(:id => "whatever", :index => 0) }.should raise_error(Exception, "A control with #{locator} was not found")
+      screen.should_receive(:wait_until).and_raise
+      locator = {id: 'whatever', index: 0}
+      expect { screen.wait_for_control(id: 'whatever', index: 0) }.to raise_error(Exception, "A control with #{locator} was not found")
     end
 
     it "knows if a window has text" do

@@ -1,3 +1,1 @@
 default: --no-source --color --format pretty
-rautomation: --no-source --color --format pretty --tags ~@uia_only
-uia: --no-source --color --format pretty MOHAWK_ADAPTER=uia
