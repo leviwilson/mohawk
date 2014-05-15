@@ -14,11 +14,7 @@ module Mohawk
         end
 
         def element
-          @element ||= Uia.find_element(@locator)
-          if @element && @container
-            @element = @element.find(@container) || @element
-          end
-          @element
+          @element ||= locate_element
         end
 
         def send_keys(*keys)
@@ -52,11 +48,20 @@ module Mohawk
         end
 
         def present?
-          element != nil
+          locate_element != nil
         end
 
         def wait_until_present
           wait_until { element }
+        end
+
+        private
+        def locate_element
+          element = Uia.find_element(@locator)
+          if element && @container
+            element = element.find(@container) || element
+          end
+          element
         end
       end
     end
