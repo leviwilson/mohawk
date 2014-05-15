@@ -5,9 +5,7 @@ describe Mohawk::Adapters::UIA::Window do
   Given(:about) { main_form.about; on(About) }
 
   context '#present' do
-    context 'shit' do
-      Then { about.present? == true }
-    end
+    Then { about.present? == true }
 
     context 'closing / opening' do
       When { about.close }
