@@ -103,6 +103,31 @@ describe Mohawk do
     end
   end
 
+  context '#required_controls' do
+    Given { start_app; Mohawk.timeout = 1 }
+    Given(:has_controls) do
+      Class.new do
+        include Mohawk
+        window title: /MainForm/
+        required_controls :about, :data_grid_view
+        button(:about, value: 'About')
+        button(:data_grid_view, value: 'Data Grid View')
+      end
+    end
+    Given(:missing_controls) do
+      Class.new do
+        include Mohawk
+        window title: /MainForm/
+        required_controls :something
+
+        button(:something, id: 'notThere')
+      end
+    end
+
+    Then { on(has_controls) != nil }
+    Then { expect { on(missing_controls) }.to raise_error /Control something was not found on the #<Class:0x.*> screen/ }
+  end
+
   context Mohawk::Adapters do
     Given(:screen) { TestScreen.new }
     Given(:window) { double('window').as_null_object }

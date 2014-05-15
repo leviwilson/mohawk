@@ -12,11 +12,10 @@ require_rel 'screens'
 
 Coveralls.wear!
 
-Mohawk.app_path = 'features/support/WindowsForms.exe'
-
 include Mohawk::Navigation
 
 def start_app
+  Mohawk.app_path = 'features/support/WindowsForms.exe'
   Mohawk.start
   on(MainForm)
 end
@@ -24,5 +23,6 @@ end
 RSpec.configure do |config|
   config.after(:each) do
     Mohawk.stop if Mohawk.app
+    Mohawk.timeout = 60
   end
 end

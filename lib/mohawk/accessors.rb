@@ -16,6 +16,19 @@ module Mohawk
       end
     end
 
+    def required_controls(*controls)
+      define_method(:wait_until_present) do
+        controls.each do |control|
+          super()
+          begin
+            wait_until { send("#{control}_view").exist? }
+          rescue Mohawk::Waiter::WaitTimeout
+            raise "Control #{control} was not found on the #{self.class} screen"
+          end
+        end
+      end
+    end
+
     #
     # Defines a locator indicating a child container that is a descendant of
     # the top-level window
