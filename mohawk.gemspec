@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'uia', '~> 0.4'
   gem.add_dependency 'require_all'
   gem.add_dependency 'page_navigation', '>= 0.7'
-  gem.add_dependency 'childprocess', '~> 0.3.9'
+  gem.add_dependency 'childprocess', '~> 0.5'
 
   gem.add_development_dependency 'cucumber'
   gem.add_development_dependency 'rspec', '>= 2.12.0'
