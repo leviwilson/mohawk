@@ -11,8 +11,10 @@ class MainForm
 
   checkbox(:checkbox, id: 'checkBox')
 
-  label(:sample_label, :id => "label1")
-  link(:link_label, :id => "linkLabel1")
+  tree_view(:tree_view, id: 'treeView')
+
+  label(:sample_label, id: 'label1')
+  link(:link_label, id: 'linkLabel1')
 
   control(:month_calendar, id: 'automatableMonthCalendar1')
   control(:about_control, id: 'aboutButton')
