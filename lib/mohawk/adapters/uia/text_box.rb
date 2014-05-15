@@ -22,7 +22,11 @@ module Mohawk
         end
 
         def clear
-          set ''
+          if is_value?
+            set ''
+          else
+            send_keys [:control, :home], [:control, :shift, :end], :backspace
+          end
         end
 
         private

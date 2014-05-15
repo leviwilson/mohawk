@@ -2,6 +2,10 @@ class MainForm
   include Mohawk
   window title: /MainForm/
 
+  text(:text_field, id: 'textField')
+  text(:masked_text_field, :id => 'maskedTextBox')
+  text(:multiline_text_field, id: 'multiLineTextField')
+
   button(:about, id: 'aboutButton')
   button(:data_entry_form, value: 'Data Entry Form')
 
