@@ -1,3 +1,7 @@
+Then /^I should see the "(.*?)" window$/ do |window_title|
+  Mohawk::Waiter.wait_until { Uia.find_element title: window_title }
+end
+
 When(/^I select the menu item by text$/) do
   on(MainScreen).menu_item_by_text
 end
