@@ -6,6 +6,7 @@ require 'rspec/mocks'
 require 'rspec-given'
 require 'mohawk'
 require 'coveralls'
+require 'benchmark'
 
 require 'require_all'
 require_rel 'screens'

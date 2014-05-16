@@ -9,6 +9,7 @@ class MainForm
   button(:close, id: 'Close')
   button(:about, id: 'aboutButton')
   button(:data_entry_form, value: 'Data Entry Form')
+  button(:data_grid_view, value: 'Data Grid View')
   button(:toggle_multi, value: 'Toggle Multi-Select')
 
   checkbox(:checkbox, id: 'checkBox')
