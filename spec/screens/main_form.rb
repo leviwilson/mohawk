@@ -23,6 +23,9 @@ class MainForm
 
   link(:link_label, id: 'linkLabel1')
 
+  menu_item(:menu_item_by_path, path: ['File', 'Roundabout Way', 'To', 'About'])
+  menu_item(:menu_item_by_text, text: 'About')
+
   control(:month_calendar, id: 'automatableMonthCalendar1')
   control(:about_control, id: 'aboutButton')
 end
