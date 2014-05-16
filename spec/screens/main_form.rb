@@ -6,6 +6,7 @@ class MainForm
   text(:masked_text_field, :id => 'maskedTextBox')
   text(:multiline_text_field, id: 'multiLineTextField')
 
+  button(:close, id: 'Close')
   button(:about, id: 'aboutButton')
   button(:data_entry_form, value: 'Data Entry Form')
   button(:toggle_multi, value: 'Toggle Multi-Select')

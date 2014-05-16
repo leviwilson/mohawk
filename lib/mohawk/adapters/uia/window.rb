@@ -36,7 +36,7 @@ module Mohawk
         end
 
         def handle
-          element.handle
+          (locate_element && element.handle) || 0
         end
 
         def title
