@@ -371,6 +371,9 @@ module Mohawk
       define_method("#{name}_items") do
         adapter.tab_control(locator).items
       end
+      define_method("#{name}_view") do
+        adapter.tab_control(locator)
+      end
     end
 
     def control(name, locator)

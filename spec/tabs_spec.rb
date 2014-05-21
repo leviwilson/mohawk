@@ -5,6 +5,7 @@ describe 'tabs' do
 
   Then { screen.tab == 'Info' }
   Then { screen.tab_items == ['Info', 'Other Info'] }
+  Then { screen.tab_view.class == Mohawk::Adapters::UIA::TabControl }
 
   context '#select_tab' do
     context 'by index' do
