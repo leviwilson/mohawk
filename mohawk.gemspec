@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency 'uia', '>= 0.4.3'
+  gem.add_dependency 'uia', '>= 0.4.4'
   gem.add_dependency 'require_all'
   gem.add_dependency 'page_navigation', '>= 0.7'
   gem.add_dependency 'childprocess', '~> 0.5'
