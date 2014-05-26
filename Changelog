@@ -1,3 +1,8 @@
+===	Version	0.4	/	2014-05-26
+*		Bug Fixes
+		*	bumping uia dependency to have better support for Windows 8 / finding by
+		runtime id
+	
 ===	Version 0.3 / 2014-05-23
 *		Enhancements
 		*	bumping uia dependency to speed up element access when they do not have
