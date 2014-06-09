@@ -2,10 +2,18 @@ module Mohawk
   module Adapters
     module UIA
       class MenuItem < Control
-        class MenuItemNotFound < StandardError; end
+        class MenuItemNotFound < StandardError;
+        end
 
         def select
-          element.select_menu_item(*path)
+          wait_until do
+            begin
+              element.select_menu_item(*path)
+              true
+            rescue
+              false
+            end
+          end
         end
 
         def click
@@ -15,6 +23,7 @@ module Mohawk
         def exist?
           !!element.menu_item(*path)
         end
+
         alias_method :exists?, :exist?
 
         private

@@ -17,4 +17,10 @@ describe 'menus' do
     When { main_form.click_menu_item_by_path }
     Then { on(About).active? }
   end
+
+  context 'waiting for' do
+    Given { Mohawk.timeout = 2 }
+    When(:non_existent_menu) { main_form.non_existent_menu }
+    Then { expect(non_existent_menu).to have_failed(Mohawk::Waiter::WaitTimeout) }
+  end
 end
