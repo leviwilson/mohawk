@@ -6,18 +6,11 @@ module Mohawk
         end
 
         def select
-          wait_until do
-            begin
-              element.select_menu_item(*path)
-              true
-            rescue
-              false
-            end
-          end
+          until_successful { element.select_menu_item(*path) }
         end
 
         def click
-          element.menu_item(*path).click_center
+          until_successful { element.menu_item(*path).click_center }
         end
 
         def exist?
@@ -33,6 +26,17 @@ module Mohawk
 
         def path
           [@locator[:path] || @locator[:text]].flatten
+        end
+
+        def until_successful(&block)
+          wait_until do
+            begin
+              block.call
+              true
+            rescue
+              false
+            end
+          end
         end
       end
     end

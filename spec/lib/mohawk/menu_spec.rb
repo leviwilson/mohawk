@@ -20,7 +20,11 @@ describe 'menus' do
 
   context 'waiting for' do
     Given { Mohawk.timeout = 2 }
+
     When(:non_existent_menu) { main_form.non_existent_menu }
+    When(:click_non_existent_menu) { main_form.click_non_existent_menu }
+
     Then { expect(non_existent_menu).to have_failed(Mohawk::Waiter::WaitTimeout) }
+    Then { expect(click_non_existent_menu).to have_failed(Mohawk::Waiter::WaitTimeout) }
   end
 end
