@@ -1,3 +1,8 @@
+===	Version 0.4.1	/	2014-06-09
+*		Enhancements
+		*	MenuItem #click and #select will wait until it successfully is able to
+		do so
+
 ===	Version	0.4	/	2014-05-26
 *		Bug Fixes
 		*	bumping uia dependency to have better support for Windows 8 / finding by
