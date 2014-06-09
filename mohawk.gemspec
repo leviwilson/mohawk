@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'childprocess', '~> 0.5'
 
   gem.add_development_dependency 'cucumber'
-  gem.add_development_dependency 'rspec', '>= 2.12.0'
+  gem.add_development_dependency 'rspec', '2.14.1'
   gem.add_development_dependency 'rspec-given'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'childprocess'
