@@ -24,10 +24,10 @@ module Mohawk
 
   attr_reader :adapter
 
-  def self.start
+  def self.start(working_directory = nil)
     raise InvalidApplicationPath.new unless @app_path
     @app = ChildProcess.build(@app_path)
-    @app.cwd = @app_cwd if @app_cwd
+    @app.cwd = working_directory if working_directory
     @app.start
 
     wait_until { Uia.find_element pid: @app.pid  }
@@ -47,10 +47,6 @@ module Mohawk
     @app_path = path
   end
   
-  def self.app_cwd=(cwd)
-    @app_cwd = cwd
-  end
-
   class << self
     attr_accessor :timeout
     attr_accessor :default_adapter
