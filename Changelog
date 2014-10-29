@@ -1,3 +1,7 @@
+===	Version 0.4.2 / 2014-10-28
+*		Enhancements
+		*	added the ability to pass in the working directory to Mohawk.start
+
 ===	Version 0.4.1	/	2014-06-09
 *		Enhancements
 		*	MenuItem #click and #select will wait until it successfully is able to
