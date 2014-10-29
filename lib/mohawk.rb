@@ -46,7 +46,7 @@ module Mohawk
   def self.app_path=(path)
     @app_path = path
   end
-  
+ 
   class << self
     attr_accessor :timeout
     attr_accessor :default_adapter
