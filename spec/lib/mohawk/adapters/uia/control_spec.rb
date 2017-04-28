@@ -29,7 +29,7 @@ describe Mohawk::Adapters::UiaAdapter::Control do
   end
 
   context '#patterns' do
-    Given { parent.stub(:find) {|l| @locator = l } }
+    Given { allow(parent).to receive(:find) {|l| @locator = l } }
     Given(:no_filter) { new_control(id: 'hi') }
     Given(:some_filter) { HasPattern.new adapter, id: 'hi' }
     Given(:overridden) { HasPattern.new adapter, id: 'hi', pattern: :overridden }
