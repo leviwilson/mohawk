@@ -46,12 +46,12 @@ describe Mohawk do
     let(:process) { double 'child process', pid: 123 }
 
     before(:each) do
-      Uia.stub(:find_element).and_return double
-      process.stub(:start).and_return(process)
-      [:exited?, :stop].each &process.method(:stub)
-      ChildProcess.stub(:build).with('./the/app/path.exe').and_return(process)
+      allow(Uia).to receive(:find_element).and_return double
+      allow(process).to receive(:start).and_return(process)
+      [:exited?, :stop].each { |x| allow(process).to receive(x) }
+      allow(ChildProcess).to receive(:build).with('./the/app/path.exe').and_return(process)
 
-      window.stub(:present?).and_return(true)
+      allow(window).to receive(:present?).and_return(true)
 
       Mohawk.app_path = './the/app/path.exe'
     end
@@ -131,7 +131,10 @@ describe Mohawk do
   context Mohawk::Adapters do
     Given(:screen) { TestScreen.new }
     Given(:window) { double('window').as_null_object }
-    Given { screen.adapter.stub(:window).and_return window }
+    Given do
+      allow(screen.adapter).to receive(:window).and_return window
+      allow(window).to receive(:present?)
+    end
 
     context 'window' do
       context '#exist?' do

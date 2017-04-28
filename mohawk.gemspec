@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'childprocess', '~> 0.5'
 
   gem.add_development_dependency 'cucumber'
-  gem.add_development_dependency 'rspec', '2.14.1'
+  gem.add_development_dependency 'rspec', '3.5.0'
   gem.add_development_dependency 'rspec-given'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'childprocess'
@@ -32,5 +32,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard'
   gem.add_development_dependency 'guard-rspec'
   gem.add_development_dependency 'terminal-notifier-guard'
-  gem.add_development_dependency 'json', '~> 1.7.7'
+  gem.add_development_dependency 'json', '~> 2.1.0'
 end

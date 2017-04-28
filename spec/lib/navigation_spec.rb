@@ -7,7 +7,7 @@ include Mohawk::Navigation
 
 describe Mohawk::Navigation do
   before(:each) do
-    NavigationTestScreen.stub(:new).and_return(screen)
+    allow(NavigationTestScreen).to receive(:new).and_return(screen)
   end
 
   Given(:screen) { double('Mohawk Screen').as_null_object }
