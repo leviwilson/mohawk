@@ -131,7 +131,10 @@ describe Mohawk do
   context Mohawk::Adapters do
     Given(:screen) { TestScreen.new }
     Given(:window) { double('window').as_null_object }
-    Given { allow(screen.adapter).to receive(:window).and_return window }
+    Given do
+      allow(screen.adapter).to receive(:window).and_return window
+      allow(window).to receive(:present?)
+    end
 
     context 'window' do
       context '#exist?' do
