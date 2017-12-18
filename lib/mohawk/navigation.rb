@@ -10,7 +10,7 @@ module Mohawk
       block.call screen if block
       screen
     rescue Mohawk::Waiter::WaitTimeout => e
-      raise e.class, "Unable to locate '#{cls}'", e.backtrace
+      raise e.class, e.message.sub(/window/, cls.to_s), e.backtrace
     end
   end
 end

@@ -52,7 +52,7 @@ module Mohawk
         end
 
         def wait_until_present
-          wait_until { element }
+          wait_until(Mohawk.timeout, "Unable to locate window using #{@locator}") { element }
         end
 
         private
