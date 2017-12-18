@@ -91,8 +91,8 @@ module Mohawk
   #
   # Waits until the window is present
   #
-  def wait_until_present
-    adapter.window.wait_until_present
+  def wait_until_present(context=nil)
+    adapter.window.wait_until_present context
   end
 
   #

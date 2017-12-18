@@ -6,11 +6,9 @@ module Mohawk
 
     def on(cls, extra = {}, &block)
       screen = cls.new extra
-      screen.wait_until_present
+      screen.wait_until_present "Unable to locate #{cls} using #{screen.adapter.locator}"
       block.call screen if block
       screen
-    rescue Mohawk::Waiter::WaitTimeout => e
-      raise e.class, e.message.sub(/window/, cls.to_s), e.backtrace
     end
   end
 end

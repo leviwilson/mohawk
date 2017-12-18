@@ -51,8 +51,8 @@ module Mohawk
           locate_element != nil
         end
 
-        def wait_until_present
-          wait_until(Mohawk.timeout, "Unable to locate window using #{@locator}") { element }
+        def wait_until_present(context=nil)
+          wait_until(Mohawk.timeout, context) { element }
         end
 
         private

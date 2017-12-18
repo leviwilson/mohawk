@@ -17,7 +17,7 @@ module Mohawk
     end
 
     def required_controls(*controls)
-      define_method(:wait_until_present) do
+      define_method(:wait_until_present) do |context=nil|
         controls.each do |control|
           super()
           begin
