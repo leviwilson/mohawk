@@ -6,6 +6,8 @@ module Mohawk
     class UiaAdapter
       include UIA
 
+      attr_reader :locator
+
       def initialize(locator, container=nil)
         @children_only = locator.delete :children_only
         @locator = locator

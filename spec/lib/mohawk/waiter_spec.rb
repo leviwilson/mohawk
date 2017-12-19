@@ -30,10 +30,22 @@ describe Mohawk::Waiter do
 
   context 'waits in between' do
     When do
-      @fake_responses = [false,  true]
+      @fake_responses = [false, true]
       fake_time 0, 1
     end
 
     Then { expect { waiter.wait_until { do_it } }.not_to raise_error }
   end
+
+  context 'accepts context parameter' do
+    Then { expect { waiter.wait_until(1, 'This is the context') { true } }.not_to raise_error }
+  end
+
+  context 'outputs context on error' do
+    Then do
+      context_string = 'This is the context'
+      expect { waiter.wait_until(1, context_string) { false } }.to raise_error Mohawk::Waiter::WaitTimeout, context_string
+    end
+  end
+
 end

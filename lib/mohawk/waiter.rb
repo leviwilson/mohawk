@@ -5,13 +5,13 @@ module Mohawk
     class WaitTimeout < StandardError;
     end
 
-    def wait_until(timeout=Mohawk.timeout, &block)
+    def wait_until(timeout=Mohawk.timeout, context=nil, &block)
       start = Time.now
       until (result = block.call) || (Time.now - start > timeout)
         sleep 0.25
       end
 
-      raise WaitTimeout unless result
+      raise WaitTimeout, context unless result
       result
     end
   end
