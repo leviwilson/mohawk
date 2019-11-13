@@ -1,3 +1,5 @@
+require_rel 'control'
+
 module Mohawk
   module Adapters
     module UIA

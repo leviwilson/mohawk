@@ -34,7 +34,10 @@ describe Mohawk::Adapters::UIA::Window do
   end
 
   context '#active?' do
-    Then { not_created_form.active? == false }
+    Then do
+      not_created_form.exist?
+      expect(not_created_form.active?).to eq(false)
+    end
     Then { main_form.active? == true }
 
     context 'inactive --> active' do
