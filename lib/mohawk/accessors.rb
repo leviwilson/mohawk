@@ -269,12 +269,10 @@ module Mohawk
     # @param  [Hash]  locator for how the label is found
     #
     def menu_item(name, locator)
-      define_method("#{name}") do
-        adapter.menu_item(locator).select
-      end
       define_method("click_#{name}") do
         adapter.menu_item(locator).click
       end
+      alias_method "#{name}", "click_#{name}"
     end
 
     # Generates methods for working with table or list view controls
