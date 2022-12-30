@@ -19,6 +19,14 @@ describe 'combo boxes' do
       Then { main_form.fruits == 'Orange' }
     end
 
+    context '#options' do
+      Then { main_form.fruits_options == ["Apple", "Caimito", "Coconut", "Orange", "Passion Fruit"] }
+    end
+  end
+
+  describe 'list boxes' do
+    Given(:main_form) { start_app }
+
     context 'multi-select' do
       Given { main_form.toggle_multi }
       When { (0..2).each {|n| main_form.select_fruits_list n } }
@@ -42,11 +50,11 @@ describe 'combo boxes' do
         end
       end
     end
-  end
 
-  context 'list boxes' do
-    # ListBox controls are special with regard to raising events
-    When { main_form.fruits_list = 'Orange' }
-    Then { main_form.fruits_label == 'Orange' }
+    context 'events' do
+      # ListBox controls are special with regard to raising events
+      When { main_form.fruits_list = 'Orange' }
+      Then { main_form.fruits_label == 'Orange' }
+    end
   end
 end

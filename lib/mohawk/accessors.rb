@@ -116,12 +116,6 @@ module Mohawk
       define_method("#{name}") do
         adapter.combo(locator).value
       end
-      define_method("clear_#{name}") do |item|
-        adapter.combo(locator).clear item
-      end
-      define_method("#{name}_selections") do
-        adapter.combo(locator).values
-      end
 
       define_method("#{name}=") do |item|
         adapter.combo(locator).set item
@@ -133,6 +127,45 @@ module Mohawk
       end
       define_method("#{name}_view") do
         adapter.combo(locator).view
+      end
+    end
+
+    #
+    # Generates methods to get the value of a list box, set the selected
+    # item by both index and value as well as to see the available options
+    #
+    # @example
+    #   select_list(:status, :id => 'statusListBox')
+    #   # will generate 'status', 'status_selections', 'status=', 'select_status','clear_status' and 'status_options' methods
+    #
+    # @param  [String]  name used for the generated methods
+    # @param  [Hash]  locator for how the list box is found
+    #
+    # === Aliases
+    # * selectlist
+    # * list_box
+    #
+    def select_list(name, locator)
+      define_method("#{name}") do
+        adapter.select_list(locator).value
+      end
+      define_method("clear_#{name}") do |item|
+        adapter.select_list(locator).clear item
+      end
+      define_method("#{name}_selections") do
+        adapter.select_list(locator).values
+      end
+
+      define_method("#{name}=") do |item|
+        adapter.select_list(locator).set item
+      end
+      alias_method "select_#{name}", "#{name}="
+
+      define_method("#{name}_options") do
+        adapter.select_list(locator).options
+      end
+      define_method("#{name}_view") do
+        adapter.select_list(locator).view
       end
     end
 
@@ -395,7 +428,10 @@ module Mohawk
     alias_method :combobox, :combo_box
     alias_method :dropdown, :combo_box
     alias_method :drop_down, :combo_box
-    alias_method :select_list, :combo_box
+
+    # select_list aliases
+    alias_method :selectlist, :select_list
+    alias_method :list_box, :select_list
 
     # table aliases
     alias_method :listview, :table
