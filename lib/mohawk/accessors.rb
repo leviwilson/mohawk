@@ -52,7 +52,7 @@ module Mohawk
     #   text(:first_name, :id => 'textFieldId')
     #   # will generate 'first_name', 'first_name=' and 'clear_first_name' methods
     #
-    # @param  [String]  the name used for the generated methods
+    # @param  [String]  name used for the generated methods
     # @param  [Hash]  locator for how the text is found
     #
     def text(name, locator)
@@ -81,7 +81,7 @@ module Mohawk
     #   button(:close, :value => '&Close')
     #   # will generate 'close' and 'close_value' methods
     #
-    # @param  [String]  the name used for the generated methods
+    # @param  [String]  name used for the generated methods
     # @param  [Hash]  locator for how the button is found
     #
     def button(name, locator)
@@ -102,15 +102,15 @@ module Mohawk
     #
     # @example
     #   combo_box(:status, :id => 'statusComboBox')
-    #   # will generate 'status', 'status_selections', 'status=', 'select_status','clear_status' and 'status_options' methods
+    #   # will generate 'status', 'status=', 'select_status', and 'status_options' methods
     #
-    # @param  [String]  the name used for the generated methods
+    # @param  [String]  name used for the generated methods
     # @param  [Hash]  locator for how the combo box is found
     #
     # === Aliases
     # * combobox
     # * dropdown / drop_down
-    # * select_list
+
     #
     def combo_box(name, locator)
       define_method("#{name}") do
@@ -177,7 +177,7 @@ module Mohawk
     #   checkbox(:include, :id => 'checkBoxId')
     #   # will generate 'include', 'include=' and 'include_value' methods
     #
-    # @param  [String]  the name used for the generated methods
+    # @param  [String]  name used for the generated methods
     # @param  [Hash]  locator for how the checkbox is found
     #
     def checkbox(name, locator)
@@ -203,7 +203,7 @@ module Mohawk
     #   radio(:morning, :id => 'morningRadio')
     #   # will generate 'morning' and 'morning?' methods
     #
-    # @param  [String]  the name used for the generated methods
+    # @param  [String]  name used for the generated methods
     # @param  [Hash]  locator for how the radio is found
     #
     def radio(name, locator)
@@ -225,7 +225,7 @@ module Mohawk
     #   label(:login_info, :id => 'loginInfoLabel')
     #   # will generate a 'login_info' method
     #
-    # @param  [String]  the name used for the generated methods
+    # @param  [String]  name used for the generated methods
     # @param  [Hash]  locator for how the label is found
     #
     def label(name, locator)
@@ -244,7 +244,7 @@ module Mohawk
     #   link(:send_info_link, :id => 'sendInfoId')
     #   # will generate 'send_info_link_text' and 'click_send_info_link' methods
     #
-    # @param  [String]  the name used for the generated methods
+    # @param  [String]  name used for the generated methods
     # @param  [Hash]  locator for how the label is found
     #
     def link(name, locator)
@@ -265,7 +265,7 @@ module Mohawk
     #   menu_item(:some_menu_item, :path => ["Path", "To", "A", "Menu Item"])
     #   # will generate a 'some_menu_item' method to select a menu item
     #
-    # @param  [String]  the name used for the generated methods
+    # @param  [String]  name used for the generated methods
     # @param  [Hash]  locator for how the label is found
     #
     def menu_item(name, locator)
@@ -283,7 +283,7 @@ module Mohawk
     #   # find_some_table and 'some_table_view' methods to get an Enumerable of table rows,
     #   # select a table item, clear a table item, return all of the headers and get the raw view
     #
-    # @param  [String]  the name used for the generated methods
+    # @param  [String]  name used for the generated methods
     # @param  [Hash]  locator for how the label is found
     #
     # === Aliases
@@ -325,7 +325,7 @@ module Mohawk
     #   # methods to get the tree value, set the tree value (index or string), get all of the
     #   # items, expand an item (index or string) and collapse an item (index or string)
     #
-    # @param  [String]  the name used for the generated methods
+    # @param  [String]  name used for the generated methods
     # @param  [Hash]  locator for how the label is found
     #
     # === Aliases
@@ -360,7 +360,7 @@ module Mohawk
     #   # will generate 'age', 'age=' methods to get the spinner value and
     #   # set the spinner value.
     #
-    # @param  [String] the name used for the generated methods
+    # @param  [String] name used for the generated methods
     # @param  [Hash] locator for how the spinner control is found
     #
     def spinner(name, locator)
@@ -389,7 +389,7 @@ module Mohawk
     #   # set the currently selected tab (Fixnum, String or RegEx) and to get the
     #   # available tabs to be selected
     #
-    # @param  [String]  the name used for the generated methods
+    # @param  [String]  name used for the generated methods
     # @param  [Hash]  locator for how the tab control is found
     #
     def tabs(name, locator)
