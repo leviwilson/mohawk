@@ -4,16 +4,10 @@ require_relative 'element_locator'
 module Mohawk
   module Adapters
     module UIA
-      class ComboboxControl < ValueControl
+      class ComboBoxControl < ValueControl
         include ElementLocator
 
-        def set(value)
-          if supports_selection?
-            click_or_select find_element(value)
-          else
-            value_pattern.value = value
-          end
-        end
+        alias_method :ctrl_element, :element
 
         def value
           if supports_selection?
@@ -24,7 +18,11 @@ module Mohawk
         end
 
         def options
-          all_items.map &:name
+          if supports_selection?
+            all_items.map &:name
+          else
+            element.items.map &:name
+          end
         end
 
         private
@@ -48,6 +46,11 @@ module Mohawk
           true
         rescue
           false
+        end
+
+        private
+        def element
+          ctrl_element.with(:combo_box)
         end
       end
     end
