@@ -11,11 +11,11 @@ describe Mohawk::Adapters::UIA::Window do
       on(Class.new do
         include Mohawk
         window(title: /MainForm/)
-        parent(id: 'numericUpDown')
+        parent(id: 'groupBox2')
       end)
     end
 
-    Then { container.adapter.window.title == 'linkLabel1' }
+    Then { container.adapter.window.title == 'Drop down list' }
   end
 
   context 'children_only' do

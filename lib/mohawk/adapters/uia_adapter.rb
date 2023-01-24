@@ -35,6 +35,10 @@ module Mohawk
       end
 
       def combo(locator)
+        ComboBoxControl.new self, merge(locator)
+      end
+
+      def select_list(locator)
         SelectList.new self, merge(locator)
       end
 
