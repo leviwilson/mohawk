@@ -4,8 +4,8 @@ When /^we are observing the people table$/ do
 end
 
 Then /^the table row information should look like the following:$/ do |row_items|
-  row_items.map_column!("row") { |r| r.to_i }
-  row_items.map_headers!("text" => :text, "row" => :row)
+  row_items = row_items.map_column("row") { |r| r.to_i }
+  row_items = row_items.map_headers("text" => :text, "row" => :row)
   on(DataEntryForm).people.map(&:to_hash).should eq row_items.hashes
 end
 
