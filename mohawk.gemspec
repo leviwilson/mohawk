@@ -32,5 +32,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard'
   gem.add_development_dependency 'guard-rspec'
   gem.add_development_dependency 'terminal-notifier-guard'
-  gem.add_development_dependency 'json', '~> 2.1.0'
+  gem.add_development_dependency 'json', '~> 2.1'
 end
